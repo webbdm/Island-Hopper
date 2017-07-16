@@ -54,6 +54,11 @@ class App extends Component {
     });
   }
 
+  removeIsland(islandId) {
+    const islandRef = firebase.database().ref(`/islands/${islandId}`);
+    islandRef.remove();
+  }
+
   render() {
     return (
       <div className='app'>
@@ -79,6 +84,7 @@ class App extends Component {
                     <li key={island.id}>
                       <h3>{island.islandname}</h3>
                       <p>{island.islandLocation}</p>
+                      <button onClick={()=>this.removeIsland(island.id)}>Delete</button>
                     </li>
                   )
                 })}
