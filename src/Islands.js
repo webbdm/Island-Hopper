@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Islands } from './Islands';
 import firebase from './firebase.js';
 
-class App extends Component {
+class Islands extends Component {
 
   constructor() {
     super();
@@ -62,17 +61,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className='app'>
-        <header>
-          <div className='wrapper'>
-            <h1>Island Hopper<i className="fa fa-plane" aria-hidden="true"></i></h1>
-            <ul className='nav-links pull-right'>
-              <li>Home</li>
-              <li>Auth</li>
-            </ul>
-
-          </div>
-        </header>
+      <div className='islandbox'>
         <div className='container'>
           <section className='add-item'>
             <form onSubmit={this.handleSubmit}>
@@ -101,4 +90,4 @@ class App extends Component {
     );
   }
 }
-export default App;
+export default Islands;
