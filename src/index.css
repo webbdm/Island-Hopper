@@ -1,3 +1,5 @@
+/* Old Theme */
+
 body {
   font-family: 'Open Sans', sans-serif;
   background-color: #fff;
@@ -19,6 +21,21 @@ header h1 {
   
 }
 
+.nav-links{
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  align-content: space-between;
+}
+
+.nav-links li{
+  background-color: transparent;
+  text-shadow: none;
+  margin: 10px;
+  color: white;
+  box-shadow: none;
+}
+
 .fa {
   font-size: 22px;
   transform: translateY(50deg);  
@@ -27,6 +44,11 @@ header h1 {
 header i {
   vertical-align: middle;
   margin-left: 12px;
+}
+
+.homepage{
+  text-align: center;
+  margin-top: 10%;
 }
 
 .container {
@@ -39,6 +61,11 @@ header i {
 .wrapper {
   max-width: 1100px;
   margin: 0 auto;
+}
+
+.wrapper ul{
+  text-align: center;
+
 }
 
 .add-item {
