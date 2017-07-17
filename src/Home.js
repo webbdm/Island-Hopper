@@ -8,7 +8,6 @@ class Home extends Component {
         return (
             <div className='homepage'>
                 <h1>Welcome to Island Hopper</h1>
-                <Link to="/islands"><button>Island Hop!</button></Link>
             </div>
         );
     }

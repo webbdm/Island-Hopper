@@ -47,7 +47,8 @@ class Islands extends Component {
     const islandsRef = firebase.database().ref('islands');
     const island = {
       islandLocation: this.state.islandLocation,
-      islandname: this.state.islandname
+      islandname: this.state.islandname,
+      cardCreator: this.state.user.displayName
     }
     islandsRef.push(island);
     this.setState({
@@ -79,8 +80,10 @@ class Islands extends Component {
                   return (
                     <li key={island.id}>
                       <h3>{island.islandname}</h3>
-                      <p>{island.islandLocation}</p>
-                      <button onClick={() => this.removeIsland(island.id)}>Delete</button>
+                      <h4>{island.islandLocation}</h4>
+                      <p>Added by {this.state.user.displayName}</p>
+                      {this.state.user.displayName === this.state.user.displayName || island.user === this.state.user.email ?
+                        <button onClick={() => this.removeisland(island.id)}>Delete</button> : null}
                     </li>
                   )
                 })}

@@ -50,22 +50,29 @@ class App extends Component {
       <BrowserRouter>
         <div className='app'>
           <header>
-            <div className='wrapper'>
-              <h1>Island Hopper<i className="fa fa-plane" aria-hidden="true"></i></h1>
-              <ul className='nav-links pull-right'>
-                <Link to="/"><li>Home</li></Link>
+            <div className="wrapper">
+              <h1>Island Hopper<i className="fa fa-plane" aria-hidden="true" /></h1>
+              <div className="pull-right">
                 {this.state.user ?
-                  <button onClick={this.logout}>Log Out</button>
+                  <button onClick={this.logout}>Logout</button>
                   :
                   <button onClick={this.login}>Log In</button>
                 }
-              </ul>
+              </div>
             </div>
           </header>
+          {console.log(this.state.user)}
+          {this.state.user ?
+            <div>
+              <Islands islands={this.state} />
+              <div className='user-profile'>
+                <img src={this.state.user.photoURL} />
+              </div>
+            </div>
+            :
+            <Home />
+          }
           <div>
-            <Islands islands={this.state} />
-            {/*<Route exact path="/" component={Home} />*/}
-            {/*<Route path="/islands" render={() => <Islands islands={this.state} />} />*/}
           </div>
         </div>
       </BrowserRouter>
