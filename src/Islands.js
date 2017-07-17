@@ -28,6 +28,12 @@ class Islands extends Component {
         islands: newState
       });
     });
+
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      }
+    });
   }
 
   handleChange(e) {

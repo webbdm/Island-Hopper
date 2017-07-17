@@ -17,6 +17,32 @@ class App extends Component {
       user: null
     }
 
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+
+  }
+
+  componentDidMount() {
+
+  }
+
+  login() {
+    auth.signInWithPopup(provider)
+      .then((result) => {
+        const user = result.user;
+        this.setState({
+          user
+        });
+      });
+  }
+
+  logout() {
+    auth.signOut()
+      .then(() => {
+        this.setState({
+          user: null
+        });
+      });
   }
 
   render() {
@@ -29,16 +55,17 @@ class App extends Component {
               <ul className='nav-links pull-right'>
                 <Link to="/"><li>Home</li></Link>
                 {this.state.user ?
-                  <li onClick={this.logout}>Log Out</li>
+                  <button onClick={this.logout}>Log Out</button>
                   :
-                  <li onClick={this.login}>Log In</li>
+                  <button onClick={this.login}>Log In</button>
                 }
               </ul>
             </div>
           </header>
           <div>
-            <Route exact path="/" component={Home} />
-            <Route path="/islands" render={() => <Islands islands={this.state} />} />
+            <Islands islands={this.state} />
+            {/*<Route exact path="/" component={Home} />*/}
+            {/*<Route path="/islands" render={() => <Islands islands={this.state} />} />*/}
           </div>
         </div>
       </BrowserRouter>
