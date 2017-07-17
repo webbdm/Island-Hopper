@@ -61,7 +61,6 @@ class App extends Component {
               </div>
             </div>
           </header>
-          {console.log(this.state.user)}
           {this.state.user ?
             <div>
               <Islands islands={this.state} />

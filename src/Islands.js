@@ -17,13 +17,16 @@ class Islands extends Component {
     islandsRef.on('value', (snapshot) => {
       let islands = snapshot.val();
       let newState = [];
+      console.log("state");
       for (let island in islands) {
         newState.push({
           id: island,
           islandLocation: islands[island].islandLocation,
-          islandname: islands[island].islandname
+          islandname: islands[island].islandname,
+          cardCreator: islands[island].cardCreator
         });
       }
+      
       this.setState({
         islands: newState
       });
@@ -81,9 +84,9 @@ class Islands extends Component {
                     <li key={island.id}>
                       <h3>{island.islandname}</h3>
                       <h4>{island.islandLocation}</h4>
-                      <p>Added by {this.state.user.displayName}</p>
-                      {this.state.user.displayName === this.state.user.displayName || island.user === this.state.user.email ?
-                        <button onClick={() => this.removeisland(island.id)}>Delete</button> : null}
+                      <p>Added by {island.cardCreator}</p>
+                      {island.cardCreator === this.state.user.displayName ?
+                        <button onClick={() => this.removeIsland(island.id)}>Delete</button> : null}
                     </li>
                   )
                 })}
