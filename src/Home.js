@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import firebase, { auth, provider } from './firebase.js';
 
 class Home extends Component {
     render() {

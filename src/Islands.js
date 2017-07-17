@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import firebase from './firebase.js';
+import firebase, { auth, provider } from './firebase.js';
 
 class Islands extends Component {
 
-  constructor() {
+  constructor(props) {
     super();
-    this.state = {
-      islandLocation: '',
-      islandname: '',
-      islands: []
-    }
+    this.state = props.islands;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
