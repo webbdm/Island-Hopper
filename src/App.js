@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import firebase, { auth, provider } from './firebase.js';
 
 // Components
@@ -23,6 +23,12 @@ class App extends Component {
   }
 
   componentDidMount() {
+    auth.onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        this.setState({ user });
+      }
+    });
 
   }
 

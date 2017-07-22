@@ -7,7 +7,7 @@ class Islands extends Component {
   constructor(props) {
     super();
     this.state = props.islands;
-    this.state.editing = false;
+    //this.state.editing = false;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,17 +27,12 @@ class Islands extends Component {
           cardCreator: islands[island].cardCreator
         });
       }
-      
+
       this.setState({
         islands: newState
       });
     });
 
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ user });
-      }
-    });
   }
 
   handleChange(e) {
@@ -66,13 +61,13 @@ class Islands extends Component {
     islandRef.remove();
   }
 
-  editIsland(island){
-    console.log(this.state, island);
+  editIsland(island) {
+    //console.log(this.state, island);
     this.setState({
       editing: true
     });
     const islandRef = firebase.database().ref(`/islands/${island.id}`);
-    console.log(this.state, island);
+    //console.log(this.state.editing, island);
     //islandRef.set(island);
   }
 
@@ -97,10 +92,10 @@ class Islands extends Component {
                       <h4>{island.islandLocation}</h4>
                       <p>Added by {island.cardCreator}</p>
                       {island.cardCreator === this.state.user.displayName ?
-                      <div className="card">
-                        <button className="card-button" onClick={() => this.removeIsland(island.id)}>Delete</button>
-                        <button className="card-button" onClick={() => this.editIsland(island)}>Edit</button>  
-                      </div> : null}
+                        <div className="card">
+                          <button className="card-button" onClick={() => this.removeIsland(island.id)}>Delete</button>
+                          <button className="card-button" onClick={() => this.editIsland(island)}>Edit</button>
+                        </div> : null}
                     </li>
                   )
                 })}
