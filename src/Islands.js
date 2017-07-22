@@ -7,6 +7,7 @@ class Islands extends Component {
   constructor(props) {
     super();
     this.state = props.islands;
+    this.state.editing = false;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -65,9 +66,14 @@ class Islands extends Component {
     islandRef.remove();
   }
 
-  editIsland(islandId){
-    const islandRef = firebase.database().ref(`/islands/${islandId}`);
-    console.log("edit ", islandId);
+  editIsland(island){
+    console.log(this.state, island);
+    this.setState({
+      editing: true
+    });
+    const islandRef = firebase.database().ref(`/islands/${island.id}`);
+    console.log(this.state, island);
+    //islandRef.set(island);
   }
 
   render() {
@@ -93,7 +99,7 @@ class Islands extends Component {
                       {island.cardCreator === this.state.user.displayName ?
                       <div className="card">
                         <button className="card-button" onClick={() => this.removeIsland(island.id)}>Delete</button>
-                        <button className="card-button" onClick={() => this.editIsland(island.id)}>Edit</button>  
+                        <button className="card-button" onClick={() => this.editIsland(island)}>Edit</button>  
                       </div> : null}
                     </li>
                   )
