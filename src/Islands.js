@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import firebase from './firebase.js';
+import firebase, { auth } from './firebase.js';
 
 class Islands extends Component {
 
-  constructor() {
+  constructor(props) {
     super();
-    this.state = {
-      islandLocation: '',
-      islandname: '',
-      islands: []
-    }
+    this.state = props.islands;
+    //this.state.editing = false;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,17 +18,21 @@ class Islands extends Component {
     islandsRef.on('value', (snapshot) => {
       let islands = snapshot.val();
       let newState = [];
+      console.log("state");
       for (let island in islands) {
         newState.push({
           id: island,
           islandLocation: islands[island].islandLocation,
-          islandname: islands[island].islandname
+          islandname: islands[island].islandname,
+          cardCreator: islands[island].cardCreator
         });
       }
+
       this.setState({
         islands: newState
       });
     });
+
   }
 
   handleChange(e) {
@@ -45,7 +46,8 @@ class Islands extends Component {
     const islandsRef = firebase.database().ref('islands');
     const island = {
       islandLocation: this.state.islandLocation,
-      islandname: this.state.islandname
+      islandname: this.state.islandname,
+      cardCreator: this.state.user.displayName
     }
     islandsRef.push(island);
     this.setState({
@@ -57,6 +59,16 @@ class Islands extends Component {
   removeIsland(islandId) {
     const islandRef = firebase.database().ref(`/islands/${islandId}`);
     islandRef.remove();
+  }
+
+  editIsland(island) {
+    //console.log(this.state, island);
+    this.setState({
+      editing: true
+    });
+    const islandRef = firebase.database().ref(`/islands/${island.id}`);
+    //console.log(this.state.editing, island);
+    //islandRef.set(island);
   }
 
   render() {
@@ -77,8 +89,13 @@ class Islands extends Component {
                   return (
                     <li key={island.id}>
                       <h3>{island.islandname}</h3>
-                      <p>{island.islandLocation}</p>
-                      <button onClick={() => this.removeIsland(island.id)}>Delete</button>
+                      <h4>{island.islandLocation}</h4>
+                      <p>Added by {island.cardCreator}</p>
+                      {island.cardCreator === this.state.user.displayName ?
+                        <div className="card">
+                          <button className="card-button" onClick={() => this.removeIsland(island.id)}>Delete</button>
+                          <button className="card-button" onClick={() => this.editIsland(island)}>Edit</button>
+                        </div> : null}
                     </li>
                   )
                 })}

@@ -159,3 +159,16 @@ button {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
   padding: 10px 6px;
 }
+
+.user-profile {
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  width: 100px;
+  height: 100px;
+}
+
+.user-profile img {
+  border-radius: 50%;
+  max-width: 100%;
+}
