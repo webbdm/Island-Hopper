@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import firebase, { auth, provider } from './firebase.js';
+import firebase, { auth } from './firebase.js';
 
 class Islands extends Component {
 
@@ -65,6 +65,11 @@ class Islands extends Component {
     islandRef.remove();
   }
 
+  editIsland(islandId){
+    const islandRef = firebase.database().ref(`/islands/${islandId}`);
+    console.log("edit ", islandId);
+  }
+
   render() {
     return (
       <div className='islandbox'>
@@ -86,7 +91,10 @@ class Islands extends Component {
                       <h4>{island.islandLocation}</h4>
                       <p>Added by {island.cardCreator}</p>
                       {island.cardCreator === this.state.user.displayName ?
-                        <button onClick={() => this.removeIsland(island.id)}>Delete</button> : null}
+                      <div className="card">
+                        <button className="card-button" onClick={() => this.removeIsland(island.id)}>Delete</button>
+                        <button className="card-button" onClick={() => this.editIsland(island.id)}>Edit</button>  
+                      </div> : null}
                     </li>
                   )
                 })}
