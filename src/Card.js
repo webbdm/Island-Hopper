@@ -35,7 +35,6 @@ class Card extends Component {
     }
 
     saveEdit = (name, location, id) => {
-
         let newIsland = {
             islandname: name,
             islandLocation: location,
@@ -44,7 +43,6 @@ class Card extends Component {
 
         const islandRef = firebase.database().ref(`/islands/${id}`);
         islandRef.set(newIsland);
-
         this.setState({ newIsland });
         this.setState({ editing: false });
     }
