@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
-import firebase, { auth, provider } from './firebase.js';
+import { auth, provider } from './firebase.js';
 
 // Components
 import Home from './Home.js';
@@ -24,12 +24,10 @@ class App extends Component {
 
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
-      console.log(user);
       if (user) {
         this.setState({ user });
       }
     });
-
   }
 
   login() {
@@ -71,7 +69,7 @@ class App extends Component {
             <div>
               <Islands islands={this.state} />
               <div className='user-profile'>
-                <img src={this.state.user.photoURL} />
+                <img src={this.state.user.photoURL} alt="User" />
               </div>
             </div>
             :
