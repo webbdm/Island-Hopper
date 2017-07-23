@@ -6,8 +6,10 @@ import './App.css';
 class Home extends Component {
     render() {
         return (
-            <div className='homepage'>
-                <h1>Island Hopper</h1>
+            <div className="row homepage">
+                <div className="col m4 offset-m4">
+                    <h1>Island Hopper</h1>
+                </div>
             </div>
         );
     }

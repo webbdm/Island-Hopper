@@ -53,18 +53,19 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className='app'>
-          <header>
-            <div className="wrapper">
-              <h1>Island Hopper<i className="fa fa-plane" aria-hidden="true" /></h1>
-              <div className="pull-right">
+          <nav>
+            <div className="nav-wrapper">
+              <div className="col s12"></div>
+              <a href="#" className="brand-logo">Macro Tracko</a>
+              <ul id="nav-mobile" className="right">
                 {this.state.user ?
-                  <button onClick={this.logout}>Logout</button>
+                  <button className="waves-effect waves-light btn" onClick={this.logout}>Logout</button>
                   :
-                  <button onClick={this.login}>Log In</button>
+                  <button className="waves-effect waves-light btn" onClick={this.login}>Log In</button>
                 }
-              </div>
+              </ul>
             </div>
-          </header>
+          </nav>
           {this.state.user ?
             <div>
               <Islands islands={this.state} />

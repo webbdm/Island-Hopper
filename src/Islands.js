@@ -60,24 +60,24 @@ class Islands extends Component {
 
   render() {
     return (
-      <div className='islandbox'>
-        <div className='container'>
-          <section className='add-item'>
+      <div className='main-box'>
+        <div className='row'>
+          <section className='sidebar col m3 white-text'>
             <form onSubmit={this.handleSubmit}>
               <input type="text" name="islandname" placeholder="What's the island name?" onChange={this.handleChange} value={this.state.islandname} />
               <input type="text" name="islandLocation" placeholder="Where is it?" onChange={this.handleChange.bind(this)} value={this.state.islandLocation} />
-              <button>Add Island</button>
+              <button className="btn">Add Island</button>
             </form>
           </section>
-          <section className='display-item'>
-            <div className='wrapper'>
-              <ul>
+          <section className='col m9'>
+            <div className='card-wrapper row'>
+              <div className="">
                 {this.state.islands.map((island) => {
                   return (
                     <Card key={island.id} user={this.state.user} content={island} />
                   )
                 })}
-              </ul>
+              </div>
             </div>
           </section>
         </div>
