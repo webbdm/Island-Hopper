@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import firebase, { auth } from './firebase.js';
+import firebase from './firebase.js';
+
+// Components
+import Card from './Card.js';
 
 class Islands extends Component {
 
@@ -18,7 +21,6 @@ class Islands extends Component {
     islandsRef.on('value', (snapshot) => {
       let islands = snapshot.val();
       let newState = [];
-      console.log("state");
       for (let island in islands) {
         newState.push({
           id: island,
@@ -61,15 +63,15 @@ class Islands extends Component {
     islandRef.remove();
   }
 
-  editIsland(island) {
-    //console.log(this.state, island);
+  editIsland = (island) => {
     this.setState({
       editing: true
     });
-    const islandRef = firebase.database().ref(`/islands/${island.id}`);
-    //console.log(this.state.editing, island);
+    //const islandRef = firebase.database().ref(`/islands/${island.id}`);
+    console.log(this.state.editing, island);
     //islandRef.set(island);
   }
+
 
   render() {
     return (
@@ -78,7 +80,7 @@ class Islands extends Component {
           <section className='add-item'>
             <form onSubmit={this.handleSubmit}>
               <input type="text" name="islandname" placeholder="What's the island name?" onChange={this.handleChange} value={this.state.islandname} />
-              <input type="text" name="islandLocation" placeholder="Where is it?" onChange={this.handleChange} value={this.state.islandLocation} />
+              <input type="text" name="islandLocation" placeholder="Where is it?" onChange={this.handleChange.bind(this)} value={this.state.islandLocation} />
               <button>Add Island</button>
             </form>
           </section>
@@ -87,16 +89,7 @@ class Islands extends Component {
               <ul>
                 {this.state.islands.map((island) => {
                   return (
-                    <li key={island.id}>
-                      <h3>{island.islandname}</h3>
-                      <h4>{island.islandLocation}</h4>
-                      <p>Added by {island.cardCreator}</p>
-                      {island.cardCreator === this.state.user.displayName ?
-                        <div className="card">
-                          <button className="card-button" onClick={() => this.removeIsland(island.id)}>Delete</button>
-                          <button className="card-button" onClick={() => this.editIsland(island)}>Edit</button>
-                        </div> : null}
-                    </li>
+                    <Card key={island.id} user={this.state.user} content={island} delete={this.removeIsland.bind(this)} edit={this.editIsland}/>
                   )
                 })}
               </ul>

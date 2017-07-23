@@ -24,12 +24,10 @@ class App extends Component {
 
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
-      console.log(user);
       if (user) {
         this.setState({ user });
       }
     });
-
   }
 
   login() {
