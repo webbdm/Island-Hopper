@@ -58,21 +58,6 @@ class Islands extends Component {
     });
   }
 
-  removeIsland(islandId) {
-    const islandRef = firebase.database().ref(`/islands/${islandId}`);
-    islandRef.remove();
-  }
-
-  editIsland = (island) => {
-    this.setState({
-      editing: true
-    });
-    //const islandRef = firebase.database().ref(`/islands/${island.id}`);
-    console.log(this.state.editing, island);
-    //islandRef.set(island);
-  }
-
-
   render() {
     return (
       <div className='islandbox'>
@@ -89,7 +74,7 @@ class Islands extends Component {
               <ul>
                 {this.state.islands.map((island) => {
                   return (
-                    <Card key={island.id} user={this.state.user} content={island} delete={this.removeIsland.bind(this)} edit={this.editIsland}/>
+                    <Card key={island.id} user={this.state.user} content={island} />
                   )
                 })}
               </ul>
