@@ -7,8 +7,8 @@ class Home extends Component {
     render() {
         return (
             <div className="row homepage">
-                <div className="col m4 offset-m4">
-                    <h1>Island Hopper</h1>
+                <div className="col m6 offset-m3">
+                    <h1>Macro & Nutrition Tracker</h1>
                 </div>
             </div>
         );

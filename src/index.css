@@ -6,8 +6,8 @@ body{
 
 nav{
   background-color: #0B2247;
-  padding: 5px;
-  height: 10vh;
+  padding: 5px 20px;
+  height: 75px;
 }
 
 .brand-logo{
@@ -36,8 +36,11 @@ nav{
 
 .island-card {
    margin: 30px; 
-   padding: 20px;
    background-color: #2b5388;
+}
+
+.card-content_text{
+  margin: 10px;
 }
 
 .user-profile img{

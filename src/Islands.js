@@ -64,9 +64,9 @@ class Islands extends Component {
         <div className='row'>
           <section className='sidebar col m3 white-text'>
             <form onSubmit={this.handleSubmit}>
-              <input type="text" name="islandname" placeholder="What's the island name?" onChange={this.handleChange} value={this.state.islandname} />
-              <input type="text" name="islandLocation" placeholder="Where is it?" onChange={this.handleChange.bind(this)} value={this.state.islandLocation} />
-              <button className="btn">Add Island</button>
+              <input type="text" name="islandname" placeholder="Enter Food" onChange={this.handleChange} value={this.state.islandname} />
+              <input type="text" name="islandLocation" placeholder="Enter Macros" onChange={this.handleChange.bind(this)} value={this.state.islandLocation} />
+              <button className="btn">Add Item</button>
             </form>
           </section>
           <section className='col m9'>

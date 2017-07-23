@@ -51,16 +51,14 @@ class Card extends Component {
         if (this.state.editing === false) {
             return (
                 <div className="card island-card col l3 m4 s12 white-text">
-                    <span className="card-title">{this.state.islandname}</span>
-                    <h5>{this.state.islandLocation}</h5>
-                    <div className="card-action">
-                     <span>Added by {this.state.cardCreator}</span>
-                    </div>
-                    {this.state.cardCreator === this.state.user.displayName ?
+                    <div className="card-content">
+                        <span className="card-title">{this.state.islandname}</span>
+                        <p class="card-content_text">{this.state.islandLocation}</p>
                         <div className="card-action">
                             <a className="card-button" onClick={() => this.removeIsland(this.state.id)}>Delete</a>
                             <a className="card-button" onClick={() => this.toggleEdit()}>Edit</a>
-                        </div> : null}
+                        </div>
+                    </div>
                 </div>
             );
         } else {

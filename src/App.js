@@ -70,7 +70,7 @@ class App extends Component {
             <div>
               <Islands islands={this.state} />
               <div className='user-profile'>
-                <img src={this.state.user.photoURL} alt="User" />
+                {/*<img src={this.state.user.photoURL} alt="User" />*/}
               </div>
             </div>
             :
