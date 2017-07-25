@@ -8,7 +8,7 @@ class Home extends Component {
         return (
             <div className="row homepage">
                 <div className="col m6 offset-m3">
-                    <h1>Macro & Nutrition Tracker</h1>
+                    <h1>Box</h1>
                 </div>
             </div>
         );
