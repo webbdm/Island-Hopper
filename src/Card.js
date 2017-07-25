@@ -50,24 +50,28 @@ class Card extends Component {
     render() {
         if (this.state.editing === false) {
             return (
-                <li>
-                    <h3>{this.state.islandname}</h3>
-                    <h4>{this.state.islandLocation}</h4>
-                    <p>Added by {this.state.cardCreator}</p>
-                    {this.state.cardCreator === this.state.user.displayName ?
-                        <div className="card">
-                            <button className="card-button" onClick={() => this.removeIsland(this.state.id)}>Delete</button>
-                            <button className="card-button" onClick={() => this.toggleEdit()}>Edit</button>
-                        </div> : null}
-                </li>
+                <div className="card small island-card col l3 m4 s12 white-text">
+                    <div className="card-content">
+                        <span className="card-title">{this.state.islandname}</span>
+                        <p className="card-content_text">{this.state.islandLocation}</p>
+                        <div className="card-action">
+                            <a className="card-button" onClick={() => this.removeIsland(this.state.id)}>Delete</a>
+                            <a className="card-button" onClick={() => this.toggleEdit()}>Edit</a>
+                        </div>
+                    </div>
+                </div>
             );
         } else {
             return (
-                <li>
-                    <h3><input type="text" name="islandname" placeholder="What's the island name?" onChange={this.handleChange} value={this.state.islandname} /></h3>
-                    <h4><input type="text" name="islandLocation" placeholder="Where is it?" onChange={this.handleChange} value={this.state.islandLocation} /></h4>
-                    <button className="card-button" onClick={() => this.saveEdit(this.state.islandname, this.state.islandLocation, this.state.id)}>Save</button>
-                </li>
+                <div className="card small island-card col l3 m3 s12 white-text">
+                    <div className="card-content">
+                        <input type="text" name="islandname" placeholder="What's the island name?" onChange={this.handleChange} value={this.state.islandname} />
+                        <input type="text" name="islandLocation" placeholder="Where is it?" onChange={this.handleChange} value={this.state.islandLocation} />
+                        <div className="card-action">
+                            <a className="card-button" onClick={() => this.saveEdit(this.state.islandname, this.state.islandLocation, this.state.id)}>Save</a>
+                        </div>
+                    </div>
+                </div>
             );
         }
     }

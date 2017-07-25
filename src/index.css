@@ -1,6 +1,58 @@
+/* #2b5388  */
+
+body{
+  background-color: #0B2247;
+}
+
+nav{
+  background-color: #0B2247;
+  padding: 5px 20px;
+  height: 75px;
+}
+
+.brand-logo{
+  margin-right: 10px;
+}
+
+.btn, .btn-large {
+  background-color: #FF3134;
+}
+
+.main-box{
+  padding: 10px;
+}
+
+.sidebar{
+  background-color: #0B2247;
+  height: 100%;
+}
+
+.card-wrapper{
+  /* display: flex;  */
+  /* background-color: #2b5388; */
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.island-card {
+   margin: 30px; 
+   background-color: #2b5388;
+}
+
+.card-content_text{
+  margin: 10px;
+}
+
+.user-profile img{
+  border-radius: 100%;
+  height: 75px;
+}
+
+
+
 /* Old Theme */
 
-body {
+/* body {
   font-family: 'Open Sans', sans-serif;
   background-color: #fff;
 }
@@ -171,4 +223,4 @@ button {
 .user-profile img {
   border-radius: 50%;
   max-width: 100%;
-}
+} */
