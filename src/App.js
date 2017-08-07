@@ -69,7 +69,8 @@ class App extends Component {
           </nav>
           {this.state.user ?
             <div>
-              <Islands islands={this.state} />
+              <Menu data={this.state}/>
+              {/*<Islands islands={this.state} />*/}
               <div className='user-profile'>
                 {/*<img src={this.state.user.photoURL} alt="User" />*/}
               </div>

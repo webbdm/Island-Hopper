@@ -8,7 +8,7 @@ class Home extends Component {
         return (
             <div className="row homepage">
                 <div className="col m6 offset-m3 valign-wrapper">
-                    <h1>Box</h1>
+                    <h1>Log In for Macros</h1>
                 </div>
             </div>
         );
