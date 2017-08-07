@@ -7,7 +7,7 @@ class Home extends Component {
     render() {
         return (
             <div className="row homepage">
-                <div className="col m6 offset-m3">
+                <div className="col m6 offset-m3 valign-wrapper">
                     <h1>Box</h1>
                 </div>
             </div>

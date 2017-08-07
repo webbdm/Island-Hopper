@@ -5,13 +5,13 @@ import firebase from './firebase.js';
 // Components
 import Card from './Card.js';
 
-class Islands extends Component {
+class Islands extends Component {   
 
   constructor(props) {
     super();
-    this.state = props.islands;
+    this.state = props.islands;  
     //this.state.editing = false;
-
+ 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
