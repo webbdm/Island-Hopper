@@ -18,8 +18,25 @@ nav{
   background-color: #FF3134;
 }
 
+.menucontainer{
+  display: flex;
+}
+
 .main-box{
   padding: 10px;
+}
+
+.homepage{
+  text-align: center;
+}
+
+.menu-card{
+  background-color: #2b5388; 
+  text-align: center;
+  margin: 10px;
+  width: 300px;
+  height: 300px;
+  height: 100%;
 }
 
 .sidebar{

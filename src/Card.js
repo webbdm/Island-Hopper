@@ -3,6 +3,41 @@ import './App.css';
 //import { Link } from 'react-router-dom';
 import firebase from './firebase.js';
 
+let EditMode = ({
+    name,
+    location,
+    handleEditClick,
+    handleDeleteClick
+}) => (
+        <div className="card small island-card col l3 m4 s12 white-text">
+            <div className="card-content">
+                <span className="card-title">{name}</span>
+                <p className="card-content_text">{location}</p>
+                <div className="card-action">
+                    <a className="card-button" onClick={handleDeleteClick}>Delete</a>
+                    <a className="card-button" onClick={handleEditClick}>Edit</a>
+                </div>
+            </div>
+        </div>
+    );
+
+let DefaultMode = ({
+    name,
+    location,
+    handleChange,
+    handleSaveClick
+}) => (
+        <div className="card small island-card col l3 m3 s12 white-text">
+            <div className="card-content">
+                <input type="text" name="islandname" placeholder="What's the island name?" onChange={handleChange} value={name} />
+                <input type="text" name="islandLocation" placeholder="Where is it?" onChange={handleChange} value={location} />
+                <div className="card-action">
+                    <a className="card-button" onClick={handleSaveClick}>Save</a>
+                </div>
+            </div>
+        </div>
+    );
+
 class Card extends Component {
 
     constructor(props) {
@@ -48,32 +83,23 @@ class Card extends Component {
     }
 
     render() {
-        if (this.state.editing === false) {
-            return (
-                <div className="card small island-card col l3 m4 s12 white-text">
-                    <div className="card-content">
-                        <span className="card-title">{this.state.islandname}</span>
-                        <p className="card-content_text">{this.state.islandLocation}</p>
-                        <div className="card-action">
-                            <a className="card-button" onClick={() => this.removeIsland(this.state.id)}>Delete</a>
-                            <a className="card-button" onClick={() => this.toggleEdit()}>Edit</a>
-                        </div>
-                    </div>
-                </div>
+        return (this.state.editing === false)
+            ? (
+                <EditMode
+                    name={this.state.islandname}
+                    location={this.state.islandLocation}
+                    handleEditClick={() => this.toggleEdit()}
+                    handleDeleteClick={() => this.removeIsland(this.state.id)}
+                />
+            )
+            : (
+                <DefaultMode
+                    name={this.state.islandname}
+                    location={this.state.islandLocation}
+                    handleChange={this.handleChange}
+                    handleSaveClick={() => this.saveEdit(this.state.islandname, this.state.islandLocation, this.state.id)}
+                />
             );
-        } else {
-            return (
-                <div className="card small island-card col l3 m3 s12 white-text">
-                    <div className="card-content">
-                        <input type="text" name="islandname" placeholder="What's the island name?" onChange={this.handleChange} value={this.state.islandname} />
-                        <input type="text" name="islandLocation" placeholder="Where is it?" onChange={this.handleChange} value={this.state.islandLocation} />
-                        <div className="card-action">
-                            <a className="card-button" onClick={() => this.saveEdit(this.state.islandname, this.state.islandLocation, this.state.id)}>Save</a>
-                        </div>
-                    </div>
-                </div>
-            );
-        }
     }
 }
 

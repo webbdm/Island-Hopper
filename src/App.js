@@ -6,6 +6,7 @@ import { auth, provider } from './firebase.js';
 // Components
 import Home from './Home.js';
 import Islands from './Islands.js';
+import Menu from './Menu.js';
 
 class App extends Component {
   constructor() {
@@ -74,7 +75,7 @@ class App extends Component {
               </div>
             </div>
             :
-            <Home />
+            <Menu />
           }
           <div>
           </div>
