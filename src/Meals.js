@@ -5,7 +5,7 @@ import firebase from './firebase.js';
 // Components
 import Card from './Card.js';
 
-class Islands extends Component {
+class Meals extends Component {
 
   constructor(props) {
     super();
@@ -17,21 +17,18 @@ class Islands extends Component {
   }
 
   componentDidMount() {
-    const islandsRef = firebase.database().ref('islands');
-    islandsRef.on('value', (snapshot) => {
-      let islands = snapshot.val();
+    const mealsRef = firebase.database().ref('meals');
+    mealsRef.on('value', (snapshot) => {
+      let meals = snapshot.val();
       let newState = [];
-      for (let island in islands) {
+      for (let meal in meals) {
         newState.push({
-          id: island,
-          islandLocation: islands[island].islandLocation,
-          islandname: islands[island].islandname,
-          cardCreator: islands[island].cardCreator
+          breakfast: meal.breakfast
         });
       }
 
       this.setState({
-        islands: newState
+        meals: newState
       });
     });
   }
@@ -44,16 +41,16 @@ class Islands extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const islandsRef = firebase.database().ref('islands');
-    const island = {
-      islandLocation: this.state.islandLocation,
-      islandname: this.state.islandname,
+    const mealsRef = firebase.database().ref('meals');
+    const meal = {
+      mealLocation: this.state.mealLocation,
+      mealname: this.state.mealname,
       cardCreator: this.state.user.displayName
     }
-    islandsRef.push(island);
+    mealsRef.push(meal);
     this.setState({
-      islandLocation: '',
-      islandname: ''
+      mealLocation: '',
+      mealname: ''
     });
   }
 
@@ -64,17 +61,17 @@ class Islands extends Component {
         <div className='row'>
           <section className='sidebar col m3 white-text'>
             <form onSubmit={this.handleSubmit}>
-              <input type="text" name="islandname" placeholder="Enter Food" onChange={this.handleChange} value={this.state.islandname} />
-              <input type="text" name="islandLocation" placeholder="Enter Macros" onChange={this.handleChange.bind(this)} value={this.state.islandLocation} />
-              <button className="btn">Add Item</button>
+              <input type="text" name="mealname" placeholder="Name" onChange={this.handleChange} value={this.state.mealname} />
+              <input type="text" name="mealItem" placeholder="Item" onChange={this.handleChange.bind(this)} value={this.state.mealItem} />
+              <button className="btn">Add Meal</button>
             </form>
           </section>
           <section className='col m9'>
             <div className='card-wrapper row'>
               <div className="">
-                {this.state.islands.map((island) => {
+                {this.state.meals.map((meal) => {
                   return (
-                    <Card key={island.id} user={this.state.user} content={island} />
+                    <Card key={meal.id} user={this.state.user} content={meal} />
                   )
                 })}
               </div>
@@ -85,4 +82,4 @@ class Islands extends Component {
     );
   }
 }
-export default Islands;
+export default Meals;

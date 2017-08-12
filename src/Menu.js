@@ -14,10 +14,6 @@ class Menu extends Component {
     constructor(props) {
     super();
     this.state = props.data;  
-    //this.state.editing = false;
- 
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
     render() {
@@ -38,7 +34,7 @@ class Menu extends Component {
                     <div className="col m3 s12">
                         <div className="card small menu-card">
                             <div className="card-content">
-                                <span className="card-title">Meals</span>
+                                <span className="card-title"><Link to="/meals">Meals</Link></span>
 
                             </div>
                         </div>
@@ -61,24 +57,7 @@ class Menu extends Component {
                             </div>
                         </div>
                     </div>
-
-                    <Route path="/food" render={()=><Islands data={this.state}/>} />
-
-
-                    {/* <div className=""></div> */}
-                    {/* {menuItems.map((menuItem, index) => {
-                        return (
-                            <div key={menuItem.id} className="">
-                                <div className="card small menu-card">
-                                    <div className="card-content">
-                                        <span className="card-title">{menuItem.name}</span>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        )
-                    })} */}
+                        
                 </div>
             </div>
         );

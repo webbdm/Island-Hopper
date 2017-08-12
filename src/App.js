@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { auth, provider } from './firebase.js';
 
 // Components
 import Home from './Home.js';
 import Islands from './Islands.js';
+import Meals from './Meals.js';
 import Menu from './Menu.js';
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
       islandLocation: '',
       islandname: '',
       islands: [],
+      meals: [],
       user: null
     }
 
@@ -57,7 +59,7 @@ class App extends Component {
           <nav>
             <div className="nav-wrapper">
               <div className="col s12"></div>
-              <a href="#" className="brand-logo">Macro Tracko</a>
+              <a href="#" className="brand-logo"><Link to="/">Macro Tracko</Link></a>
               <ul id="nav-mobile" className="right">
                 {this.state.user ?
                   <button className="waves-effect waves-light btn" onClick={this.logout}>Logout</button>
@@ -69,7 +71,9 @@ class App extends Component {
           </nav>
           {this.state.user ?
             <div>
-              <Menu data={this.state}/>
+              <Route exact path="/" component={Menu} />
+              <Route exact path="/food" component={() => (<Islands data={this.state} />)} />
+              <Route exact path="/meals" component={() => (<Meals data={this.state} />)} />
               {/*<Islands islands={this.state} />*/}
               <div className='user-profile'>
                 {/*<img src={this.state.user.photoURL} alt="User" />*/}
@@ -78,9 +82,9 @@ class App extends Component {
             :
             <Home />
           }
-          <div>
-          </div>
         </div>
+
+
       </BrowserRouter>
     );
   }
