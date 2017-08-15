@@ -4,14 +4,14 @@ import './App.css';
 import firebase from './firebase.js';
 
 let MealEditMode = ({
-    breakfast,
+    name,
     location,
     handleEditClick,
     handleDeleteClick
 }) => (
         <div className="card small island-card col l3 m4 s12 white-text">
             <div className="card-content">
-                <span className="card-title">{breakfast}</span>
+                <span className="card-title">{name}</span>
                 <p className="card-content_text">{location}</p>
                 <div className="card-action">
                     <a className="card-button" onClick={handleDeleteClick}>Delete</a>
@@ -30,7 +30,6 @@ let MealDefaultMode = ({
         <div className="card small island-card col l3 m3 s12 white-text">
             <div className="card-content">
                 <input type="text" name="mealname" placeholder="Meal Name?" onChange={handleChange} value={name} />
-                <input type="text" name="islandLocation" placeholder="Where is it?" onChange={handleChange} value={location} />
                 <div className="card-action">
                     <a className="card-button" onClick={handleSaveClick}>Save</a>
                 </div>
@@ -69,9 +68,9 @@ class MealCard extends Component {
         });
     }
 
-    saveEdit = (name, location, id) => {
+    saveEdit = (name, id) => {
         let newMeal = {
-            mealname: name
+            mealname: name,
         };
 
         const mealRef = firebase.database().ref(`/meals/${id}`);
@@ -93,7 +92,7 @@ class MealCard extends Component {
                 <MealDefaultMode
                     name={this.state.mealname}
                     handleChange={this.handleChange}
-                    handleSaveClick={() => this.saveEdit(this.state.mealname)}
+                    handleSaveClick={() => this.saveEdit(this.state.mealname, this.state.id)}
                 />
             );
     }

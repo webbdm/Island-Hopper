@@ -21,9 +21,9 @@ class Meals extends Component {
     mealsRef.on('value', (snapshot) => {
       let meals = snapshot.val();
       let newState = [];
-      for (let meal in meals) {
+      for (let meal in meals) {  
         newState.push({
-          mealname: meal.mealname,
+          mealname: meals[meal].mealname,
           id: meal
         });
       }
@@ -53,7 +53,6 @@ class Meals extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className='main-box'>
         <div className='row'>
