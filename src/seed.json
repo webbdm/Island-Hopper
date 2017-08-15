@@ -25,5 +25,10 @@
             "islandLocation": "Macro Amount",
             "islandname": "Chicken"
         }
+    },
+    "meals": {
+        "-KrYNLsmfHK7zgU41tV0": {
+            "mealname": "Breakfast"
+        }
     }
 }

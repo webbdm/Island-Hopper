@@ -5,13 +5,13 @@ import firebase from './firebase.js';
 // Components
 import Card from './Card.js';
 
-class Islands extends Component {   
+class Islands extends Component {
 
   constructor(props) {
     super();
-    this.state = props.islands;  
+    this.state = props.data;
     //this.state.editing = false;
- 
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -34,7 +34,6 @@ class Islands extends Component {
         islands: newState
       });
     });
-
   }
 
   handleChange(e) {
@@ -59,6 +58,7 @@ class Islands extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className='main-box'>
         <div className='row'>
