@@ -3,7 +3,7 @@ import './App.css';
 import firebase from './firebase.js';
 
 // Components
-import Card from './Card.js';
+import MealCard from './MealCard.js';
 
 class Meals extends Component {
 
@@ -23,7 +23,8 @@ class Meals extends Component {
       let newState = [];
       for (let meal in meals) {
         newState.push({
-          breakfast: meal.breakfast
+          mealname: meal.mealname,
+          id: meal
         });
       }
 
@@ -43,13 +44,10 @@ class Meals extends Component {
     e.preventDefault();
     const mealsRef = firebase.database().ref('meals');
     const meal = {
-      mealLocation: this.state.mealLocation,
       mealname: this.state.mealname,
-      cardCreator: this.state.user.displayName
     }
     mealsRef.push(meal);
     this.setState({
-      mealLocation: '',
       mealname: ''
     });
   }
@@ -62,7 +60,6 @@ class Meals extends Component {
           <section className='sidebar col m3 white-text'>
             <form onSubmit={this.handleSubmit}>
               <input type="text" name="mealname" placeholder="Name" onChange={this.handleChange} value={this.state.mealname} />
-              <input type="text" name="mealItem" placeholder="Item" onChange={this.handleChange.bind(this)} value={this.state.mealItem} />
               <button className="btn">Add Meal</button>
             </form>
           </section>
@@ -71,7 +68,7 @@ class Meals extends Component {
               <div className="">
                 {this.state.meals.map((meal) => {
                   return (
-                    <Card key={meal.id} user={this.state.user} content={meal} />
+                    <MealCard key={meal.id} user={this.state.user} content={meal} />
                   )
                 })}
               </div>

@@ -71,9 +71,7 @@ class MealCard extends Component {
 
     saveEdit = (name, location, id) => {
         let newMeal = {
-            mealname: name,
-            islandLocation: location,
-            cardCreator: this.state.cardCreator
+            mealname: name
         };
 
         const mealRef = firebase.database().ref(`/meals/${id}`);
@@ -87,7 +85,6 @@ class MealCard extends Component {
             ? (
                 <MealEditMode
                     name={this.state.mealname}
-                    location={this.state.islandLocation}
                     handleEditClick={() => this.toggleEdit()}
                     handleDeleteClick={() => this.removeMeal(this.state.id)}
                 />
@@ -95,9 +92,8 @@ class MealCard extends Component {
             : (
                 <MealDefaultMode
                     name={this.state.mealname}
-                    location={this.state.islandLocation}
                     handleChange={this.handleChange}
-                    handleSaveClick={() => this.saveEdit(this.state.mealname, this.state.islandLocation, this.state.id)}
+                    handleSaveClick={() => this.saveEdit(this.state.mealname)}
                 />
             );
     }
