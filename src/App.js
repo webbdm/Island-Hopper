@@ -13,9 +13,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      islandLocation: '',
-      islandname: '',
-      islands: [],
+      total: '',
+      foodname: '',
+      foods: [],
       meals: [],
       user: null
     }
@@ -59,7 +59,7 @@ class App extends Component {
           <nav>
             <div className="nav-wrapper">
               <div className="col s12"></div>
-              <a href="#" className="brand-logo"><Link to="/">Macro Tracko</Link></a>
+              <a className="brand-logo"><Link to="/">Macro Tracko</Link></a>
               <ul id="nav-mobile" className="right">
                 {this.state.user ?
                   <button className="waves-effect waves-light btn" onClick={this.logout}>Logout</button>

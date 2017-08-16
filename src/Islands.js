@@ -17,21 +17,21 @@ class Islands extends Component {
   }
 
   componentDidMount() {
-    const islandsRef = firebase.database().ref('islands');
-    islandsRef.on('value', (snapshot) => {
-      let islands = snapshot.val();
+    const foodsRef = firebase.database().ref('foods');
+    foodsRef.on('value', (snapshot) => {
+      let foods = snapshot.val();
       let newState = [];
-      for (let island in islands) {
+      for (let food in foods) {
         newState.push({
-          id: island,
-          islandLocation: islands[island].islandLocation,
-          islandname: islands[island].islandname,
-          cardCreator: islands[island].cardCreator
+          id: food,
+          total: foods[food].total,
+          foodName: foods[food].foodName,
+          cardCreator: foods[food].cardCreator
         });
       }
 
       this.setState({
-        islands: newState
+        foods: newState
       });
     });
   }
@@ -44,16 +44,16 @@ class Islands extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const islandsRef = firebase.database().ref('islands');
-    const island = {
-      islandLocation: this.state.islandLocation,
-      islandname: this.state.islandname,
+    const foodsRef = firebase.database().ref('foods');
+    const food = {
+      total: this.state.total,
+      foodName: this.state.foodName,
       cardCreator: this.state.user.displayName
     }
-    islandsRef.push(island);
+    foodsRef.push(food);
     this.setState({
-      islandLocation: '',
-      islandname: ''
+      total: '',
+      foodName: ''
     });
   }
 
@@ -64,17 +64,17 @@ class Islands extends Component {
         <div className='row'>
           <section className='sidebar col m3 white-text'>
             <form onSubmit={this.handleSubmit}>
-              <input type="text" name="islandname" placeholder="Enter Food" onChange={this.handleChange} value={this.state.islandname} />
-              <input type="text" name="islandLocation" placeholder="Enter Macros" onChange={this.handleChange.bind(this)} value={this.state.islandLocation} />
+              <input type="text" name="foodName" placeholder="Enter Food" onChange={this.handleChange} value={this.state.foodName} />
+              <input type="text" name="total" placeholder="Enter Macros" onChange={this.handleChange.bind(this)} value={this.state.total} />
               <button className="btn">Add Item</button>
             </form>
           </section>
           <section className='col m9'>
             <div className='card-wrapper row'>
               <div className="">
-                {this.state.islands.map((island) => {
+                {this.state.foods.map((food) => {
                   return (
-                    <Card key={island.id} user={this.state.user} content={island} />
+                    <Card key={food.id} user={this.state.user} content={food} />
                   )
                 })}
               </div>
