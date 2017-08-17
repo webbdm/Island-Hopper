@@ -68,8 +68,12 @@ class Meals extends Component {
     return (
       <div className='main-box'>
         <div className='row'>
-          {/* <Switch> */}
-          <Form submit={this.handleSubmit} change={this.handleChange} mealname={this.state.mealname} />
+          {/* <Route> */}
+          <Form submit={this.handleSubmit} 
+                change={this.handleChange} 
+                mealname={this.state.mealname} />
+          {/* <MealCard key={meal.id} user={this.state.user} content={meal}/> */}
+          {/* <Route> */}
           <section className='col m9'>
             <div className='card-wrapper row'>
               <div className="">
@@ -81,7 +85,7 @@ class Meals extends Component {
               </div>
             </div>
           </section>
-          {/* </Switch> */}
+          
         </div>
       </div>
     );
