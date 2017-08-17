@@ -24,7 +24,9 @@ class Islands extends Component {
       for (let food in foods) {
         newState.push({
           id: food,
-          total: foods[food].total,
+          protein: foods[food].protein,
+          fat: foods[food].fat,
+          fiber: foods[food].fiber,
           foodName: foods[food].foodName,
           cardCreator: foods[food].cardCreator
         });
@@ -46,13 +48,17 @@ class Islands extends Component {
     e.preventDefault();
     const foodsRef = firebase.database().ref('foods');
     const food = {
-      total: this.state.total,
+      protein: this.state.protein,
+      fat: this.state.fat,
+      fiber: this.state.fiber,
       foodName: this.state.foodName,
       cardCreator: this.state.user.displayName
     }
     foodsRef.push(food);
     this.setState({
-      total: '',
+      protein: '',
+      fat: '',
+      fiber: '',
       foodName: ''
     });
   }
@@ -65,7 +71,9 @@ class Islands extends Component {
           <section className='sidebar col m3 white-text'>
             <form onSubmit={this.handleSubmit}>
               <input type="text" name="foodName" placeholder="Enter Food" onChange={this.handleChange} value={this.state.foodName} />
-              <input type="text" name="total" placeholder="Enter Macros" onChange={this.handleChange.bind(this)} value={this.state.total} />
+              <input type="text" name="protein" placeholder="Protein" onChange={this.handleChange.bind(this)} value={this.state.protein} />
+              <input type="text" name="fat" placeholder="Fat" onChange={this.handleChange.bind(this)} value={this.state.fat} />
+              <input type="text" name="fiber" placeholder="Fiber" onChange={this.handleChange.bind(this)} value={this.state.fiber} />
               <button className="btn">Add Item</button>
             </form>
           </section>
