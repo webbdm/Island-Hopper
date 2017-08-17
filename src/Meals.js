@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Switch, Route, Link } from 'react-router-dom';
 import firebase from './firebase.js';
 
 // Components
 import MealCard from './MealCard.js';
+
+const Form = ({ submit, change, mealname }) => (
+  <section className='sidebar col m3 white-text'>
+    <form onSubmit={submit}>
+      <input type="text" name="mealname" placeholder="Name" onChange={change} value={mealname} />
+      <button className="btn">Add Meal</button>
+    </form>
+  </section>
+);
 
 class Meals extends Component {
 
   constructor(props) {
     super();
     this.state = props.data;
+    //this.state.mealname = '';
     //this.state.editing = false;
+
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,7 +33,7 @@ class Meals extends Component {
     mealsRef.on('value', (snapshot) => {
       let meals = snapshot.val();
       let newState = [];
-      for (let meal in meals) {  
+      for (let meal in meals) {
         newState.push({
           mealname: meals[meal].mealname,
           id: meal
@@ -56,12 +68,8 @@ class Meals extends Component {
     return (
       <div className='main-box'>
         <div className='row'>
-          <section className='sidebar col m3 white-text'>
-            <form onSubmit={this.handleSubmit}>
-              <input type="text" name="mealname" placeholder="Name" onChange={this.handleChange} value={this.state.mealname} />
-              <button className="btn">Add Meal</button>
-            </form>
-          </section>
+          {/* <Switch> */}
+          <Form submit={this.handleSubmit} change={this.handleChange} mealname={this.state.mealname} />
           <section className='col m9'>
             <div className='card-wrapper row'>
               <div className="">
@@ -73,6 +81,7 @@ class Meals extends Component {
               </div>
             </div>
           </section>
+          {/* </Switch> */}
         </div>
       </div>
     );

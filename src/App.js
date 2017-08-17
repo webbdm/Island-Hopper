@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { auth, provider } from './firebase.js';
@@ -9,6 +8,7 @@ import Home from './Home.js';
 import Islands from './Islands.js';
 import Meals from './Meals.js';
 import Menu from './Menu.js';
+import CreateMeals from './CreateMeals.js';
 
 class App extends Component {
   constructor() {
@@ -75,7 +75,7 @@ class App extends Component {
               <Route exact path="/" component={Menu} />
               <Route exact path="/food" component={() => (<Islands data={this.state} />)} />
               <Route exact path="/meals" component={() => (<Meals data={this.state} />)} />
-              {/*<Islands islands={this.state} />*/}
+
               <div className='user-profile'>
                 {/*<img src={this.state.user.photoURL} alt="User" />*/}
               </div>
