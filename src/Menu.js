@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //import firebase, { auth, provider } from './firebase.js';
 
 // Components
-import Islands from './Islands.js'
 
-let menuItems = [{ name: "My Profile", id: 0 }, { name: "Meals", id: 1 }, { name: "Item", id: 2 }];
+//
+
+// let menuItems = [{ name: "My Profile", id: 0 }, { name: "Meals", id: 1 }, { name: "Item", id: 2 }];
 
 
 class Menu extends Component {
@@ -19,7 +20,6 @@ class Menu extends Component {
     render() {
         return (
             <div className="menubox">
-                {console.log(this.state)}
                 <div className="row menucontainer">
 
                     <div className="col m3 s12">

@@ -29,8 +29,8 @@ let DefaultMode = ({
 }) => (
         <div className="card small island-card col l3 m3 s12 white-text">
             <div className="card-content">
-                <input type="text" name="islandname" placeholder="What's the island name?" onChange={handleChange} value={name} />
-                <input type="text" name="islandLocation" placeholder="Where is it?" onChange={handleChange} value={location} />
+                <input type="text" name="foodName" placeholder="What's the food name?" onChange={handleChange} value={name} />
+                <input type="text" name="total" placeholder="What is the total?" onChange={handleChange} value={location} />
                 <div className="card-action">
                     <a className="card-button" onClick={handleSaveClick}>Save</a>
                 </div>
@@ -45,8 +45,8 @@ class Card extends Component {
         this.state = {
             id: props.content.id,
             cardCreator: props.content.cardCreator,
-            islandname: props.content.islandname,
-            islandLocation: props.content.islandLocation,
+            foodName: props.content.foodName,
+            total: props.content.total,
             editing: false,
             user: props.user
         }
@@ -58,9 +58,9 @@ class Card extends Component {
         });
     }
 
-    removeIsland(id) {
-        const islandRef = firebase.database().ref(`/islands/${id}`);
-        islandRef.remove();
+    removeFood(id) {
+        const foodRef = firebase.database().ref(`/foods/${id}`);
+        foodRef.remove();
     }
 
     toggleEdit = () => {
@@ -71,13 +71,13 @@ class Card extends Component {
 
     saveEdit = (name, location, id) => {
         let newIsland = {
-            islandname: name,
-            islandLocation: location,
+            foodName: name,
+            total: location,
             cardCreator: this.state.cardCreator
         };
 
-        const islandRef = firebase.database().ref(`/islands/${id}`);
-        islandRef.set(newIsland);
+        const foodRef = firebase.database().ref(`/foods/${id}`);
+        foodRef.set(newIsland);
         this.setState({ newIsland });
         this.setState({ editing: false });
     }
@@ -86,18 +86,18 @@ class Card extends Component {
         return (this.state.editing === false)
             ? (
                 <EditMode
-                    name={this.state.islandname}
-                    location={this.state.islandLocation}
+                    name={this.state.foodName}
+                    location={this.state.total}
                     handleEditClick={() => this.toggleEdit()}
-                    handleDeleteClick={() => this.removeIsland(this.state.id)}
+                    handleDeleteClick={() => this.removeFood(this.state.id)}
                 />
             )
             : (
                 <DefaultMode
-                    name={this.state.islandname}
-                    location={this.state.islandLocation}
+                    name={this.state.foodName}
+                    location={this.state.total}
                     handleChange={this.handleChange}
-                    handleSaveClick={() => this.saveEdit(this.state.islandname, this.state.islandLocation, this.state.id)}
+                    handleSaveClick={() => this.saveEdit(this.state.foodName, this.state.total, this.state.id)}
                 />
             );
     }
