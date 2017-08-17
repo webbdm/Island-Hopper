@@ -26,7 +26,7 @@ class Islands extends Component {
           id: food,
           protein: foods[food].protein,
           fat: foods[food].fat,
-          fiber: foods[food].fiber,
+          carbs: foods[food].carbs,
           foodName: foods[food].foodName,
           cardCreator: foods[food].cardCreator
         });
@@ -50,7 +50,7 @@ class Islands extends Component {
     const food = {
       protein: this.state.protein,
       fat: this.state.fat,
-      fiber: this.state.fiber,
+      carbs: this.state.carbs,
       foodName: this.state.foodName,
       cardCreator: this.state.user.displayName
     }
@@ -58,7 +58,7 @@ class Islands extends Component {
     this.setState({
       protein: '',
       fat: '',
-      fiber: '',
+      carbs: '',
       foodName: ''
     });
   }
@@ -73,7 +73,7 @@ class Islands extends Component {
               <input type="text" name="foodName" placeholder="Enter Food" onChange={this.handleChange} value={this.state.foodName} />
               <input type="text" name="protein" placeholder="Protein" onChange={this.handleChange.bind(this)} value={this.state.protein} />
               <input type="text" name="fat" placeholder="Fat" onChange={this.handleChange.bind(this)} value={this.state.fat} />
-              <input type="text" name="fiber" placeholder="Fiber" onChange={this.handleChange.bind(this)} value={this.state.fiber} />
+              <input type="text" name="carbs" placeholder="Carbs" onChange={this.handleChange.bind(this)} value={this.state.carbs} />
               <button className="btn">Add Item</button>
             </form>
           </section>

@@ -7,7 +7,7 @@ let EditMode = ({
     name,
     protein,
     fat,
-    fiber,
+    carbs,
     handleEditClick,
     handleDeleteClick
 }) => (
@@ -16,7 +16,7 @@ let EditMode = ({
                 <span className="card-title">{name}</span>
                 <p className="card-content_text">Protein: {protein}g</p>
                 <p className="card-content_text">Fat: {fat}g</p>
-                <p className="card-content_text">Fiber: {fiber}g</p>
+                <p className="card-content_text">Carbs: {carbs}g</p>
                 <div className="card-action">
                     <a className="card-button" onClick={handleDeleteClick}>Delete</a>
                     <a className="card-button" onClick={handleEditClick}>Edit</a>
@@ -29,7 +29,7 @@ let DefaultMode = ({
     name,
     protein,
     fat,
-    fiber,
+    carbs,
     handleChange,
     handleSaveClick
 }) => (
@@ -38,7 +38,7 @@ let DefaultMode = ({
                 <input type="text" name="foodName" placeholder="What's the food name?" onChange={handleChange} value={name} />
                 <input type="text" name="protein" placeholder="Protein Amount?" onChange={handleChange} value={protein} />
                 <input type="text" name="fat" placeholder="Fat Amount?" onChange={handleChange} value={fat} />
-                <input type="text" name="fiber" placeholder="Fiber Amount?" onChange={handleChange} value={fiber} />
+                <input type="text" name="carbs" placeholder="Carbs Amount?" onChange={handleChange} value={carbs} />
                 <div className="card-action">
                     <a className="card-button" onClick={handleSaveClick}>Save</a>
                 </div>
@@ -56,7 +56,7 @@ class Card extends Component {
             foodName: props.content.foodName,
             protein: props.content.protein,
             fat: props.content.fat,
-            fiber: props.content.fiber,
+            carbs: props.content.carbs,
             editing: false,
             user: props.user
         }
@@ -79,12 +79,12 @@ class Card extends Component {
         });
     }
 
-    saveEdit = (name, protein, fat, fiber, id) => {
+    saveEdit = (name, protein, fat, carbs, id) => {
         let newIsland = {
             foodName: name,
             protein: protein,
             fat: fat,
-            fiber: fiber,
+            carbs: carbs,
             cardCreator: this.state.cardCreator
         };
 
@@ -101,7 +101,7 @@ class Card extends Component {
                     name={this.state.foodName}
                     protein={this.state.protein}
                     fat={this.state.fat}
-                    fiber={this.state.fiber}
+                    carbs={this.state.carbs}
                     handleEditClick={() => this.toggleEdit()}
                     handleDeleteClick={() => this.removeFood(this.state.id)}
                 />
@@ -111,9 +111,9 @@ class Card extends Component {
                     name={this.state.foodName}
                     protein={this.state.protein}
                     fat={this.state.fat}
-                    fiber={this.state.fiber}
+                    carbs={this.state.carbs}
                     handleChange={this.handleChange}
-                    handleSaveClick={() => this.saveEdit(this.state.foodName, this.state.protein, this.state.fat, this.state.fiber, this.state.id)}
+                    handleSaveClick={() => this.saveEdit(this.state.foodName, this.state.protein, this.state.fat, this.state.carbs, this.state.id)}
                 />
             );
     }
