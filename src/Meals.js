@@ -15,12 +15,36 @@ const Form = ({ submit, change, mealname }) => (
   </section>
 );
 
+const ViewMeals = ({ submit, change, mealname, mealId, user, meals }) => (
+  <section>
+    <Form
+      submit={submit}
+      change={change}
+      mealname={mealname} />
+    <section className='col m9'>
+      <div className='card-wrapper row'>
+        <div className="">
+          {meals.map((meal, index) => {
+            return (
+              <MealCard
+                key={index}
+                user={user}
+                content={meal} />
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  </section>
+
+);
+
 class Meals extends Component {
 
   constructor(props) {
     super();
     this.state = props.data;
-    //this.state.mealname = '';
+    this.state.mealname = '';
     //this.state.editing = false;
 
 
@@ -68,24 +92,13 @@ class Meals extends Component {
     return (
       <div className='main-box'>
         <div className='row'>
-          {/* <Route> */}
-          <Form submit={this.handleSubmit} 
-                change={this.handleChange} 
-                mealname={this.state.mealname} />
-          {/* <MealCard key={meal.id} user={this.state.user} content={meal}/> */}
-          {/* <Route> */}
-          <section className='col m9'>
-            <div className='card-wrapper row'>
-              <div className="">
-                {this.state.meals.map((meal) => {
-                  return (
-                    <MealCard key={meal.id} user={this.state.user} content={meal} />
-                  )
-                })}
-              </div>
-            </div>
-          </section>
-          
+          <ViewMeals
+            submit={this.state.handleSubmit}
+            change={this.state.handleChange}
+            mealname={this.state.mealname}
+            mealId={this.state.mealId}
+            user={this.state.user}
+            meals={this.state.meals} />
         </div>
       </div>
     );
