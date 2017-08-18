@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import firebase from './firebase.js';
 
 // Components
@@ -13,6 +13,11 @@ const Form = ({ submit, change, mealname }) => (
       <button className="btn">Add Meal</button>
     </form>
   </section>
+);
+
+
+const Test = () => (
+  <h1>Manage Meals</h1>
 );
 
 const ViewMeals = ({ submit, change, mealname, mealId, user, meals }) => (
@@ -44,7 +49,7 @@ class Meals extends Component {
   constructor(props) {
     super();
     this.state = props.data;
-    this.state.mealname = '';
+    //this.state.mealname = '';
     //this.state.editing = false;
 
 
@@ -71,6 +76,7 @@ class Meals extends Component {
   }
 
   handleChange(e) {
+    console.log(e);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -92,16 +98,19 @@ class Meals extends Component {
     return (
       <div className='main-box'>
         <div className='row'>
-          <ViewMeals
-            submit={this.state.handleSubmit}
-            change={this.state.handleChange}
-            mealname={this.state.mealname}
-            mealId={this.state.mealId}
-            user={this.state.user}
-            meals={this.state.meals} />
+          <Route exact path="/meals" component={() => (
+            <ViewMeals
+              submit={this.handleSubmit}
+              change={this.handleChange}
+              mealname={this.state.mealname}
+              mealId={this.state.mealId}
+              user={this.state.user}
+              meals={this.state.meals} />)}>
+          </Route>
         </div>
       </div>
     );
   }
 }
 export default Meals;
+
