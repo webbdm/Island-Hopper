@@ -3,31 +3,35 @@ import './App.css';
 import firebase from './firebase.js';
 //import { Link } from 'react-router-dom';
 
-const foodItem = ({name,protein,fat,carbs}) =>{
+const FoodItem = ({ name, protein, fat, carbs, addFood, foodObject }) => (
     <div>
-        <p>{name}</p>
-        <p>{protein}</p>
-        <p>{fat}</p>
-        <p>{carbs}</p>
+        <p>{name}    {protein}    {fat}    {carbs} <button onClick={()=>{addFood(foodObject)}}>+</button></p>
+
     </div>
-};
+);
 
 class CreateMeals extends Component {
 
     constructor(props) {
         super();
-        this.state = props;
+        this.state = {
+            router: props,
+            myMeal: {
+                addedFoods: []
+            }
+        };
     }
 
     componentDidMount() {
-        let mealId = this.state.match.params.id;
+        let mealId = this.state.router.match.params.id;
         const mealRef = firebase.database().ref('meals/' + mealId);
         mealRef.on('value', (snapshot) => {
             let meal = snapshot.val();
             this.setState({
                 myMeal: {
                     myName: meal.mealname,
-                    id: mealId
+                    id: mealId,
+                    addedFoods: []
                 }
             });
         });
@@ -51,9 +55,14 @@ class CreateMeals extends Component {
                 foods: newState
             });
         });
-
-
     }
+
+    addFood(clickedFood) {
+        let foodToAdd = clickedFood;
+        console.log(foodToAdd);
+    }
+
+
 
     render() {
         if (this.state.myMeal === undefined || this.state.foods === undefined) {
@@ -79,8 +88,26 @@ class CreateMeals extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <h1>Choose Foods</h1>
-                    {console.log(this.state.foods)}
+                    <div className="col m4">
+                        <h1>Choose Foods</h1>
+                        {console.log(this.state.foods)}
+                        {this.state.foods.map((food, index) => {
+                            return (
+                                <FoodItem
+                                    name={food.foodName}
+                                    protein={food.protein}
+                                    fat={food.fat}
+                                    carbs={food.carbs}
+                                    key={index}
+                                    addFood={this.addFood}
+                                    foodObject={food}
+                                />
+                            )
+                        })}
+                    </div>
+                    <div className="col m8">
+                        <p>Added Foods</p>
+                    </div>
                 </div>
             </div>
 

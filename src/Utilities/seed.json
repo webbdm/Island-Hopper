@@ -45,7 +45,8 @@
     },
     "meals": {
         "-KrYNLsmfHK7zgU41tV0": {
-            "mealname": "Breakfast"
+            "mealname": "Breakfast",
+            "addedFoods": {}
         }
     }
 }
