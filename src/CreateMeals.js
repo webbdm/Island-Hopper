@@ -20,6 +20,7 @@ class CreateMeals extends Component {
                 addedFoods: []
             }
         };
+
     }
 
     componentDidMount() {
@@ -57,9 +58,15 @@ class CreateMeals extends Component {
         });
     }
 
-    addFood(clickedFood) {
+    addFood = (clickedFood) => {
         let foodToAdd = clickedFood;
-        console.log(foodToAdd);
+        console.log(foodToAdd); 
+        let newArray = this.state.myMeal.addedFoods;
+        newArray.push(foodToAdd);
+        console.log(newArray);
+        // this.setState({
+        //     myMeal: 
+        // });
     }
 
 
@@ -90,7 +97,7 @@ class CreateMeals extends Component {
                 <div className="row">
                     <div className="col m4">
                         <h1>Choose Foods</h1>
-                        {console.log(this.state.foods)}
+                        {console.log(this.state)}
                         {this.state.foods.map((food, index) => {
                             return (
                                 <FoodItem

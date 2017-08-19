@@ -73,7 +73,6 @@ class MealCard extends Component {
     saveEdit = (name, id) => {
         let newMeal = {
             mealname: name,
-            addedFoods: {}
         };
 
         const mealRef = firebase.database().ref(`/meals/${id}`);
