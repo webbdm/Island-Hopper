@@ -75,6 +75,7 @@ class App extends Component {
               <Route exact path="/" component={Menu} />
               <Route exact path="/food" component={() => (<Islands data={this.state} />)} />
               <Route exact path="/meals" component={() => (<Meals data={this.state} />)} />
+              <Route exact path="/meals/:id" component={CreateMeals} />
 
               <div className='user-profile'>
                 {/*<img src={this.state.user.photoURL} alt="User" />*/}

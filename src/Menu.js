@@ -5,11 +5,6 @@ import { Link } from 'react-router-dom';
 
 // Components
 
-//
-
-// let menuItems = [{ name: "My Profile", id: 0 }, { name: "Meals", id: 1 }, { name: "Item", id: 2 }];
-
-
 class Menu extends Component {
 
     constructor(props) {

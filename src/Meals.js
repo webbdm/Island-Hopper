@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route, Link } from 'react-router-dom';
+//import { Route, Link } from 'react-router-dom';
 import firebase from './firebase.js';
 
 // Components
@@ -13,11 +13,6 @@ const Form = ({ submit, change, mealname }) => (
       <button className="btn">Add Meal</button>
     </form>
   </section>
-);
-
-
-const Test = () => (
-  <h1>Manage Meals</h1>
 );
 
 const ViewMeals = ({ submit, change, mealname, mealId, user, meals }) => (
@@ -98,15 +93,13 @@ class Meals extends Component {
     return (
       <div className='main-box'>
         <div className='row'>
-          <Route exact path="/meals" component={() => (
-            <ViewMeals
-              submit={this.handleSubmit}
-              change={this.handleChange}
-              mealname={this.state.mealname}
-              mealId={this.state.mealId}
-              user={this.state.user}
-              meals={this.state.meals} />)}>
-          </Route>
+          <ViewMeals
+            submit={this.handleSubmit}
+            change={this.handleChange}
+            mealname={this.state.mealname}
+            mealId={this.state.mealId}
+            user={this.state.user}
+            meals={this.state.meals} />
         </div>
       </div>
     );
