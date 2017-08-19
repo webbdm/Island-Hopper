@@ -1,0 +1,51 @@
+{
+    "foods": {
+        "-Kp81BaA-fFP2VLTz4zj": {
+            "carbs": "27",
+            "cardCreator": "Geoff Webb",
+            "fat": "2.5",
+            "foodName": "Oatmeal",
+            "protein": "5"
+        },
+        "-Kp84I5P3c9YveuFsQd2": {
+            "carbs": "5",
+            "cardCreator": "Geoff Webb",
+            "fat": "17",
+            "foodName": "Mixed Nuts",
+            "protein": "4"
+        },
+        "-Kp8EyYQA01eDWroXrMY": {
+            "carbs": "31",
+            "cardCreator": "Geoff Webb",
+            "fat": "1",
+            "foodName": "Banana",
+            "protein": "2"
+        },
+        "-KpDRZcu26Gvnz-E4kAJ": {
+            "carbs": "8",
+            "cardCreator": "Geoff Webb",
+            "fat": "15",
+            "foodName": "Peanut Butter",
+            "protein": "7"
+        },
+        "-Kph4aDkC1zV1fIg4kEZ": {
+            "carbs": "35",
+            "cardCreator": "Geoff Webb",
+            "fat": "Fat Amount",
+            "foodName": "Turkey",
+            "protein": "35"
+        },
+        "-KrhvI-TMVobUWMQxngy": {
+            "carbs": "6",
+            "cardCreator": "Geoff Webb",
+            "fat": "3.5",
+            "foodName": "MTS Shake",
+            "protein": "25"
+        }
+    },
+    "meals": {
+        "-KrYNLsmfHK7zgU41tV0": {
+            "mealname": "Breakfast"
+        }
+    }
+}

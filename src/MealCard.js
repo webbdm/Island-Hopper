@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import firebase from './firebase.js';
 
 let MealEditMode = ({
     name,
+    id,
     location,
     handleEditClick,
     handleDeleteClick
 }) => (
         <div className="card small island-card col l3 m4 s12 white-text">
             <div className="card-content">
-                <span className="card-title">{name}</span>
+                <span className="card-title"><Link to={"meals/"+ id}>{name}</Link></span>
                 <p className="card-content_text">{location}</p>
                 <div className="card-action">
                     <a className="card-button" onClick={handleDeleteClick}>Delete</a>
@@ -23,6 +24,7 @@ let MealEditMode = ({
 
 let MealDefaultMode = ({
     name,
+    id,
     location,
     handleChange,
     handleSaveClick
@@ -79,11 +81,14 @@ class MealCard extends Component {
         this.setState({ editing: false });
     }
 
+    
+
     render() {
         return (this.state.editing === false)
             ? (
                 <MealEditMode
                     name={this.state.mealname}
+                    id={this.state.id}
                     handleEditClick={() => this.toggleEdit()}
                     handleDeleteClick={() => this.removeMeal(this.state.id)}
                 />
@@ -91,6 +96,7 @@ class MealCard extends Component {
             : (
                 <MealDefaultMode
                     name={this.state.mealname}
+                    id={this.state.id}
                     handleChange={this.handleChange}
                     handleSaveClick={() => this.saveEdit(this.state.mealname, this.state.id)}
                 />

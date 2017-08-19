@@ -5,14 +5,18 @@ import firebase from './firebase.js';
 
 let EditMode = ({
     name,
-    location,
+    protein,
+    fat,
+    carbs,
     handleEditClick,
     handleDeleteClick
 }) => (
         <div className="card small island-card col l3 m4 s12 white-text">
             <div className="card-content">
                 <span className="card-title">{name}</span>
-                <p className="card-content_text">{location}</p>
+                <p className="card-content_text">Protein: {protein}g</p>
+                <p className="card-content_text">Fat: {fat}g</p>
+                <p className="card-content_text">Carbs: {carbs}g</p>
                 <div className="card-action">
                     <a className="card-button" onClick={handleDeleteClick}>Delete</a>
                     <a className="card-button" onClick={handleEditClick}>Edit</a>
@@ -23,14 +27,18 @@ let EditMode = ({
 
 let DefaultMode = ({
     name,
-    location,
+    protein,
+    fat,
+    carbs,
     handleChange,
     handleSaveClick
 }) => (
         <div className="card small island-card col l3 m3 s12 white-text">
             <div className="card-content">
                 <input type="text" name="foodName" placeholder="What's the food name?" onChange={handleChange} value={name} />
-                <input type="text" name="total" placeholder="What is the total?" onChange={handleChange} value={location} />
+                <input type="text" name="protein" placeholder="Protein Amount?" onChange={handleChange} value={protein} />
+                <input type="text" name="fat" placeholder="Fat Amount?" onChange={handleChange} value={fat} />
+                <input type="text" name="carbs" placeholder="Carbs Amount?" onChange={handleChange} value={carbs} />
                 <div className="card-action">
                     <a className="card-button" onClick={handleSaveClick}>Save</a>
                 </div>
@@ -46,7 +54,9 @@ class Card extends Component {
             id: props.content.id,
             cardCreator: props.content.cardCreator,
             foodName: props.content.foodName,
-            total: props.content.total,
+            protein: props.content.protein,
+            fat: props.content.fat,
+            carbs: props.content.carbs,
             editing: false,
             user: props.user
         }
@@ -69,10 +79,12 @@ class Card extends Component {
         });
     }
 
-    saveEdit = (name, location, id) => {
+    saveEdit = (name, protein, fat, carbs, id) => {
         let newIsland = {
             foodName: name,
-            total: location,
+            protein: protein,
+            fat: fat,
+            carbs: carbs,
             cardCreator: this.state.cardCreator
         };
 
@@ -87,7 +99,9 @@ class Card extends Component {
             ? (
                 <EditMode
                     name={this.state.foodName}
-                    location={this.state.total}
+                    protein={this.state.protein}
+                    fat={this.state.fat}
+                    carbs={this.state.carbs}
                     handleEditClick={() => this.toggleEdit()}
                     handleDeleteClick={() => this.removeFood(this.state.id)}
                 />
@@ -95,9 +109,11 @@ class Card extends Component {
             : (
                 <DefaultMode
                     name={this.state.foodName}
-                    location={this.state.total}
+                    protein={this.state.protein}
+                    fat={this.state.fat}
+                    carbs={this.state.carbs}
                     handleChange={this.handleChange}
-                    handleSaveClick={() => this.saveEdit(this.state.foodName, this.state.total, this.state.id)}
+                    handleSaveClick={() => this.saveEdit(this.state.foodName, this.state.protein, this.state.fat, this.state.carbs, this.state.id)}
                 />
             );
     }
