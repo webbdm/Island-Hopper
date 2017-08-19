@@ -59,10 +59,8 @@ class CreateMeals extends Component {
     }
 
     addFood = (clickedFood) => {
-        let foodToAdd = clickedFood;
-        console.log(foodToAdd); 
         let newArray = this.state.myMeal.addedFoods;
-        newArray.push(foodToAdd);
+        newArray.push(clickedFood);
         console.log(newArray);
         // this.setState({
         //     myMeal: 
@@ -97,7 +95,6 @@ class CreateMeals extends Component {
                 <div className="row">
                     <div className="col m4">
                         <h1>Choose Foods</h1>
-                        {console.log(this.state)}
                         {this.state.foods.map((food, index) => {
                             return (
                                 <FoodItem
