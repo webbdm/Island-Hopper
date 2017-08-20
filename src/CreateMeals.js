@@ -10,17 +10,21 @@ const FoodItem = ({ name, protein, fat, carbs, addFood, foodObject }) => (
     </div>
 );
 
-class CreateMeals extends Component {
+const AddedFoodItem = ({ name, protein, fat, carbs, foodObject }) => (
+    <div>
+        <p>{name}    {protein}    {fat}    {carbs} <button onClick={()=>{console.log("clicky")}}>+</button></p>
 
+    </div>
+);
+
+class CreateMeals extends Component {
     constructor(props) {
         super();
         this.state = {
             router: props,
-            myMeal: {
-                addedFoods: []
-            }
+            myMeal: {},
+            addedFoods: []
         };
-
     }
 
     componentDidMount() {
@@ -36,6 +40,7 @@ class CreateMeals extends Component {
                 }
             });
         });
+        
 
         const foodsRef = firebase.database().ref('foods');
         foodsRef.on('value', (snapshot) => {
@@ -59,12 +64,12 @@ class CreateMeals extends Component {
     }
 
     addFood = (clickedFood) => {
-        let newArray = this.state.myMeal.addedFoods;
-        newArray.push(clickedFood);
-        console.log(newArray);
-        // this.setState({
-        //     myMeal: 
-        // });
+        let foodArray = this.state.addedFoods;
+        foodArray.push(clickedFood);
+        this.setState({
+            myMeal: foodArray
+        });
+
     }
 
 
@@ -110,7 +115,20 @@ class CreateMeals extends Component {
                         })}
                     </div>
                     <div className="col m8">
-                        <p>Added Foods</p>
+                        <h1>Added Foods</h1>
+                        {console.log(this.state.addedFoods)}
+                        {this.state.addedFoods.map((food, index) => {
+                            return (
+                                <AddedFoodItem
+                                    name={food.foodName}
+                                    protein={food.protein}
+                                    fat={food.fat}
+                                    carbs={food.carbs}
+                                    key={index}
+                                    foodObject={food}
+                                />
+                            )
+                        })}
                     </div>
                 </div>
             </div>
