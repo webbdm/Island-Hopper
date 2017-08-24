@@ -32,7 +32,7 @@ class CreateMeals extends Component {
         let mealId = this.state.router.match.params.id;
         const mealRef = firebase.database().ref('meals/' + mealId);
         console.log(mealRef);
-        mealRef.on('value', (snapshot) => {
+        mealRef.once('value', (snapshot) => {
             let meal = snapshot.val();
             console.log(meal);
             this.setState({
@@ -65,7 +65,7 @@ class CreateMeals extends Component {
     }
 
     componentWillUnmount() {
-        console.log("unmount");
+        // firebase.database.child('/path').off('value', this.someFBRef)
     }
 
     addFood = (clickedFood, mealId) => {
@@ -97,13 +97,15 @@ class CreateMeals extends Component {
             let fTotal = 0;
             let cTotal = 0;
             console.log(input.protein, input.fat, input.carbs);
-            pTotal += input.protein;
-            fTotal += input.fat;
-            cTotal += input.carbs;
-            console.log(pTotal);
-            console.log(fTotal);
-            console.log(cTotal);
+            pTotal += parseInt(input.protein);
+            fTotal += parseInt(input.fat);
+            cTotal += parseInt(input.carbs);
+            console.log(pTotal, "p");
+            console.log(fTotal, "f");
+            console.log(cTotal, "c");
         });
+
+        console.log();
     }
 
 
