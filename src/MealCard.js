@@ -60,8 +60,10 @@ class MealCard extends Component {
     }
 
     removeMeal(id) {
-        const mealRef = firebase.database().ref(`/meals/${id}`);
-        mealRef.remove();
+        console.log(id)
+        // const mealRef = firebase.database().ref(`/meals/${id}`);
+        // console.log("meal ref", mealRef, id);
+        // mealRef.remove();
     }
 
     toggleEdit = () => {

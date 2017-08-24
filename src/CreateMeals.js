@@ -3,16 +3,16 @@ import './App.css';
 import firebase from './firebase.js';
 //import { Link } from 'react-router-dom';
 
-const FoodItem = ({ name, protein, fat, carbs, addFood, foodObject }) => (
+const FoodItem = ({ name, protein, fat, carbs, addFood, foodObject, mealId }) => (
     <div>
-        <p>{name}    {protein}    {fat}    {carbs} <button onClick={() => { addFood(foodObject) }}>+</button></p>
+        <p>{name}    {protein}    {fat}    {carbs} <button onClick={() => { addFood(foodObject, mealId) }}>+</button></p>
 
     </div>
 );
 
-const AddedFoodItem = ({ name, protein, fat, carbs, foodObject, removeFood, index }) => (
+const AddedFoodItem = ({ name, protein, fat, carbs, removeFood, index, mealId }) => (
     <div>
-        <p>{name}    {protein}    {fat}    {carbs} <button onClick={() => { removeFood(index) }}>+</button></p>
+        <p>{name}    {protein}    {fat}    {carbs} <button onClick={() => { removeFood(index, mealId) }}>X</button></p>
 
     </div>
 );
@@ -28,16 +28,17 @@ class CreateMeals extends Component {
     }
 
     componentDidMount() {
+        console.log("routeId",this.state.router.match.params.id);
         let mealId = this.state.router.match.params.id;
         const mealRef = firebase.database().ref('meals/' + mealId);
+        console.log(mealRef);
         mealRef.on('value', (snapshot) => {
             let meal = snapshot.val();
+            console.log(meal);
             this.setState({
-                myMeal: {
-                    myName: meal.mealname,
-                    id: mealId,
-                    addedFoods: []
-                }
+                addedFoods: meal.foodArray,
+                mealName: meal.mealname,
+                id: mealId
             });
         });
 
@@ -63,20 +64,30 @@ class CreateMeals extends Component {
         });
     }
 
-    addFood = (clickedFood) => {
+    componentWillUnmount(){
+        console.log("unmount");
+    }
+
+
+    addFood = (clickedFood, mealId) => {
+        console.log("params", clickedFood, mealId);
         let foodArray = this.state.addedFoods;
         foodArray.push(clickedFood);
+        const mealref = firebase.database().ref('meals/' + mealId + '/' + 'foodArray');
+        mealref.set(foodArray);
         this.setState({
-            myMeal: foodArray
+            addedFoods: foodArray
         });
 
     }
 
-    removeFood = (index) => {
+    removeFood = (index, mealId) => {
         let foodArray = this.state.addedFoods;
         foodArray.splice(index, 1);
+        const mealref = firebase.database().ref('meals/' + mealId + '/' + 'foodArray');
+        mealref.set(foodArray);
         this.setState({
-            myMeal: foodArray
+            addedFoods: foodArray
         });
     }
 
@@ -90,7 +101,7 @@ class CreateMeals extends Component {
             <div>
                 <div className="row">
                     <div className="col m4">
-                        <h1>{this.state.myMeal.myName}</h1>
+                        <h1>{this.state.mealName}</h1>
                     </div>
                     <div className="col m2">
                         <p>Protein</p>
@@ -118,13 +129,13 @@ class CreateMeals extends Component {
                                     key={index}
                                     addFood={this.addFood}
                                     foodObject={food}
+                                    mealId={this.state.id}
                                 />
                             )
                         })}
                     </div>
                     <div className="col m8">
                         <h1>Added Foods</h1>
-                        {console.log(this.state.addedFoods)}
                         {this.state.addedFoods.map((food, index) => {
                             return (
                                 <AddedFoodItem
@@ -136,6 +147,7 @@ class CreateMeals extends Component {
                                     foodObject={food}
                                     index={index}
                                     removeFood={this.removeFood}
+                                    mealId={this.state.id}
                                 />
                             )
                         })}

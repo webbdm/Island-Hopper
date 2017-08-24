@@ -71,7 +71,6 @@ class Meals extends Component {
   }
 
   handleChange(e) {
-    console.log(e);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -82,6 +81,7 @@ class Meals extends Component {
     const mealsRef = firebase.database().ref('meals');
     const meal = {
       mealname: this.state.mealname,
+      foodArray: ['']
     }
     mealsRef.push(meal);
     this.setState({
