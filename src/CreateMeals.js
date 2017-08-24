@@ -28,7 +28,7 @@ class CreateMeals extends Component {
     }
 
     componentDidMount() {
-        console.log("routeId",this.state.router.match.params.id);
+        console.log("routeId", this.state.router.match.params.id);
         let mealId = this.state.router.match.params.id;
         const mealRef = firebase.database().ref('meals/' + mealId);
         console.log(mealRef);
@@ -64,10 +64,9 @@ class CreateMeals extends Component {
         });
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         console.log("unmount");
     }
-
 
     addFood = (clickedFood, mealId) => {
         console.log("params", clickedFood, mealId);
@@ -91,6 +90,22 @@ class CreateMeals extends Component {
         });
     }
 
+    calculateTotals = () => {
+        let inputs = this.state.addedFoods;
+        inputs.forEach((input, index) => {
+            let pTotal = 0;
+            let fTotal = 0;
+            let cTotal = 0;
+            console.log(input.protein, input.fat, input.carbs);
+            pTotal += input.protein;
+            fTotal += input.fat;
+            cTotal += input.carbs;
+            console.log(pTotal);
+            console.log(fTotal);
+            console.log(cTotal);
+        });
+    }
+
 
 
     render() {
@@ -99,6 +114,7 @@ class CreateMeals extends Component {
         }
         return (
             <div>
+                {this.calculateTotals()}
                 <div className="row">
                     <div className="col m4">
                         <h1>{this.state.mealName}</h1>
