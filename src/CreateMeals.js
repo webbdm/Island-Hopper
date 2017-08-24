@@ -5,14 +5,14 @@ import firebase from './firebase.js';
 
 const FoodItem = ({ name, protein, fat, carbs, addFood, foodObject }) => (
     <div>
-        <p>{name}    {protein}    {fat}    {carbs} <button onClick={()=>{addFood(foodObject)}}>+</button></p>
+        <p>{name}    {protein}    {fat}    {carbs} <button onClick={() => { addFood(foodObject) }}>+</button></p>
 
     </div>
 );
 
-const AddedFoodItem = ({ name, protein, fat, carbs, foodObject }) => (
+const AddedFoodItem = ({ name, protein, fat, carbs, foodObject, removeFood, index }) => (
     <div>
-        <p>{name}    {protein}    {fat}    {carbs} <button onClick={()=>{console.log("clicky")}}>+</button></p>
+        <p>{name}    {protein}    {fat}    {carbs} <button onClick={() => { removeFood(index) }}>+</button></p>
 
     </div>
 );
@@ -40,7 +40,7 @@ class CreateMeals extends Component {
                 }
             });
         });
-        
+
 
         const foodsRef = firebase.database().ref('foods');
         foodsRef.on('value', (snapshot) => {
@@ -70,6 +70,14 @@ class CreateMeals extends Component {
             myMeal: foodArray
         });
 
+    }
+
+    removeFood = (index) => {
+        let foodArray = this.state.addedFoods;
+        foodArray.splice(index, 1);
+        this.setState({
+            myMeal: foodArray
+        });
     }
 
 
@@ -126,6 +134,8 @@ class CreateMeals extends Component {
                                     carbs={food.carbs}
                                     key={index}
                                     foodObject={food}
+                                    index={index}
+                                    removeFood={this.removeFood}
                                 />
                             )
                         })}
