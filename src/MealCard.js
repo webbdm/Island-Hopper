@@ -60,8 +60,10 @@ class MealCard extends Component {
     }
 
     removeMeal(id) {
-        const mealRef = firebase.database().ref(`/meals/${id}`);
-        mealRef.remove();
+        console.log(id)
+        const thisMealRef = firebase.database().ref(`/meals/${id}`);
+        console.log("meal ref", thisMealRef, id);
+        thisMealRef.remove();
     }
 
     toggleEdit = () => {
@@ -71,13 +73,9 @@ class MealCard extends Component {
     }
 
     saveEdit = (name, id) => {
-        let newMeal = {
-            mealname: name,
-        };
-
-        const mealRef = firebase.database().ref(`/meals/${id}`);
-        mealRef.set(newMeal);
-        this.setState({ newMeal });
+        const mealRef = firebase.database().ref('meals/' + id + '/' + 'mealname');
+        mealRef.set(name);
+        this.setState({ mealname: name });
         this.setState({ editing: false });
     }
 

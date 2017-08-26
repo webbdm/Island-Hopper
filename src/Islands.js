@@ -64,7 +64,6 @@ class Islands extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className='main-box'>
         <div className='row'>

@@ -3,34 +3,47 @@ import './App.css';
 import firebase from './firebase.js';
 //import { Link } from 'react-router-dom';
 
-const foodItem = ({name,protein,fat,carbs}) =>{
+const FoodItem = ({ name, protein, fat, carbs, addFood, foodObject, mealId }) => (
     <div>
-        <p>{name}</p>
-        <p>{protein}</p>
-        <p>{fat}</p>
-        <p>{carbs}</p>
+        <p>{name}    {protein}    {fat}    {carbs} <button onClick={() => { addFood(foodObject, mealId) }}>+</button></p>
+
     </div>
-};
+);
+
+const AddedFoodItem = ({ name, protein, fat, carbs, removeFood, index, mealId }) => (
+    <div>
+        <p>{name}    {protein}    {fat}    {carbs} <button onClick={() => { removeFood(index, mealId) }}>X</button></p>
+
+    </div>
+);
 
 class CreateMeals extends Component {
-
     constructor(props) {
         super();
-        this.state = props;
+        this.state = {
+            router: props,
+            myMeal: {},
+            addedFoods: []
+        };
     }
 
     componentDidMount() {
-        let mealId = this.state.match.params.id;
+        console.log("routeId", this.state.router.match.params.id);
+        let mealId = this.state.router.match.params.id;
         const mealRef = firebase.database().ref('meals/' + mealId);
+        console.log(mealRef);
         mealRef.on('value', (snapshot) => {
             let meal = snapshot.val();
+            console.log(meal);
             this.setState({
-                myMeal: {
-                    myName: meal.mealname,
-                    id: mealId
-                }
+                addedFoods: meal.foodArray,
+                mealName: meal.mealname,
+                id: mealId
             });
+
+            
         });
+
 
         const foodsRef = firebase.database().ref('foods');
         foodsRef.on('value', (snapshot) => {
@@ -51,9 +64,53 @@ class CreateMeals extends Component {
                 foods: newState
             });
         });
+    }
 
+    componentWillUnmount() {
+        const mealRef = firebase.database().ref('meals/' + this.state.id);
+        mealRef.off('value');
+    }
+
+    addFood = (clickedFood, mealId) => {
+        let foodArray = this.state.addedFoods;
+        foodArray.push(clickedFood);
+        const mealref = firebase.database().ref('meals/' + mealId + '/' + 'foodArray');
+        mealref.set(foodArray);
+        this.setState({
+            addedFoods: foodArray
+        });
 
     }
+
+    removeFood = (index, mealId) => {
+        let foodArray = this.state.addedFoods;
+        foodArray.splice(index, 1);
+        const mealref = firebase.database().ref('meals/' + mealId + '/' + 'foodArray');
+        mealref.set(foodArray);
+        this.setState({
+            addedFoods: foodArray
+        });
+    }
+
+    calculateTotals = () => {
+        // let inputs = this.state.addedFoods;
+        // inputs.forEach((input, index) => {
+        //     let pTotal = 0;
+        //     let fTotal = 0;
+        //     let cTotal = 0;
+        //     console.log(input.protein, input.fat, input.carbs);
+        //     pTotal += parseInt(input.protein);
+        //     fTotal += parseInt(input.fat);
+        //     cTotal += parseInt(input.carbs);
+        //     console.log(pTotal,"p");
+        //     console.log(fTotal,"f");
+        //     console.log(cTotal,"c");
+        // });
+
+        console.log('Test');
+    }
+
+
 
     render() {
         if (this.state.myMeal === undefined || this.state.foods === undefined) {
@@ -61,9 +118,10 @@ class CreateMeals extends Component {
         }
         return (
             <div>
+                {this.calculateTotals()}
                 <div className="row">
                     <div className="col m4">
-                        <h1>{this.state.myMeal.myName}</h1>
+                        <h1>{this.state.mealName}</h1>
                     </div>
                     <div className="col m2">
                         <p>Protein</p>
@@ -79,8 +137,46 @@ class CreateMeals extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <h1>Choose Foods</h1>
-                    {console.log(this.state.foods)}
+                    <div className="col m4">
+                        <h1>Choose Foods</h1>
+                        {this.state.foods.map((food, index) => {
+                            return (
+                                <FoodItem
+                                    name={food.foodName}
+                                    protein={food.protein}
+                                    fat={food.fat}
+                                    carbs={food.carbs}
+                                    key={index}
+                                    addFood={this.addFood}
+                                    foodObject={food}
+                                    mealId={this.state.id}
+                                />
+                            )
+                        })}
+                    </div>
+                    <div className="col m8">
+                        <h1>Added Foods</h1>
+                        {this.state.addedFoods.map((food, index) => {
+                            if (this.state.addedFoods === undefined) {
+                                return (
+                                    <p>Add Foods</p>
+                                )
+                            }
+                            return (
+                                <AddedFoodItem
+                                    name={food.foodName}
+                                    protein={food.protein}
+                                    fat={food.fat}
+                                    carbs={food.carbs}
+                                    key={index}
+                                    foodObject={food}
+                                    index={index}
+                                    removeFood={this.removeFood}
+                                    mealId={this.state.id}
+                                />
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
 
