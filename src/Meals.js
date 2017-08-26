@@ -84,6 +84,7 @@ class Meals extends Component {
       foodArray: ['']
     }
     mealsRef.push(meal);
+    console.log(meal)
     this.setState({
       mealname: ''
     });

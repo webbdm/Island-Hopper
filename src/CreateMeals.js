@@ -32,7 +32,7 @@ class CreateMeals extends Component {
         let mealId = this.state.router.match.params.id;
         const mealRef = firebase.database().ref('meals/' + mealId);
         console.log(mealRef);
-        mealRef.once('value', (snapshot) => {
+        mealRef.on('value', (snapshot) => {
             let meal = snapshot.val();
             console.log(meal);
             this.setState({
@@ -40,6 +40,8 @@ class CreateMeals extends Component {
                 mealName: meal.mealname,
                 id: mealId
             });
+
+            
         });
 
 
@@ -65,11 +67,11 @@ class CreateMeals extends Component {
     }
 
     componentWillUnmount() {
-        // firebase.database.child('/path').off('value', this.someFBRef)
+        const mealRef = firebase.database().ref('meals/' + this.state.id);
+        mealRef.off('value');
     }
 
     addFood = (clickedFood, mealId) => {
-        console.log("params", clickedFood, mealId);
         let foodArray = this.state.addedFoods;
         foodArray.push(clickedFood);
         const mealref = firebase.database().ref('meals/' + mealId + '/' + 'foodArray');
@@ -91,21 +93,21 @@ class CreateMeals extends Component {
     }
 
     calculateTotals = () => {
-        let inputs = this.state.addedFoods;
-        inputs.forEach((input, index) => {
-            let pTotal = 0;
-            let fTotal = 0;
-            let cTotal = 0;
-            console.log(input.protein, input.fat, input.carbs);
-            pTotal += parseInt(input.protein);
-            fTotal += parseInt(input.fat);
-            cTotal += parseInt(input.carbs);
-            console.log(pTotal, "p");
-            console.log(fTotal, "f");
-            console.log(cTotal, "c");
-        });
+        // let inputs = this.state.addedFoods;
+        // inputs.forEach((input, index) => {
+        //     let pTotal = 0;
+        //     let fTotal = 0;
+        //     let cTotal = 0;
+        //     console.log(input.protein, input.fat, input.carbs);
+        //     pTotal += parseInt(input.protein);
+        //     fTotal += parseInt(input.fat);
+        //     cTotal += parseInt(input.carbs);
+        //     console.log(pTotal,"p");
+        //     console.log(fTotal,"f");
+        //     console.log(cTotal,"c");
+        // });
 
-        console.log();
+        console.log('Test');
     }
 
 
@@ -155,6 +157,11 @@ class CreateMeals extends Component {
                     <div className="col m8">
                         <h1>Added Foods</h1>
                         {this.state.addedFoods.map((food, index) => {
+                            if (this.state.addedFoods === undefined) {
+                                return (
+                                    <p>Add Foods</p>
+                                )
+                            }
                             return (
                                 <AddedFoodItem
                                     name={food.foodName}
