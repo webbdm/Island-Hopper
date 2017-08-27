@@ -65,6 +65,38 @@ nav{
   height: 75px;
 }
 
+.macro-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.macro-box{
+  border: 2px solid white;
+  border-radius: 5px;
+  height: 150px;
+  width: 150px;
+  background-color: #2b5388
+}
+
+.macro-box p{
+  margin: 0px;
+}
+
+.food-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.food-block{
+  margin: 25px;
+  background-color: #2b5388
+}
+
 
 
 /* Old Theme */
