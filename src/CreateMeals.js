@@ -4,16 +4,22 @@ import firebase from './firebase.js';
 //import { Link } from 'react-router-dom';
 
 const FoodItem = ({ name, protein, fat, carbs, addFood, foodObject, mealId }) => (
-    <div>
-        <p>{name}    {protein}    {fat}    {carbs} <button onClick={() => { addFood(foodObject, mealId) }}>+</button></p>
-
+    <div className="food-item">
+        <p>{name}</p>    
+        <p>{protein}</p>    
+        <p>{fat}</p>
+        <p>{carbs}</p> 
+        <button onClick={() => { addFood(foodObject, mealId) }}>+</button>
     </div>
 );
 
 const AddedFoodItem = ({ name, protein, fat, carbs, removeFood, index, mealId }) => (
-    <div>
-        <p>{name}    {protein}    {fat}    {carbs} <button onClick={() => { removeFood(index, mealId) }}>X</button></p>
-
+    <div className="food-item">
+        <p>{name}</p>    
+        <p>{protein}</p>    
+        <p>{fat}</p>
+        <p>{carbs}</p> 
+        <button onClick={() => { removeFood(index, mealId) }}>X</button>
     </div>
 );
 
@@ -151,23 +157,23 @@ class CreateMeals extends Component {
         return (
             <div>
                 <div className="row macro-wrapper">
-                    <div className="">
+                    <div className="meal-name">
                         <h1>{this.state.mealName}</h1>
                     </div>
                     <div className="card macro-box">
-                        <h2>{this.state.totals.protein}</h2>
+                        <h1>{this.state.totals.protein}</h1>
                         <p>Protein</p>
                     </div>
                     <div className="card macro-box">
-                        <h2>{this.state.totals.fat}</h2>
+                        <h1>{this.state.totals.fat}</h1>
                         <p>Fat</p>
                     </div>
                     <div className="card macro-box">
-                        <h2>{this.state.totals.carbs}</h2>
+                        <h1>{this.state.totals.carbs}</h1>
                         <p>Carbs</p>
                     </div>
                     <div className="card macro-box">
-                        <h2></h2>
+                        <h1></h1>
                         <p>Total</p>
                     </div>
                 </div>
