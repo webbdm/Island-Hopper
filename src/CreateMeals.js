@@ -5,20 +5,20 @@ import firebase from './firebase.js';
 
 const FoodItem = ({ name, protein, fat, carbs, addFood, foodObject, mealId }) => (
     <div className="food-item">
-        <p>{name}</p>    
-        <p>{protein}</p>    
-        <p>{fat}</p>
-        <p>{carbs}</p> 
+        <p>{name}</p>
+        <p>{protein}g P</p>
+        <p>{fat}g F</p>
+        <p>{carbs}g C</p>
         <button onClick={() => { addFood(foodObject, mealId) }}>+</button>
     </div>
 );
 
 const AddedFoodItem = ({ name, protein, fat, carbs, removeFood, index, mealId }) => (
     <div className="food-item">
-        <p>{name}</p>    
-        <p>{protein}</p>    
-        <p>{fat}</p>
-        <p>{carbs}</p> 
+        <p>{name}</p>
+        <p>{protein}g P</p>
+        <p>{fat}g F</p>
+        <p>{carbs}g C</p>
         <button onClick={() => { removeFood(index, mealId) }}>X</button>
     </div>
 );

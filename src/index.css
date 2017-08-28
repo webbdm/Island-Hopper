@@ -115,11 +115,31 @@ nav{
   background-color: #2b5388
 }
 
+.food-block h1{
+  text-align: center;
+  color: white;
+}
+
+.food-block button {
+  height: 30px;
+  width: 30px;
+  color: white;
+  background-color: #FF3134;
+  border: none;
+  border-radius: 200px;
+  margin-top: 12px;
+}
+
+.food-item p:first-of-type{
+  font-weight: bold;
+}
+
 .food-item{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 10px;
+  border-top:3px solid black;
 }
 
 
