@@ -28,20 +28,19 @@ class CreateMeals extends Component {
     }
 
     componentDidMount() {
-        console.log("routeId", this.state.router.match.params.id);
         let mealId = this.state.router.match.params.id;
         const mealRef = firebase.database().ref('meals/' + mealId);
-        console.log(mealRef);
+        let mealX;
         mealRef.on('value', (snapshot) => {
             let meal = snapshot.val();
-            console.log(meal);
+            mealX = meal.foodArray;
             this.setState({
                 addedFoods: meal.foodArray,
                 mealName: meal.mealname,
                 id: mealId
             });
 
-            
+
         });
 
 
@@ -60,10 +59,31 @@ class CreateMeals extends Component {
                 });
             }
 
+            let pTotal = 0;
+            let fTotal = 0;
+            let cTotal = 0;
+            mealX.forEach((input, index) => {
+                pTotal += parseInt(input.protein);
+                fTotal += parseInt(input.fat);
+                cTotal += parseInt(input.carbs);
+            });
+
+            let total = {
+                protein: pTotal,
+                fat: fTotal,
+                carbs: cTotal
+            };
+
             this.setState({
-                foods: newState
+                foods: newState,
+                totals: total
             });
         });
+
+
+    }
+
+    componentDidUpdate() {
     }
 
     componentWillUnmount() {
@@ -76,10 +96,26 @@ class CreateMeals extends Component {
         foodArray.push(clickedFood);
         const mealref = firebase.database().ref('meals/' + mealId + '/' + 'foodArray');
         mealref.set(foodArray);
-        this.setState({
-            addedFoods: foodArray
+
+        let pTotal = 0;
+        let fTotal = 0;
+        let cTotal = 0;
+        foodArray.forEach((input, index) => {
+            pTotal += parseInt(input.protein);
+            fTotal += parseInt(input.fat);
+            cTotal += parseInt(input.carbs);
         });
 
+        let total = {
+            protein: pTotal,
+            fat: fTotal,
+            carbs: cTotal
+        };
+
+        this.setState({
+            totals: total,
+            addedFoods: foodArray
+        });
     }
 
     removeFood = (index, mealId) => {
@@ -87,30 +123,26 @@ class CreateMeals extends Component {
         foodArray.splice(index, 1);
         const mealref = firebase.database().ref('meals/' + mealId + '/' + 'foodArray');
         mealref.set(foodArray);
+
+        let pTotal = 0;
+        let fTotal = 0;
+        let cTotal = 0;
+        foodArray.forEach((input, index) => {
+            pTotal += parseInt(input.protein);
+            fTotal += parseInt(input.fat);
+            cTotal += parseInt(input.carbs);
+        });
+
+        let total = {
+            protein: pTotal,
+            fat: fTotal,
+            carbs: cTotal
+        };
         this.setState({
+            totals: total,
             addedFoods: foodArray
         });
     }
-
-    calculateTotals = () => {
-        // let inputs = this.state.addedFoods;
-        // inputs.forEach((input, index) => {
-        //     let pTotal = 0;
-        //     let fTotal = 0;
-        //     let cTotal = 0;
-        //     console.log(input.protein, input.fat, input.carbs);
-        //     pTotal += parseInt(input.protein);
-        //     fTotal += parseInt(input.fat);
-        //     cTotal += parseInt(input.carbs);
-        //     console.log(pTotal,"p");
-        //     console.log(fTotal,"f");
-        //     console.log(cTotal,"c");
-        // });
-
-        console.log('Test');
-    }
-
-
 
     render() {
         if (this.state.myMeal === undefined || this.state.foods === undefined) {
@@ -118,26 +150,29 @@ class CreateMeals extends Component {
         }
         return (
             <div>
-                {this.calculateTotals()}
-                <div className="row">
-                    <div className="col m4">
+                <div className="row macro-wrapper">
+                    <div className="">
                         <h1>{this.state.mealName}</h1>
                     </div>
-                    <div className="col m2">
+                    <div className="card macro-box">
+                        <h2>{this.state.totals.protein}</h2>
                         <p>Protein</p>
                     </div>
-                    <div className="col m2">
+                    <div className="card macro-box">
+                        <h2>{this.state.totals.fat}</h2>
                         <p>Fat</p>
                     </div>
-                    <div className="col m2">
+                    <div className="card macro-box">
+                        <h2>{this.state.totals.carbs}</h2>
                         <p>Carbs</p>
                     </div>
-                    <div className="col m2">
+                    <div className="card macro-box">
+                        <h2></h2>
                         <p>Total</p>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col m4">
+                <div className="row food-container">
+                    <div className="col m3 food-block">
                         <h1>Choose Foods</h1>
                         {this.state.foods.map((food, index) => {
                             return (
@@ -154,7 +189,7 @@ class CreateMeals extends Component {
                             )
                         })}
                     </div>
-                    <div className="col m8">
+                    <div className="col m7 food-block">
                         <h1>Added Foods</h1>
                         {this.state.addedFoods.map((food, index) => {
                             if (this.state.addedFoods === undefined) {
