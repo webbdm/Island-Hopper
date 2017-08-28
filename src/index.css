@@ -65,6 +65,12 @@ nav{
   height: 75px;
 }
 
+.meal-name{
+  font-size: 3rem;
+  color: white;
+  margin: 15px 70px;
+}
+
 .macro-wrapper{
   display: flex;
   flex-direction: row;
@@ -74,15 +80,27 @@ nav{
 }
 
 .macro-box{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   border: 2px solid white;
   border-radius: 5px;
   height: 150px;
   width: 150px;
   background-color: #2b5388
 }
+.macro-box h1{
+  color: #FF3134;
+}
 
-.macro-box p{
-  margin: 0px;
+.macro-box p, .macro-box h1{
+  max-width: 50%;
+  margin: 5px;
+  padding: 0px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .food-container{
@@ -95,6 +113,33 @@ nav{
 .food-block{
   margin: 25px;
   background-color: #2b5388
+}
+
+.food-block h1{
+  text-align: center;
+  color: white;
+}
+
+.food-block button {
+  height: 30px;
+  width: 30px;
+  color: white;
+  background-color: #FF3134;
+  border: none;
+  border-radius: 200px;
+  margin-top: 12px;
+}
+
+.food-item p:first-of-type{
+  font-weight: bold;
+}
+
+.food-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+  border-top:3px solid black;
 }
 
 
