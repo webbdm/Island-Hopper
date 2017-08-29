@@ -76,6 +76,7 @@ nav{
   font-size: 3rem;
   color: white;
   margin: 15px 70px;
+  padding-left: 1%;
 }
 
 .macro-wrapper{
@@ -85,10 +86,6 @@ nav{
   flex-wrap: wrap;
   margin-top: 20px;
   padding: 20px;
-}
-
-.macro-wrapper:first-of-type{
-  margin-right: 25px;
 }
 
 .macro-box{
