@@ -39,6 +39,13 @@ nav{
   height: 100%;
 }
 
+.menubox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .sidebar{
   background-color: #0B2247;
   height: 100%;
@@ -69,6 +76,7 @@ nav{
   font-size: 3rem;
   color: white;
   margin: 15px 70px;
+  padding-left: 1%;
 }
 
 .macro-wrapper{
@@ -77,6 +85,7 @@ nav{
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 20px;
+  padding: 20px;
 }
 
 .macro-box{
@@ -89,7 +98,7 @@ nav{
   border-radius: 5px;
   height: 150px;
   width: 150px;
-  background-color: #2b5388
+  background-color: #2b5388;
 }
 .macro-box h1{
   color: #FF3134;
@@ -126,7 +135,7 @@ nav{
   color: white;
   background-color: #FF3134;
   border: none;
-  border-radius: 200px;
+  border-radius: 5px;
   margin-top: 12px;
 }
 

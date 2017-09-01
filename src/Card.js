@@ -31,7 +31,8 @@ let DefaultMode = ({
     fat,
     carbs,
     handleChange,
-    handleSaveClick
+    handleSaveClick,
+    cancel
 }) => (
         <div className="card small island-card col l3 m3 s12 white-text">
             <div className="card-content">
@@ -41,6 +42,7 @@ let DefaultMode = ({
                 <input type="text" name="carbs" placeholder="Carbs Amount?" onChange={handleChange} value={carbs} />
                 <div className="card-action">
                     <a className="card-button" onClick={handleSaveClick}>Save</a>
+                    <a className="card-button" onClick={cancel}>Cancel</a>
                 </div>
             </div>
         </div>
@@ -94,6 +96,10 @@ class Card extends Component {
         this.setState({ editing: false });
     }
 
+    cancel = () => {
+        this.setState({ editing: false });
+    }
+
     render() {
         return (this.state.editing === false)
             ? (
@@ -114,6 +120,7 @@ class Card extends Component {
                     carbs={this.state.carbs}
                     handleChange={this.handleChange}
                     handleSaveClick={() => this.saveEdit(this.state.foodName, this.state.protein, this.state.fat, this.state.carbs, this.state.id)}
+                    cancel={this.cancel}
                 />
             );
     }

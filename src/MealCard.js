@@ -12,7 +12,7 @@ let MealEditMode = ({
 }) => (
         <div className="card small island-card col l3 m4 s12 white-text">
             <div className="card-content">
-                <span className="card-title"><Link to={"meals/"+ id}>{name}</Link></span>
+                <span className="card-title"><Link to={"meals/" + id}>{name}</Link></span>
                 <p className="card-content_text">{location}</p>
                 <div className="card-action">
                     <a className="card-button" onClick={handleDeleteClick}>Delete</a>
@@ -24,6 +24,7 @@ let MealEditMode = ({
 
 let MealDefaultMode = ({
     name,
+    cancel,
     id,
     location,
     handleChange,
@@ -34,6 +35,7 @@ let MealDefaultMode = ({
                 <input type="text" name="mealname" placeholder="Meal Name?" onChange={handleChange} value={name} />
                 <div className="card-action">
                     <a className="card-button" onClick={handleSaveClick}>Save</a>
+                    <a className="card-button" onClick={cancel}>Cancel</a>
                 </div>
             </div>
         </div>
@@ -79,7 +81,9 @@ class MealCard extends Component {
         this.setState({ editing: false });
     }
 
-    
+    cancel = () => {
+        this.setState({ editing: false });
+    }
 
     render() {
         return (this.state.editing === false)
@@ -97,6 +101,7 @@ class MealCard extends Component {
                     id={this.state.id}
                     handleChange={this.handleChange}
                     handleSaveClick={() => this.saveEdit(this.state.mealname, this.state.id)}
+                    cancel={this.cancel}
                 />
             );
     }
