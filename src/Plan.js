@@ -41,6 +41,7 @@ class Plan extends Component {
             console.log(day);
             //dayX = day.foodArray;
             this.setState({
+                // addedMeals: day.addedMeals,
                 dayName: "Day",
                 dayTotal: {}
             });

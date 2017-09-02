@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { HashRouter, Route, Link } from 'react-router-dom';
 import { auth, provider } from './firebase.js';
 
 // Components
@@ -56,7 +56,7 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div className='app'>
           <nav>
             <div className="nav-wrapper">
@@ -89,7 +89,7 @@ class App extends Component {
         </div>
 
 
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

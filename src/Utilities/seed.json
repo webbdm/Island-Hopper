@@ -72,8 +72,16 @@
     }
   },
   "day": {
-    "-Kp84I5P3c9CveuFsQd3": {
-      "addedMeals": []
-    }
+      "addedMeals": [
+        {
+          "carbs": "27",
+          "cardCreator": "Geoff Webb",
+          "fat": "2.5",
+          "foodName": "Oatmeal",
+          "id": "-Kp81BaA-fFP2VLTz4zj",
+          "protein": "5"
+        }
+      ]
+
   }
 }
