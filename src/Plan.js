@@ -3,12 +3,12 @@ import './App.css';
 import { Link } from 'react-router-dom';
 import firebase from './firebase.js';
 
-const MealItem = ({addmeal,meal,mealObject,mealId}) => (
+const MealItem = ({addmeal,meal,mealObject,mealId,total}) => (
     <div className="food-item">
-        <p>name </p>
-        <p>protein </p>
-        <p>fat </p>
-        <p>carbs </p>
+        <p>{mealObject.mealName}</p>
+        <p>protein {total.protein}</p>
+        <p>fat {total.fat}</p>
+        <p>carbs {total.carbs}</p>
         <button onClick={() => {addmeal(mealObject,mealId)}}>+</button>
     </div>
 );
@@ -28,7 +28,7 @@ class Plan extends Component {
         super();
         this.state = {
             router: props,
-            addedMeals: [""]
+            addedMeals: []
         };
     }
 
@@ -38,12 +38,11 @@ class Plan extends Component {
         //let dayX;
         dayRef.on('value', (snapshot) => {
             let day = snapshot.val();
+            console.log(day);
             //dayX = day.foodArray;
             this.setState({
-                addedMeals: day.addedMeals,
                 dayName: "Day",
                 dayTotal: {}
-                
             });
 
 
@@ -60,6 +59,7 @@ class Plan extends Component {
                     // protein: meals[meal].protein,
                     // fat: meals[meal].fat,
                     // carbs: meals[meal].carbs,
+                    total: meals[meal].total,
                     mealName: meals[meal].mealname,
                     cardCreator: meals[meal].cardCreator
                 });
@@ -98,8 +98,8 @@ class Plan extends Component {
     }
 
     addMeal = (clickedMeal, mealId) => {
-        console.log(clickedMeal, mealId);
-        console.log(this.state);
+        // console.log(clickedMeal, mealId);
+        // console.log(this.state);
         // let foodArray = this.state.addedMeals;
         // foodArray.push(clickedMeal);
         //const mealref = firebase.database().ref('meals/' + mealId + '/' + 'foodArray');
@@ -160,13 +160,13 @@ class Plan extends Component {
         return (
             <div className="row">
                 <div className="col md 4">
+                {console.log(this.state)}
                     <div className="row">
                         <h1>{this.state.dayName}</h1>
                     </div>
                     <div className="row">
                         <h1>Meals</h1>
                         {this.state.meals.map((meal, index) => {
-                            {console.log(meal)}
                             return (
                                 <MealItem
                                     name={meal.mealName}
@@ -177,6 +177,7 @@ class Plan extends Component {
                                     addmeal={this.addMeal}
                                     mealObject={meal}
                                     mealId={meal.id}
+                                    total={meal.total}
                                 />
                             )
                         })}
@@ -196,6 +197,7 @@ class Plan extends Component {
                     </div>
                     <div className="row">
                         <h1>Added Meals</h1>
+                        {this.state.addedMeals}
                     </div>
                 </div>
             </div>

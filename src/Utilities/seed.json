@@ -31,7 +31,7 @@
     "-Kph4aDkC1zV1fIg4kEZ": {
       "carbs": "35",
       "cardCreator": "Geoff Webb",
-      "fat": "Fat Amount",
+      "fat": "10",
       "foodName": "Turkey",
       "protein": "35"
     },
@@ -45,6 +45,11 @@
   },
   "meals": {
     "-KrYNLsmfHK7zgU41tV0": {
+      "total": {
+        "fat": 0,
+        "carbs": 0,
+        "protein": 0
+      },
       "foodArray": [
         {
           "carbs": "27",
@@ -67,12 +72,8 @@
     }
   },
   "day": {
-    "dayOne": {
-      "addedMeals": [
-        {
-          "-KrYNLsmfHK7zgU41tV0": "test"
-        }
-      ]
+    "-Kp84I5P3c9CveuFsQd3": {
+      "addedMeals": []
     }
   }
 }
