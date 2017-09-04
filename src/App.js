@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { HashRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { auth, provider } from './firebase.js';
 
 // Components
@@ -9,6 +9,7 @@ import Islands from './Islands.js';
 import Meals from './Meals.js';
 import Menu from './Menu.js';
 import CreateMeals from './CreateMeals.js';
+import Days from './Days.js';
 import Plan from './Plan.js';
 
 class App extends Component {
@@ -56,7 +57,7 @@ class App extends Component {
 
   render() {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <div className='app'>
           <nav>
             <div className="nav-wrapper">
@@ -76,8 +77,9 @@ class App extends Component {
               <Route exact path="/" component={Menu} />
               <Route exact path="/food" component={() => (<Islands data={this.state} />)} />
               <Route exact path="/meals" component={() => (<Meals data={this.state} />)} />
-              <Route exact path="/plan" component={() => (<Plan data={this.state} />)} />
+              <Route exact path="/days" component={() => (<Days user={this.state.user} />)} />
               <Route exact path="/meals/:id" component={CreateMeals} />
+              <Route exact path="/days/:id" component={Plan} />
 
               <div className='user-profile'>
                 {/*<img src={this.state.user.photoURL} alt="User" />*/}
@@ -89,7 +91,7 @@ class App extends Component {
         </div>
 
 
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }

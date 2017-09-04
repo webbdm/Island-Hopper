@@ -4,32 +4,33 @@ import './App.css';
 import firebase from './firebase.js';
 
 // Components
-//import MealCard from './MealCard.js';
+import DayCard from './DayCard.js';
 
 const Form = ({ submit, change, dayName }) => (
   <section className='sidebar col m3 white-text'>
     <form onSubmit={submit}>
-      <input type="text" name="mealname" placeholder="Name" onChange={change} value={dayName} />
+      <input type="text" name="dayName" placeholder="Name" onChange={change} value={dayName} />
       <button className="btn">Add Day</button>
     </form>
   </section>
 );
 
-const ViewDays = ({ submit, change, dayName, dayId, user, dayss }) => (
+const ViewDays = ({ submit, change, dayName, dayId, user, days }) => (
   <section>
     <Form
       submit={submit}
       change={change}
-      mealname={mealname} />
+      dayName={dayName} />
     <section className='col m9'>
       <div className='card-wrapper row'>
         <div className="">
-          {meals.map((meal, index) => {
+          {console.log(days)}
+          {days.map((day, index) => {
             return (
-              <MealCard
+              <DayCard
                 key={index}
                 user={user}
-                content={meal} />
+                content={day} />
             )
           })}
         </div>
@@ -39,12 +40,12 @@ const ViewDays = ({ submit, change, dayName, dayId, user, dayss }) => (
 
 );
 
-class Meals extends Component {
+class Days extends Component {
 
   constructor(props) {
     super();
-    this.state = props.data;
-    //this.state.mealname = '';
+    this.state = props;
+    //this.state.dayName = '';
     //this.state.editing = false;
 
 
@@ -60,6 +61,7 @@ class Meals extends Component {
       for (let day in days) {
         newState.push({
           dayName: days[day].dayName,
+          mealsArray: days[day].mealsArray,
           id: day
         });
       }
@@ -67,6 +69,8 @@ class Meals extends Component {
       this.setState({
         days: newState
       });
+
+      console.log(this.state);
     });
   }
 
@@ -79,9 +83,10 @@ class Meals extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const daysRef = firebase.database().ref('days');
+    console.log(this.state);
     const day = {
-      dayName: this.state.dayname,
-      foodArray: ['']
+      dayName: this.state.dayName,
+      mealsArray: ['']
     }
     daysRef.push(day);
     console.log(day)
@@ -91,9 +96,13 @@ class Meals extends Component {
   }
 
   render() {
+    if (this.state.days === undefined) {
+      return (<p>Loading...</p>)
+    }
     return (
       <div className='main-box'>
         <div className='row'>
+          {console.log(this.state.days)}
           <ViewDays
             submit={this.handleSubmit}
             change={this.handleChange}

@@ -40,7 +40,7 @@ class Menu extends Component {
 
                 <div className="card small menu-card">
                     <div className="card-content">
-                        <span className="card-title"><Link to="/plan">Day Plans</Link></span>
+                        <span className="card-title"><Link to="/days">Day Plans</Link></span>
 
                     </div>
                 </div>
