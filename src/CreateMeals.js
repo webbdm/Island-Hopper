@@ -101,6 +101,7 @@ class CreateMeals extends Component {
         let foodArray = this.state.addedFoods;
         foodArray.push(clickedFood);
         const mealref = firebase.database().ref('meals/' + mealId + '/' + 'foodArray');
+        const totalref = firebase.database().ref('meals/' + mealId + '/' + 'total');
         mealref.set(foodArray);
 
         let pTotal = 0;
@@ -111,6 +112,7 @@ class CreateMeals extends Component {
             fTotal += parseInt(input.fat);
             cTotal += parseInt(input.carbs);
         });
+       
 
         let total = {
             protein: pTotal,
@@ -118,6 +120,8 @@ class CreateMeals extends Component {
             carbs: cTotal
         };
 
+        totalref.set(total);
+        
         this.setState({
             totals: total,
             addedFoods: foodArray
@@ -128,6 +132,7 @@ class CreateMeals extends Component {
         let foodArray = this.state.addedFoods;
         foodArray.splice(index, 1);
         const mealref = firebase.database().ref('meals/' + mealId + '/' + 'foodArray');
+        const totalref = firebase.database().ref('meals/' + mealId + '/' + 'total');
         mealref.set(foodArray);
 
         let pTotal = 0;
@@ -144,6 +149,9 @@ class CreateMeals extends Component {
             fat: fTotal,
             carbs: cTotal
         };
+
+        totalref.set(total);
+
         this.setState({
             totals: total,
             addedFoods: foodArray

@@ -9,6 +9,8 @@ import Islands from './Islands.js';
 import Meals from './Meals.js';
 import Menu from './Menu.js';
 import CreateMeals from './CreateMeals.js';
+import Days from './Days.js';
+import Plan from './Plan.js';
 
 class App extends Component {
   constructor() {
@@ -75,7 +77,9 @@ class App extends Component {
               <Route exact path="/" component={Menu} />
               <Route exact path="/food" component={() => (<Islands data={this.state} />)} />
               <Route exact path="/meals" component={() => (<Meals data={this.state} />)} />
+              <Route exact path="/days" component={() => (<Days user={this.state.user} />)} />
               <Route exact path="/meals/:id" component={CreateMeals} />
+              <Route exact path="/days/:id" component={Plan} />
 
               <div className='user-profile'>
                 {/*<img src={this.state.user.photoURL} alt="User" />*/}
