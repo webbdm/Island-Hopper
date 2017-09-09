@@ -17,7 +17,7 @@ class Menu extends Component {
             <div className="menubox">
                 <div className="card small menu-card">
                     <div className="card-content">
-                        <span className="card-title"><Link to="/goals">My Profile</Link></span>
+                        <span className="card-title"><Link to="/goals">Goals</Link></span>
 
                     </div>
                 </div>
