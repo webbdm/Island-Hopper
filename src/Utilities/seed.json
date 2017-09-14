@@ -72,9 +72,9 @@
     }
   },
   "days": {
-    "-Kt9Mhww6AGtKRKg0kWK": {
+    "day1": {
       "dayName": "Friday",
-      "mealsArray": []
+      "meals": 0
     }
   }
 }
