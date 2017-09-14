@@ -3,10 +3,23 @@ import './App.css';
 //import { Link } from 'react-router-dom';
 import firebase from './firebase.js';
 
-
-const FoodItem = ({ name }) => (
-    <div className="white-text">
+const MealItem = ({ name, total, addMeal, mealObject, mealId, meal }) => (
+    <div className="food-item white-text">
         <p>{name}</p>
+        <p>{total.protein}g P</p>
+        <p>{total.fat}g F</p>
+        <p>{total.carbs}g C</p>
+        <button onClick={() => { addMeal(mealId, meal) }}>+</button>
+    </div>
+);
+
+const AddedMealItem = ({ name, total, addMeal, mealObject, mealId }) => (
+    <div className="food-item white-text">
+        <p>{name}</p>
+        <p>{total.protein}g P</p>
+        <p>{total.fat}g F</p>
+        <p>{total.carbs}g C</p>
+        <button onClick={() => { addMeal() }}>+</button>
     </div>
 );
 
@@ -16,57 +29,67 @@ class Goals extends Component {
         super();
         this.state = {
             state: "state",
-            foods: [],
+            meals: [],
             day: {},
             user: props.data.user
         };
     }
 
     componentWillMount() {
-        this.getFoods();
-        this.getAddedFoods();
+        this.getMeals();
+        this.getAddedMeals();
         console.log(this.state);
     }
 
-    getFoods() {
-        const foodsRef = firebase.database().ref('foods');
-        foodsRef.once('value').then((snapshot) => {
-            let foods = snapshot.val();
+    getMeals() {
+        const mealsRef = firebase.database().ref('meals');
+        mealsRef.once('value').then((snapshot) => {
+            let meals = snapshot.val();
+            console.log(meals);
             let newState = [];
-            for (let food in foods) {
+            for (let meal in meals) {
                 newState.push({
-                    id: food,
-                    protein: foods[food].protein,
-                    fat: foods[food].fat,
-                    carbs: foods[food].carbs,
-                    foodName: foods[food].foodName,
-                    cardCreator: foods[food].cardCreator
+                    id: meal,
+                    total: meals[meal].total,
+                    mealname: meals[meal].mealname,
                 });
             }
 
             this.setState({
-                foods: newState
+                meals: newState
             });
         });
     }
 
-    getAddedFoods() {
-        console.log("Get Added Foods");
+    getAddedMeals() {
+        //console.log("Get Added Foods");
+    }
+
+    addMeal(mealId, meal) {
+        console.log("add", mealId, meal);
+    }
+
+    removeMeal() {
+        //console.log("remove");
     }
 
     render() {
         return (
             <div className="white-text">
-                <p>Goals</p>
-
-                <div>
-                    <h3>{this.state.foods.map((food, index) => {
+                <div className="food-block">
+                    <h5>{this.state.meals.map((meal, index) => {
                         return (
-                            <FoodItem
+                            <MealItem
                                 key={index}
-                                name={food.foodName} />
+                                mealId={meal.id}
+                                addMeal={this.addMeal}
+                                total={meal.total}
+                                name={meal.mealname}
+                                meal={meal} />
                         )
-                    })}</h3>
+                    })}</h5>
+                </div>
+                <div className="food-block">
                 </div>
             </div>
         );
