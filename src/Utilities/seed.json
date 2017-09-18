@@ -1,4 +1,24 @@
 {
+  "addedMeals": {
+    "-KuGEDmHwTvOhr-yfW2H": {
+      "id": "-Ktz4cm9FaT1BmScc0tq",
+      "mealname": "Lunch",
+      "total": {
+        "carbs": 71,
+        "fat": 35,
+        "protein": 18
+      }
+    },
+    "-KuGN9qzJO041vgX28r_": {
+      "id": "-KrYNLsmfHK7zgU41tV0",
+      "mealname": "Breakfast",
+      "total": {
+        "carbs": 32,
+        "fat": 19,
+        "protein": 9
+      }
+    }
+  },
   "days": {
     "day1": {
       "dayName": "Friday",
@@ -71,9 +91,9 @@
       ],
       "mealname": "Breakfast",
       "total": {
-        "carbs": 0,
-        "fat": 0,
-        "protein": 0
+        "carbs": 32,
+        "fat": 19,
+        "protein": 9
       }
     },
     "-Ktz4cm9FaT1BmScc0tq": {
@@ -93,18 +113,30 @@
           "foodName": "Mixed Nuts",
           "id": "-Kp84I5P3c9YveuFsQd2",
           "protein": "4"
+        },
+        {
+          "carbs": "31",
+          "cardCreator": "Geoff Webb",
+          "fat": "1",
+          "foodName": "Banana",
+          "id": "-Kp8EyYQA01eDWroXrMY",
+          "protein": "2"
+        },
+        {
+          "carbs": "8",
+          "cardCreator": "Geoff Webb",
+          "fat": "15",
+          "foodName": "Peanut Butter",
+          "id": "-KpDRZcu26Gvnz-E4kAJ",
+          "protein": "7"
         }
       ],
       "mealname": "Lunch",
       "total": {
-        "carbs": 32,
-        "fat": 19,
-        "protein": 9
+        "carbs": 71,
+        "fat": 35,
+        "protein": 18
       }
     }
-  },
-  "addedMeals": {
-    "uid": 0,
-    "dayId": 0
   }
 }

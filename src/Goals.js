@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 //import { Link } from 'react-router-dom';
+import { dayTotal } from './Calculations.js';
 import firebase from './firebase.js';
+
+
 
 const MealItem = ({ name, total, addMeal, mealObject, mealId, meal }) => (
     <div className="food-item white-text">
@@ -13,13 +16,13 @@ const MealItem = ({ name, total, addMeal, mealObject, mealId, meal }) => (
     </div>
 );
 
-const AddedMealItem = ({ name, total, addMeal, mealObject, mealId }) => (
+const AddedMealItem = ({ name, total, removeMeal, mealObject, mealId, index }) => (
     <div className="food-item white-text">
         <p>{name}</p>
         <p>{total.protein}g P</p>
         <p>{total.fat}g F</p>
         <p>{total.carbs}g C</p>
-        <button onClick={() => { addMeal() }}>+</button>
+        <button onClick={() => { removeMeal(mealId, index) }}>-</button>
     </div>
 );
 
@@ -28,8 +31,8 @@ class Goals extends Component {
     constructor(props) {
         super();
         this.state = {
-            state: "state",
             meals: [],
+            addedMeals: [],
             day: {},
             user: props.data.user
         };
@@ -38,7 +41,6 @@ class Goals extends Component {
     componentWillMount() {
         this.getMeals();
         this.getAddedMeals();
-        console.log(this.state);
     }
 
     getMeals() {
@@ -61,35 +63,117 @@ class Goals extends Component {
         });
     }
 
-    getAddedMeals() {
-        //console.log("Get Added Foods");
+    getAddedMeals = () => {
+        const mealsRef = firebase.database().ref('addedMeals');
+        mealsRef.once('value').then((snapshot) => {
+            let meals = snapshot.val();
+
+            // Handles when addedMeals is empty in Firebase
+            if (meals == null) {
+                meals = [{
+                    mealname: "Add a Meal",
+                    total: {
+                        protein: 0,
+                        carbs: 0,
+                        fat: 0,
+                    }
+                }];
+                console.log("meals is empty", meals);
+            }
+            let newState = [];
+            for (let meal in meals) {
+                newState.push({
+                    id: meal,
+                    total: meals[meal].total,
+                    mealname: meals[meal].mealname,
+                });
+            }
+
+            let total = dayTotal(newState);
+            console.log(total);
+
+            this.setState({
+                addedMeals: newState,
+                totals: total
+            });
+        });
     }
 
-    addMeal(mealId, meal) {
-        console.log("add", mealId, meal);
+    addMeal = (mealId, meal) => {
+        const mealsRef = firebase.database().ref('addedMeals');
+        mealsRef.push(meal);
+        this.getAddedMeals();
     }
 
-    removeMeal() {
-        //console.log("remove");
+    removeMeal = (mealId, index) => {
+        let addedMealsArray = this.state.addedMeals;
+        addedMealsArray.splice(index, 1);
+        console.log(addedMealsArray);
+        const mealsRef = firebase.database().ref('addedMeals');
+        mealsRef.set(addedMealsArray);
+        this.getAddedMeals();
+
+        this.setState({
+            addedMeals: addedMealsArray
+        })
     }
 
     render() {
+        if (this.state.totals === undefined) {
+            return (<p>Loading...</p>)
+        }
         return (
-            <div className="white-text">
-                <div className="food-block">
-                    <h5>{this.state.meals.map((meal, index) => {
-                        return (
-                            <MealItem
-                                key={index}
-                                mealId={meal.id}
-                                addMeal={this.addMeal}
-                                total={meal.total}
-                                name={meal.mealname}
-                                meal={meal} />
-                        )
-                    })}</h5>
+            <div>
+                <div className="row macro-wrapper">
+                    <div className="meal-name">
+                        <h1>Daily Goal</h1>
+                    </div>
+                    <div className="card macro-box">
+                        <h1>{this.state.totals.protein}</h1>
+                        <p>Protein</p>
+                    </div>
+                    <div className="card macro-box">
+                        <h1>{this.state.totals.fat}</h1>
+                        <p>Fat</p>
+                    </div>
+                    <div className="card macro-box">
+                        <h1>{this.state.totals.carbs}</h1>
+                        <p>Carbs</p>
+                    </div>
+                    <div className="card macro-box">
+                        <h1></h1>
+                        <p>Total</p>
+                    </div>
                 </div>
-                <div className="food-block">
+                <div className="row white-text">
+                    <div className="col m6 food-block">
+                        <h5>{this.state.meals.map((meal, index) => {
+                            return (
+                                <MealItem
+                                    key={index}
+                                    mealId={meal.id}
+                                    addMeal={this.addMeal}
+                                    total={meal.total}
+                                    name={meal.mealname}
+                                    meal={meal} />
+                            )
+                        })}</h5>
+                    </div>
+                    <div className="col m6 food-block">
+                        <h5>{this.state.addedMeals.map((meal, index) => {
+                            {/* {console.log(this.state.addedMeals)} */ }
+                            return (
+                                <AddedMealItem
+                                    key={index}
+                                    mealId={meal.id}
+                                    removeMeal={this.removeMeal}
+                                    index={index}
+                                    total={meal.total}
+                                    name={meal.mealname}
+                                    meal={meal} />
+                            )
+                        })}</h5>
+                    </div>
                 </div>
             </div>
         );
