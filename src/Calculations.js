@@ -1,5 +1,7 @@
 // Helper Functions for calculating Macros, Totals, and Stats //
 
+
+// Add up the totals of every meal in your day
 export const dayTotal = (addedMeals) => {
 
     let pTotal = 0;

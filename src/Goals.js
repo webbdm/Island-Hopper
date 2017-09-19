@@ -47,7 +47,6 @@ class Goals extends Component {
         const mealsRef = firebase.database().ref('meals');
         mealsRef.once('value').then((snapshot) => {
             let meals = snapshot.val();
-            console.log(meals);
             let newState = [];
             for (let meal in meals) {
                 newState.push({
@@ -78,7 +77,7 @@ class Goals extends Component {
                         fat: 0,
                     }
                 }];
-                console.log("meals is empty", meals);
+
             }
             let newState = [];
             for (let meal in meals) {
@@ -90,7 +89,6 @@ class Goals extends Component {
             }
 
             let total = dayTotal(newState);
-            console.log(total);
 
             this.setState({
                 addedMeals: newState,
@@ -108,7 +106,6 @@ class Goals extends Component {
     removeMeal = (mealId, index) => {
         let addedMealsArray = this.state.addedMeals;
         addedMealsArray.splice(index, 1);
-        console.log(addedMealsArray);
         const mealsRef = firebase.database().ref('addedMeals');
         mealsRef.set(addedMealsArray);
         this.getAddedMeals();
@@ -145,8 +142,8 @@ class Goals extends Component {
                         <p>Total</p>
                     </div>
                 </div>
-                <div className="row white-text">
-                    <div className="col m6 food-block">
+                <div className="row white-text food-container">
+                    <div className="col m4 food-block">
                         <h5>{this.state.meals.map((meal, index) => {
                             return (
                                 <MealItem
@@ -161,7 +158,6 @@ class Goals extends Component {
                     </div>
                     <div className="col m6 food-block">
                         <h5>{this.state.addedMeals.map((meal, index) => {
-                            {/* {console.log(this.state.addedMeals)} */ }
                             return (
                                 <AddedMealItem
                                     key={index}

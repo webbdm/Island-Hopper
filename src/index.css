@@ -107,7 +107,7 @@ nav{
 }
 
 .macro-box p, .macro-box h1{
-  max-width: 50%;
+  /* max-width: 50%; */
   margin: 5px;
   padding: 0px;
   text-transform: uppercase;
