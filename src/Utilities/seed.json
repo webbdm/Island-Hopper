@@ -1,4 +1,30 @@
 {
+  "addedMeals": {
+    "-KuGEDmHwTvOhr-yfW2H": {
+      "id": "-Ktz4cm9FaT1BmScc0tq",
+      "mealname": "Lunch",
+      "total": {
+        "carbs": 71,
+        "fat": 35,
+        "protein": 18
+      }
+    },
+    "-KuGN9qzJO041vgX28r_": {
+      "id": "-KrYNLsmfHK7zgU41tV0",
+      "mealname": "Breakfast",
+      "total": {
+        "carbs": 32,
+        "fat": 19,
+        "protein": 9
+      }
+    }
+  },
+  "days": {
+    "day1": {
+      "dayName": "Friday",
+      "meals": 0
+    }
+  },
   "foods": {
     "-Kp81BaA-fFP2VLTz4zj": {
       "carbs": "27",
@@ -45,11 +71,6 @@
   },
   "meals": {
     "-KrYNLsmfHK7zgU41tV0": {
-      "total": {
-        "fat": 0,
-        "carbs": 0,
-        "protein": 0
-      },
       "foodArray": [
         {
           "carbs": "27",
@@ -68,13 +89,54 @@
           "protein": "4"
         }
       ],
-      "mealname": "Breakfast"
-    }
-  },
-  "days": {
-    "-Kt9Mhww6AGtKRKg0kWK": {
-      "dayName": "Friday",
-      "mealsArray": []
+      "mealname": "Breakfast",
+      "total": {
+        "carbs": 32,
+        "fat": 19,
+        "protein": 9
+      }
+    },
+    "-Ktz4cm9FaT1BmScc0tq": {
+      "foodArray": [
+        {
+          "carbs": "27",
+          "cardCreator": "Geoff Webb",
+          "fat": "2.5",
+          "foodName": "Oatmeal",
+          "id": "-Kp81BaA-fFP2VLTz4zj",
+          "protein": "5"
+        },
+        {
+          "carbs": "5",
+          "cardCreator": "Geoff Webb",
+          "fat": "17",
+          "foodName": "Mixed Nuts",
+          "id": "-Kp84I5P3c9YveuFsQd2",
+          "protein": "4"
+        },
+        {
+          "carbs": "31",
+          "cardCreator": "Geoff Webb",
+          "fat": "1",
+          "foodName": "Banana",
+          "id": "-Kp8EyYQA01eDWroXrMY",
+          "protein": "2"
+        },
+        {
+          "carbs": "8",
+          "cardCreator": "Geoff Webb",
+          "fat": "15",
+          "foodName": "Peanut Butter",
+          "id": "-KpDRZcu26Gvnz-E4kAJ",
+          "protein": "7"
+        }
+      ],
+      "mealname": "Lunch",
+      "total": {
+        "carbs": 71,
+        "fat": 35,
+        "protein": 18
+      }
     }
   }
 }
