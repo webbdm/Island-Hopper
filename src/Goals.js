@@ -148,7 +148,8 @@ class Goals extends Component {
                     </div>
                     <div className="goals-graph-component">
                         {/* <h4>GRAPH</h4> */}
-                        <VictoryBar/>
+                        <VictoryBar
+                            style={{ data: { fill: "#FF3134" } }} />
                     </div>
                 </div>
 
