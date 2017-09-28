@@ -9,8 +9,9 @@
     "react-redux": "^5.0.6",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
-    "recharts": "^1.0.0-alpha.4",
-    "redux": "^3.7.2"
+    "recharts": "^1.0.0-apha.5",
+    "redux": "^3.7.2",
+    "victory": "^0.22.2"
   },
   "devDependencies": {
     "firebase": "^4.1.3",

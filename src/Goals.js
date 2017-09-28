@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 //import { Link } from 'react-router-dom';
+import { VictoryBar } from 'victory';
 import { dayTotal } from './Calculations.js';
 import firebase from './firebase.js';
 
-
+let data = [{ name: 'a', value: 12 }]
 
 const MealItem = ({ name, total, addMeal, mealObject, mealId, meal }) => (
     <div className="food-item white-text">
@@ -146,7 +147,8 @@ class Goals extends Component {
                         </div>
                     </div>
                     <div className="goals-graph-component">
-                        <h4>GRAPH</h4>
+                        {/* <h4>GRAPH</h4> */}
+                        <VictoryBar/>
                     </div>
                 </div>
 
