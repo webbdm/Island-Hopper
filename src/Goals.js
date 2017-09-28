@@ -120,56 +120,63 @@ class Goals extends Component {
             return (<p>Loading...</p>)
         }
         return (
-            <div>
-                <div className="row macro-wrapper">
-                    <div className="meal-name">
-                        <h1>Daily Goal</h1>
+            <div className="goals-grid">
+
+                <div className="goals-main">
+                    <h1>Daily Goal</h1>
+                </div>
+
+                <div className="goals-graph">
+                    <div className="macro-wrapper">
+                        <div className="card macro-box">
+                            <h1>{this.state.totals.protein}</h1>
+                            <p>Protein</p>
+                        </div>
+                        <div className="card macro-box">
+                            <h1>{this.state.totals.fat}</h1>
+                            <p>Fat</p>
+                        </div>
+                        <div className="card macro-box">
+                            <h1>{this.state.totals.carbs}</h1>
+                            <p>Carbs</p>
+                        </div>
+                        <div className="card macro-box">
+                            <h1></h1>
+                            <p>Total</p>
+                        </div>
                     </div>
-                    <div className="card macro-box">
-                        <h1>{this.state.totals.protein}</h1>
-                        <p>Protein</p>
-                    </div>
-                    <div className="card macro-box">
-                        <h1>{this.state.totals.fat}</h1>
-                        <p>Fat</p>
-                    </div>
-                    <div className="card macro-box">
-                        <h1>{this.state.totals.carbs}</h1>
-                        <p>Carbs</p>
-                    </div>
-                    <div className="card macro-box">
-                        <h1></h1>
-                        <p>Total</p>
+                    <div className="goals-graph-component">
+                        <h4>GRAPH</h4>
                     </div>
                 </div>
-                <div className="row white-text food-container">
-                    <div className="col m4 food-block">
-                        <h5>{this.state.meals.map((meal, index) => {
-                            return (
-                                <MealItem
-                                    key={index}
-                                    mealId={meal.id}
-                                    addMeal={this.addMeal}
-                                    total={meal.total}
-                                    name={meal.mealname}
-                                    meal={meal} />
-                            )
-                        })}</h5>
-                    </div>
-                    <div className="col m6 food-block">
-                        <h5>{this.state.addedMeals.map((meal, index) => {
-                            return (
-                                <AddedMealItem
-                                    key={index}
-                                    mealId={meal.id}
-                                    removeMeal={this.removeMeal}
-                                    index={index}
-                                    total={meal.total}
-                                    name={meal.mealname}
-                                    meal={meal} />
-                            )
-                        })}</h5>
-                    </div>
+
+
+                <div className="goals-foods food-block white-text">
+                    <h5>{this.state.meals.map((meal, index) => {
+                        return (
+                            <MealItem
+                                key={index}
+                                mealId={meal.id}
+                                addMeal={this.addMeal}
+                                total={meal.total}
+                                name={meal.mealname}
+                                meal={meal} />
+                        )
+                    })}</h5>
+                </div>
+                <div className="goals-foods food-block white-text">
+                    <h5>{this.state.addedMeals.map((meal, index) => {
+                        return (
+                            <AddedMealItem
+                                key={index}
+                                mealId={meal.id}
+                                removeMeal={this.removeMeal}
+                                index={index}
+                                total={meal.total}
+                                name={meal.mealname}
+                                meal={meal} />
+                        )
+                    })}</h5>
                 </div>
             </div>
         );

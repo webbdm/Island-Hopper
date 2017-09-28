@@ -153,6 +153,35 @@ nav{
   border-top:3px solid black;
 }
 
-/* Plan */
+/* Goal w/ CSS Grid  */
 
+.goals-grid{
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  padding: 10px;
+}
+
+.goals-main{
+  color: white;
+}
+
+.goals-graph{
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.goals-graph-component{
+  background-color: gray;
+  height: 400px;
+  width: 100%;
+}
+
+.goals-foods{
+
+}
+
+.goals-added-foods{
+
+}
 
