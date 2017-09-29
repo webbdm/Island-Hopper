@@ -124,6 +124,9 @@ class Goals extends Component {
 
                 <div className="goals-main">
                     <h1>Daily Goal</h1>
+                    <div className="goals-main-target card teal">
+
+                    </div>
                 </div>
 
                 <div className="goals-graph">
@@ -147,7 +150,6 @@ class Goals extends Component {
                     </div>
                     <div className="goals-graph-component">
                         {console.log(this.state.totals)}
-
                         <Bar
                             data={{
                                 labels: ['Protein', 'Fat', 'Carbs', 'Total'],
@@ -184,38 +186,8 @@ class Goals extends Component {
                                 scaleShowGridLines: false
                             }}
                         />
-
-
-
-                        {/* FIRST <VictoryBar
-                                style={{ data: { fill: "#FF3134" } }}
-                                data={[
-                                    { macro: "Protein", amount: this.state.totals.protein },
-                                    { macro: "Fat", amount: this.state.totals.fat },
-                                    { macro: "Carbs", amount: this.state.totals.carbs }
-                                ]}
-                                x="macro"
-                                y={(d) => (d.amount)} 
-                                y0={()=> 0}/> */}
-                        {/* SECOND< VictoryBar
-                                domain={{ x: [0, 4], y: [0, 300] }}
-                                domainPadding={{x: [20, 20]}}
-                                width={400}
-                                data={[
-                                    { macro: "Protein", amount: this.state.totals.protein},
-                                    { macro: "Fat", amount: this.state.totals.fat },
-                                    { macro: "Carbs", amount: this.state.totals.carbs }
-                                ]}
-                                x="macro"
-                                y={(d) => (d.amount)}
-                                y0={() => 0}
-                                style={{
-                                    data: { fill: "#FF3134" },
-                                    labels: { fontSize: 12, fill: "white" }
-                                }} /> */}
                     </div>
                 </div>
-
 
                 <div className="goals-foods food-block white-text">
                     <h5>{this.state.meals.map((meal, index) => {

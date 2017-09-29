@@ -163,6 +163,11 @@ nav{
 
 .goals-main{
   color: white;
+  text-align: center;
+}
+
+.goals-main-target{
+  
 }
 
 .goals-graph{
@@ -176,11 +181,15 @@ nav{
   width: 100%;
 }
 
-.goals-foods{
-
+.goals-foods, .goals-added-foods{
+  max-height: 70%;
+  overflow: scroll;
+  font-size: 7px;
 }
 
-.goals-added-foods{
-
+.goals-foods, .goals-added-foods h5 p{
+  font-size: 7px;
 }
+
+
 
