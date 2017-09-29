@@ -16,27 +16,6 @@ const MealItem = ({ name, total, addMeal, mealObject, mealId, meal }) => (
     </div>
 );
 
-// [
-//     { x: 1, y: this.state.totals.protein, y0: 2, width: 40 },
-//     { x: 2, y: this.state.totals.fat, y0: 3, width: 40 },
-//     { x: 3, y: this.state.totals.carbs, y0: 4, width: 40 }
-// ]
-
-// const data = {
-//     labels: ['Protein', 'Fat', 'Carbs'],
-//     datasets: [
-//         {
-//             backgroundColor: '#FF3134',
-//             borderColor: '#FF3134',
-//             borderWidth: 10,
-//             hoverBackgroundColor: '#FF3134',
-//             hoverBorderColor: 'rgba(255,99,132,1)',
-//             data: [20, 50, 300]
-//         }
-//     ]
-// };
-
-
 const AddedMealItem = ({ name, total, removeMeal, mealObject, mealId, index }) => (
     <div className="food-item white-text">
         <p>{name}</p>
@@ -171,13 +150,15 @@ class Goals extends Component {
 
                         <Bar
                             data={{
-                                labels: ['Protein', 'Fat', 'Carbs'],
+                                labels: ['Protein', 'Fat', 'Carbs', 'Total'],
                                 datasets: [
                                     {
-                                        backgroundColor: this.state.totals.protein >= 300 ? 'green' : '#FF3134',
+                                        backgroundColor: this.state.totals.protein >= 300
+                                                         && this.state.totals.fat >= 300 
+                                                         && this.state.totals.carbs >= 300 ? 'green' : '#FF3134',
                                         hoverBackgroundColor: '#FF3134',
                                         hoverBorderColor: 'rgba(255,99,132,1)',
-                                        data: [this.state.totals.protein, this.state.totals.fat, this.state.totals.carbs]
+                                        data: [this.state.totals.protein, this.state.totals.fat, this.state.totals.carbs, 200]
                                     }
                                 ]
                             }}
@@ -187,7 +168,8 @@ class Goals extends Component {
                                 scales: {
                                     xAxes: [
                                         {
-                                            display: false
+                                            display: false,
+                                            barThickness: 150
                                         }
                                     ],
                                     yAxes: [
