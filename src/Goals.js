@@ -123,9 +123,16 @@ class Goals extends Component {
             <div className="goals-grid">
 
                 <div className="goals-main">
-                    <h1>Daily Goal</h1>
-                    <div className="goals-main-target card teal">
-
+                    <h1>Today's Goal</h1>
+                    <div className="goals-main-target">
+                        <div className="target-form">
+                            <form>
+                                <input type="text" placeholder="Protein" />
+                                <input type="text" placeholder="Fat" />
+                                <input type="text" placeholder="Carbs" />
+                                <button className="btn" onClick={(e) => { e.preventDefault(); }}>Set Macros</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
@@ -156,8 +163,8 @@ class Goals extends Component {
                                 datasets: [
                                     {
                                         backgroundColor: this.state.totals.protein >= 300
-                                                         && this.state.totals.fat >= 300 
-                                                         && this.state.totals.carbs >= 300 ? 'green' : '#FF3134',
+                                            && this.state.totals.fat >= 300
+                                            && this.state.totals.carbs >= 300 ? 'green' : '#FF3134',
                                         hoverBackgroundColor: '#FF3134',
                                         hoverBorderColor: 'rgba(255,99,132,1)',
                                         data: [this.state.totals.protein, this.state.totals.fat, this.state.totals.carbs, 200]
@@ -176,7 +183,7 @@ class Goals extends Component {
                                     ],
                                     yAxes: [
                                         {
-                                            ticks: {min: 0, max:300},
+                                            ticks: { min: 0, max: 300 },
                                             display: false
                                         }
                                     ]

@@ -167,7 +167,13 @@ nav{
 }
 
 .goals-main-target{
-  
+  padding-top: 10%;
+}
+
+
+.target-form{
+  width: 50%;
+  margin: 0 auto;
 }
 
 .goals-graph{
@@ -182,7 +188,7 @@ nav{
 }
 
 .goals-foods, .goals-added-foods{
-  max-height: 70%;
+  max-height: 85%;
   overflow: scroll;
   font-size: 7px;
 }
