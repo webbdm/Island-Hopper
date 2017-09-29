@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chart.js": "^2.7.0",
     "d3": "^4.10.2",
     "react": "^15.6.1",
+    "react-chartjs-2": "^2.6.2",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
-    "recharts": "^1.0.0-alpha.4",
-    "redux": "^3.7.2"
+    "recharts": "^1.0.0-apha.5",
+    "redux": "^3.7.2",
+    "victory": "^0.22.2"
   },
   "devDependencies": {
     "firebase": "^4.1.3",

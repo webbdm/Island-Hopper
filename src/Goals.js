@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 //import { Link } from 'react-router-dom';
+// import { VictoryChart, VictoryBar } from 'victory';
+import { Bar } from 'react-chartjs-2';
 import { dayTotal } from './Calculations.js';
 import firebase from './firebase.js';
-
-
 
 const MealItem = ({ name, total, addMeal, mealObject, mealId, meal }) => (
     <div className="food-item white-text">
@@ -124,6 +124,9 @@ class Goals extends Component {
 
                 <div className="goals-main">
                     <h1>Daily Goal</h1>
+                    <div className="goals-main-target card teal">
+
+                    </div>
                 </div>
 
                 <div className="goals-graph">
@@ -146,10 +149,45 @@ class Goals extends Component {
                         </div>
                     </div>
                     <div className="goals-graph-component">
-                        <h4>GRAPH</h4>
+                        {console.log(this.state.totals)}
+                        <Bar
+                            data={{
+                                labels: ['Protein', 'Fat', 'Carbs', 'Total'],
+                                datasets: [
+                                    {
+                                        backgroundColor: this.state.totals.protein >= 300
+                                                         && this.state.totals.fat >= 300 
+                                                         && this.state.totals.carbs >= 300 ? 'green' : '#FF3134',
+                                        hoverBackgroundColor: '#FF3134',
+                                        hoverBorderColor: 'rgba(255,99,132,1)',
+                                        data: [this.state.totals.protein, this.state.totals.fat, this.state.totals.carbs, 200]
+                                    }
+                                ]
+                            }}
+                            width={100}
+                            height={300}
+                            options={{
+                                scales: {
+                                    xAxes: [
+                                        {
+                                            display: false,
+                                            barThickness: 150
+                                        }
+                                    ],
+                                    yAxes: [
+                                        {
+                                            ticks: {min: 0, max:300},
+                                            display: false
+                                        }
+                                    ]
+                                },
+                                legend: false,
+                                maintainAspectRatio: false,
+                                scaleShowGridLines: false
+                            }}
+                        />
                     </div>
                 </div>
-
 
                 <div className="goals-foods food-block white-text">
                     <h5>{this.state.meals.map((meal, index) => {
