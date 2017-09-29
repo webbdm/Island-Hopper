@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 //import { Link } from 'react-router-dom';
-import { VictoryBar } from 'victory';
+import { VictoryChart, VictoryBar } from 'victory';
 import { dayTotal } from './Calculations.js';
 import firebase from './firebase.js';
-
-let data = [{ name: 'a', value: 12 }]
 
 const MealItem = ({ name, total, addMeal, mealObject, mealId, meal }) => (
     <div className="food-item white-text">
@@ -16,6 +14,13 @@ const MealItem = ({ name, total, addMeal, mealObject, mealId, meal }) => (
         <button onClick={() => { addMeal(mealId, meal) }}>+</button>
     </div>
 );
+
+// [
+//     { x: 1, y: this.state.totals.protein, y0: 2, width: 40 },
+//     { x: 2, y: this.state.totals.fat, y0: 3, width: 40 },
+//     { x: 3, y: this.state.totals.carbs, y0: 4, width: 40 }
+// ]
+
 
 const AddedMealItem = ({ name, total, removeMeal, mealObject, mealId, index }) => (
     <div className="food-item white-text">
@@ -147,9 +152,33 @@ class Goals extends Component {
                         </div>
                     </div>
                     <div className="goals-graph-component">
-                        {/* <h4>GRAPH</h4> */}
-                        <VictoryBar
-                            style={{ data: { fill: "#FF3134" } }} />
+                        {console.log(this.state.totals)}
+                       
+                            {/* <VictoryBar
+                                style={{ data: { fill: "#FF3134" } }}
+                                data={[
+                                    { macro: "Protein", amount: this.state.totals.protein },
+                                    { macro: "Fat", amount: this.state.totals.fat },
+                                    { macro: "Carbs", amount: this.state.totals.carbs }
+                                ]}
+                                x="macro"
+                                y={(d) => (d.amount)} 
+                                y0={()=> 0}/> */}
+                            < VictoryBar
+                                domain={{ x: [0, 4], y: [0, 300] }}
+                                data={[
+                                    { macro: "Protein", amount: this.state.totals.protein },
+                                    { macro: "Fat", amount: this.state.totals.fat },
+                                    { macro: "Carbs", amount: this.state.totals.carbs }
+                                ]}
+                                x="macro"
+                                y={(d) => (d.amount)}
+                                y0={() => 0}
+                                style={{
+                                    data: { fill: "#FF3134" },
+                                    labels: { fontSize: 12 },
+                                    parent: { border: "5px solid red" }
+                                }} />
                     </div>
                 </div>
 
