@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 //import { Link } from 'react-router-dom';
-import { VictoryChart, VictoryBar } from 'victory';
+// import { VictoryChart, VictoryBar } from 'victory';
+import { Bar } from 'react-chartjs-2';
 import { dayTotal } from './Calculations.js';
 import firebase from './firebase.js';
 
@@ -20,6 +21,20 @@ const MealItem = ({ name, total, addMeal, mealObject, mealId, meal }) => (
 //     { x: 2, y: this.state.totals.fat, y0: 3, width: 40 },
 //     { x: 3, y: this.state.totals.carbs, y0: 4, width: 40 }
 // ]
+
+// const data = {
+//     labels: ['Protein', 'Fat', 'Carbs'],
+//     datasets: [
+//         {
+//             backgroundColor: '#FF3134',
+//             borderColor: '#FF3134',
+//             borderWidth: 10,
+//             hoverBackgroundColor: '#FF3134',
+//             hoverBorderColor: 'rgba(255,99,132,1)',
+//             data: [20, 50, 300]
+//         }
+//     ]
+// };
 
 
 const AddedMealItem = ({ name, total, removeMeal, mealObject, mealId, index }) => (
@@ -153,8 +168,44 @@ class Goals extends Component {
                     </div>
                     <div className="goals-graph-component">
                         {console.log(this.state.totals)}
-                       
-                            {/* <VictoryBar
+
+                        <Bar
+                            data={{
+                                labels: ['Protein', 'Fat', 'Carbs'],
+                                datasets: [
+                                    {
+                                        backgroundColor: this.state.totals.protein >= 300 ? 'green' : '#FF3134',
+                                        hoverBackgroundColor: '#FF3134',
+                                        hoverBorderColor: 'rgba(255,99,132,1)',
+                                        data: [this.state.totals.protein, this.state.totals.fat, this.state.totals.carbs]
+                                    }
+                                ]
+                            }}
+                            width={100}
+                            height={300}
+                            options={{
+                                scales: {
+                                    xAxes: [
+                                        {
+                                            display: false
+                                        }
+                                    ],
+                                    yAxes: [
+                                        {
+                                            ticks: {min: 0, max:300},
+                                            display: false
+                                        }
+                                    ]
+                                },
+                                legend: false,
+                                maintainAspectRatio: false,
+                                scaleShowGridLines: false
+                            }}
+                        />
+
+
+
+                        {/* FIRST <VictoryBar
                                 style={{ data: { fill: "#FF3134" } }}
                                 data={[
                                     { macro: "Protein", amount: this.state.totals.protein },
@@ -164,10 +215,12 @@ class Goals extends Component {
                                 x="macro"
                                 y={(d) => (d.amount)} 
                                 y0={()=> 0}/> */}
-                            < VictoryBar
+                        {/* SECOND< VictoryBar
                                 domain={{ x: [0, 4], y: [0, 300] }}
+                                domainPadding={{x: [20, 20]}}
+                                width={400}
                                 data={[
-                                    { macro: "Protein", amount: this.state.totals.protein },
+                                    { macro: "Protein", amount: this.state.totals.protein},
                                     { macro: "Fat", amount: this.state.totals.fat },
                                     { macro: "Carbs", amount: this.state.totals.carbs }
                                 ]}
@@ -176,9 +229,8 @@ class Goals extends Component {
                                 y0={() => 0}
                                 style={{
                                     data: { fill: "#FF3134" },
-                                    labels: { fontSize: 12 },
-                                    parent: { border: "5px solid red" }
-                                }} />
+                                    labels: { fontSize: 12, fill: "white" }
+                                }} /> */}
                     </div>
                 </div>
 
