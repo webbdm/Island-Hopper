@@ -166,25 +166,63 @@ nav{
   text-align: center;
 }
 
+.goals-main h1{
+  margin: 0;
+}
+
 .goals-main-target{
   padding-top: 10%;
 }
 
 .goals-box-numbers{
-  padding: 2% 20%;
-  text-align: left;
-  /* display: flex;
+  padding: 4% 20%;
+  text-align: center;
+  display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start */
+  justify-content: space-between;
+  align-content: center;
 }
 
-.goals-box-numbers p{
+.goals-box-numbers>* {
   text-align: center;
-  font-size: 3.2rem;
-  color: #FF3033;
-  border-radius: 3px;
-  background-color: #2b5388;
+} 
+
+.goalDiv{
+  font-size: 2.5em;
+  color: #FF3134;
+  text-align: center;
+  padding: 0; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.labelDiv{
+  text-align: center;
+  padding: 0; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.goalDiv p, .labelDiv p{
+  margin: 0 5px;
+}
+
+.goals-box-macro{
+  color: #FF3134;
+  font-size: 2.5em;
+  margin: 0;
+}
+
+.goals-box-label{
+  color: white;
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.goals-box button{
+  margin: 30px;
 }
 
 .target-form{

@@ -10,23 +10,36 @@ let GoalDefaultMode = ({
     handleEditClick
 }) => (
         <div className="goals-box white-text">
+            <div className="goals-box-numbers">
+                <div className="goalDiv">
+                    <p>{protein}</p>
+                    <p>{fat}</p>
+                    <p>{carbs}</p>
+                </div>
+
+                <div className="labelDiv">
+                    <p>Protein</p>
+                    <p>Fat</p>
+                    <p>Carbs</p>
+                </div>
+            </div>
             <Doughnut
                 data={{
                     labels: ['Protein', 'Fat', 'Carbs'],
                     datasets: [
                         {
-                            data: [10, 20, 30, 40]
+                            data: [protein, fat, carbs]
                         }
                     ]
                 }}
+                options={{
+                    legend: {
+                        position: 'bottom'
+                    }
+                }}
                 width={100}
                 height={50} />
-            {/* <div className="goals-box-numbers">
-                <p>{protein}g Protein</p>
-                <p>{fat}g Fat</p>
-                <p>{carbs}g Carbs</p>
-            </div>
-            <button className="btn" onClick={handleEditClick}>Edit</button> */}
+            <button className="btn" onClick={handleEditClick}>Edit</button>
         </div>
     );
 
