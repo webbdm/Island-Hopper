@@ -5,6 +5,7 @@ import './App.css';
 import { Bar } from 'react-chartjs-2';
 import { dayTotal } from './Calculations.js';
 import firebase from './firebase.js';
+import GoalBox from './GoalBox.js';
 
 const MealItem = ({ name, total, addMeal, mealObject, mealId, meal }) => (
     <div className="food-item white-text">
@@ -26,20 +27,17 @@ const AddedMealItem = ({ name, total, removeMeal, mealObject, mealId, index }) =
     </div>
 );
 
-// const targetDefault = () => (
-    
-// );
 
-const targetEdit = () => (
-    <div>
-        <p>EDIT</p>
-    </div>
-);
+
+
+
+
+
 
 class Goals extends Component {
 
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             meals: [],
             addedMeals: [],
@@ -52,6 +50,10 @@ class Goals extends Component {
     componentWillMount() {
         this.getMeals();
         this.getAddedMeals();
+        // this.getTarget();
+    }
+
+    componentDidMount() {
         this.getTarget();
     }
 
@@ -145,24 +147,8 @@ class Goals extends Component {
         });
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        const dayRef = firebase.database().ref('days');
-        const target = {
-            protein: this.state.target.protein,
-            fat: this.state.target.fat,
-            carbs: this.state.target.carbs
-        };
-        // dayRef.push(target);
-        // this.setState({
-        //     protein: '',
-        //     fat: '',
-        //     carbs: ''
-        // });
-    }
-
     render() {
-        if (this.state.totals === undefined) {
+        if (this.state.totals === undefined || this.state.target === undefined) {
             return (<p>Loading...</p>)
         }
         return (
@@ -170,20 +156,7 @@ class Goals extends Component {
 
                 <div className="goals-main">
                     <h1>Today's Goal</h1>
-                    {console.log()}
-                    <p>{this.state.target.protein}</p>
-                    <p>{this.state.target.fat}</p>
-                    <p>{this.state.target.carbs}</p>
-                    <div className="goals-main-target">
-                        <div className="target-form">
-                            <form onSubmit={this.handleSubmit}>
-                                <input type="text" name="protein" placeholder="Protein" />
-                                <input type="text" name="fat" placeholder="Fat" />
-                                <input type="text" name="carbs" placeholder="Carbs" />
-                                <button className="btn">Save</button>
-                            </form>
-                        </div>
-                    </div>
+                    <GoalBox goals={this.state.target} />
                 </div>
 
                 <div className="goals-graph">

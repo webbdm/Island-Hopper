@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
-//import { Link } from 'react-router-dom';
 import firebase from './firebase.js';
 
-let GoalEditMode = ({
+let GoalDefaultMode = ({
     protein,
     fat,
     carbs,
-    handleEditClick,
-    handleDeleteClick
+    handleEditClick
 }) => (
         <div className="white-text">
-            <div className="">
-            </div>
+            <p>{protein}</p>
+            <p>{fat}</p>
+            <p>{carbs}</p>
+            <button className="btn" onClick={handleEditClick}>Edit</button>
         </div>
     );
 
-let GoalDefaultMode = ({
+let GoalEditMode = ({
     protein,
     fat,
     carbs,
@@ -25,7 +25,14 @@ let GoalDefaultMode = ({
     cancel
 }) => (
         <div className="white-text">
-            <div className="">
+            <div className="goals-main-target">
+                <div className="target-form">
+                    <input type="text" name="protein" placeholder="Protein" onChange={handleChange} value={protein} />
+                    <input type="text" name="fat" placeholder="Fat" onChange={handleChange} value={fat} />
+                    <input type="text" name="carbs" placeholder="Carbs" onChange={handleChange} value={carbs} />
+                    <a className="card-button" onClick={handleSaveClick}>Save</a>
+                    <a className="card-button" onClick={cancel}>Cancel</a>
+                </div>
             </div>
         </div>
     );
@@ -33,13 +40,29 @@ let GoalDefaultMode = ({
 class GoalBox extends Component {
 
     constructor(props) {
-        super();
+        super(props);
+        console.log(props);
         this.state = {
-            protein: props.protein,
-            fat: props.fat,
-            carbs: props.carbs,
+            // protein: props.goals.protein,
+            // fat: props.goals.fat,
+            // carbs: props.goals.carbs,
             editing: false
         }
+    }
+
+    componentDidMount(){
+        const targetRef = firebase.database().ref('days');
+        targetRef.once('value').then((snapshot) => {
+            let data = snapshot.val();
+            let targetData = data.day1.target;
+            console.log(targetData);
+
+            this.setState({
+               protein: targetData.protein,
+               fat: targetData.fat,
+               carbs: targetData.carbs
+            });
+        });
     }
 
     handleChange = (event) => {
@@ -48,29 +71,22 @@ class GoalBox extends Component {
         });
     }
 
-    // removeFood(id) {
-    //     const foodRef = firebase.database().ref(`/foods/${id}`);
-    //     foodRef.remove();
-    // }
-
     toggleEdit = () => {
         this.setState({
             editing: !this.state.editing
         });
     }
 
-    saveEdit = (name, protein, fat, carbs, id) => {
+    saveEdit = (protein, fat, carbs) => {
         let newGoal = {
             protein: protein,
             fat: fat,
-            carbs: carbs,
+            carbs: carbs
         };
 
-        console.log(newGoal);
-
-        // const foodRef = firebase.database().ref(`/foods/${id}`);
-        // foodRef.set(newGoal);
-        // this.setState({ newGoal });
+        const targetRef = firebase.database().ref(`days/day1/target`);
+        targetRef.set(newGoal);
+        this.setState({ newGoal });
         this.setState({ editing: false });
     }
 
@@ -81,21 +97,21 @@ class GoalBox extends Component {
     render() {
         return (this.state.editing === false)
             ? (
-                <GoalEditMode
-                    protein={this.state.protein}
-                    fat={this.state.fat}
-                    carbs={this.state.carbs}
-                    handleEditClick={() => this.toggleEdit()}
-                    handleDeleteClick={() => this.removeFood(this.state.id)}
-                />
-            )
-            : (
                 <GoalDefaultMode
                     protein={this.state.protein}
                     fat={this.state.fat}
                     carbs={this.state.carbs}
+                    handleEditClick={() => this.toggleEdit()}
+                />
+
+            )
+            : (
+                <GoalEditMode
+                    protein={this.state.protein}
+                    fat={this.state.fat}
+                    carbs={this.state.carbs}
                     handleChange={this.handleChange}
-                    handleSaveClick={() => this.saveEdit(this.state.foodName, this.state.protein, this.state.fat, this.state.carbs, this.state.id)}
+                    handleSaveClick={() => this.saveEdit(this.state.protein, this.state.fat, this.state.carbs)}
                     cancel={this.cancel}
                 />
             );
