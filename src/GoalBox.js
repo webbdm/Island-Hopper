@@ -28,7 +28,8 @@ let GoalDefaultMode = ({
                     labels: ['Protein', 'Fat', 'Carbs'],
                     datasets: [
                         {
-                            data: [protein, fat, carbs]
+                            data: [protein, fat, carbs],
+                            backgroundColor: ['DarkBlue', 'Blue', 'LightBlue']
                         }
                     ]
                 }}
@@ -57,8 +58,8 @@ let GoalEditMode = ({
                     <input type="text" name="protein" placeholder="Protein" onChange={handleChange} value={protein} />
                     <input type="text" name="fat" placeholder="Fat" onChange={handleChange} value={fat} />
                     <input type="text" name="carbs" placeholder="Carbs" onChange={handleChange} value={carbs} />
-                    <a className="card-button" onClick={handleSaveClick}>Save</a>
-                    <a className="card-button" onClick={cancel}>Cancel</a>
+                    <a className="btn" onClick={handleSaveClick}>Save</a>
+                    <a className="btn" onClick={cancel}>Cancel</a>
                 </div>
             </div>
         </div>
