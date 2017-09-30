@@ -8,10 +8,12 @@ let GoalDefaultMode = ({
     carbs,
     handleEditClick
 }) => (
-        <div className="white-text">
-            <p>{protein}</p>
-            <p>{fat}</p>
-            <p>{carbs}</p>
+        <div className="goals-box white-text">
+            <div className="goals-box-numbers">
+                <p>{protein}g Protein</p>
+                <p>{fat}g Fat</p>
+                <p>{carbs}g Carbs</p>
+            </div>
             <button className="btn" onClick={handleEditClick}>Edit</button>
         </div>
     );
@@ -50,7 +52,7 @@ class GoalBox extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const targetRef = firebase.database().ref('days');
         targetRef.once('value').then((snapshot) => {
             let data = snapshot.val();
@@ -58,9 +60,9 @@ class GoalBox extends Component {
             console.log(targetData);
 
             this.setState({
-               protein: targetData.protein,
-               fat: targetData.fat,
-               carbs: targetData.carbs
+                protein: targetData.protein,
+                fat: targetData.fat,
+                carbs: targetData.carbs
             });
         });
     }

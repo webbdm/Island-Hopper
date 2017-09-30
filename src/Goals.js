@@ -155,7 +155,7 @@ class Goals extends Component {
             <div className="goals-grid">
 
                 <div className="goals-main">
-                    <h1>Today's Goal</h1>
+                    <h1>GOAL</h1>
                     <GoalBox goals={this.state.target} />
                 </div>
 

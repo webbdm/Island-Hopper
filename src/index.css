@@ -170,6 +170,22 @@ nav{
   padding-top: 10%;
 }
 
+.goals-box-numbers{
+  padding: 2% 20%;
+  text-align: left;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start */
+}
+
+.goals-box-numbers p{
+  text-align: center;
+  font-size: 3.2rem;
+  color: #FF3033;
+  border-radius: 3px;
+  background-color: #2b5388;
+}
 
 .target-form{
   width: 50%;
