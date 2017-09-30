@@ -170,13 +170,17 @@ class Goals extends Component {
 
                 <div className="goals-main">
                     <h1>Today's Goal</h1>
+                    {console.log()}
+                    <p>{this.state.target.protein}</p>
+                    <p>{this.state.target.fat}</p>
+                    <p>{this.state.target.carbs}</p>
                     <div className="goals-main-target">
                         <div className="target-form">
                             <form onSubmit={this.handleSubmit}>
                                 <input type="text" name="protein" placeholder="Protein" />
                                 <input type="text" name="fat" placeholder="Fat" />
                                 <input type="text" name="carbs" placeholder="Carbs" />
-                                <button className="btn">Set Macros</button>
+                                <button className="btn">Save</button>
                             </form>
                         </div>
                     </div>
@@ -202,7 +206,6 @@ class Goals extends Component {
                         </div>
                     </div>
                     <div className="goals-graph-component">
-                        {console.log(this.state)}
                         <Bar
                             data={{
                                 labels: ['Protein', 'Fat', 'Carbs', 'Total'],
