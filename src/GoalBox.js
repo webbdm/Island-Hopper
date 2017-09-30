@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase.js';
+import { Doughnut } from 'react-chartjs-2';
 
 let GoalDefaultMode = ({
     protein,
@@ -9,12 +10,23 @@ let GoalDefaultMode = ({
     handleEditClick
 }) => (
         <div className="goals-box white-text">
-            <div className="goals-box-numbers">
+            <Doughnut
+                data={{
+                    labels: ['Protein', 'Fat', 'Carbs'],
+                    datasets: [
+                        {
+                            data: [10, 20, 30, 40]
+                        }
+                    ]
+                }}
+                width={100}
+                height={50} />
+            {/* <div className="goals-box-numbers">
                 <p>{protein}g Protein</p>
                 <p>{fat}g Fat</p>
                 <p>{carbs}g Carbs</p>
             </div>
-            <button className="btn" onClick={handleEditClick}>Edit</button>
+            <button className="btn" onClick={handleEditClick}>Edit</button> */}
         </div>
     );
 
