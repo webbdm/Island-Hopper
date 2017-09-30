@@ -5,6 +5,7 @@ import './App.css';
 import { Bar } from 'react-chartjs-2';
 import { dayTotal } from './Calculations.js';
 import firebase from './firebase.js';
+import GoalBox from './GoalBox.js';
 
 const MealItem = ({ name, total, addMeal, mealObject, mealId, meal }) => (
     <div className="food-item white-text">
@@ -26,14 +27,22 @@ const AddedMealItem = ({ name, total, removeMeal, mealObject, mealId, index }) =
     </div>
 );
 
+
+
+
+
+
+
+
 class Goals extends Component {
 
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             meals: [],
             addedMeals: [],
             day: {},
+            target: {},
             user: props.data.user
         };
     }
@@ -41,6 +50,23 @@ class Goals extends Component {
     componentWillMount() {
         this.getMeals();
         this.getAddedMeals();
+        // this.getTarget();
+    }
+
+    componentDidMount() {
+        this.getTarget();
+    }
+
+    getTarget() {
+        const targetRef = firebase.database().ref('days');
+        targetRef.once('value').then((snapshot) => {
+            let data = snapshot.val();
+            let targetData = data.day1.target;
+
+            this.setState({
+                target: targetData
+            });
+        });
     }
 
     getMeals() {
@@ -115,18 +141,22 @@ class Goals extends Component {
         })
     }
 
+    handleChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
     render() {
-        if (this.state.totals === undefined) {
+        if (this.state.totals === undefined || this.state.target === undefined) {
             return (<p>Loading...</p>)
         }
         return (
             <div className="goals-grid">
 
                 <div className="goals-main">
-                    <h1>Daily Goal</h1>
-                    <div className="goals-main-target card teal">
-
-                    </div>
+                    <h1>GOAL</h1>
+                    <GoalBox goals={this.state.target} />
                 </div>
 
                 <div className="goals-graph">
@@ -149,15 +179,14 @@ class Goals extends Component {
                         </div>
                     </div>
                     <div className="goals-graph-component">
-                        {console.log(this.state.totals)}
                         <Bar
                             data={{
                                 labels: ['Protein', 'Fat', 'Carbs', 'Total'],
                                 datasets: [
                                     {
                                         backgroundColor: this.state.totals.protein >= 300
-                                                         && this.state.totals.fat >= 300 
-                                                         && this.state.totals.carbs >= 300 ? 'green' : '#FF3134',
+                                            && this.state.totals.fat >= 300
+                                            && this.state.totals.carbs >= 300 ? 'green' : '#FF3134',
                                         hoverBackgroundColor: '#FF3134',
                                         hoverBorderColor: 'rgba(255,99,132,1)',
                                         data: [this.state.totals.protein, this.state.totals.fat, this.state.totals.carbs, 200]
@@ -176,7 +205,7 @@ class Goals extends Component {
                                     ],
                                     yAxes: [
                                         {
-                                            ticks: {min: 0, max:300},
+                                            ticks: { min: 0, max: 300 },
                                             display: false
                                         }
                                     ]
