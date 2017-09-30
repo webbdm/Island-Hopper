@@ -21,7 +21,13 @@
   },
   "days": {
     "day1": {
+      "uid": "43463",
       "dayName": "Friday",
+      "target": {
+        "protein": 0,
+        "fat": 1,
+        "carbs": 2
+      },
       "meals": 0
     }
   },

@@ -26,6 +26,16 @@ const AddedMealItem = ({ name, total, removeMeal, mealObject, mealId, index }) =
     </div>
 );
 
+// const targetDefault = () => (
+    
+// );
+
+const targetEdit = () => (
+    <div>
+        <p>EDIT</p>
+    </div>
+);
+
 class Goals extends Component {
 
     constructor(props) {
@@ -34,6 +44,7 @@ class Goals extends Component {
             meals: [],
             addedMeals: [],
             day: {},
+            target: {},
             user: props.data.user
         };
     }
@@ -41,6 +52,19 @@ class Goals extends Component {
     componentWillMount() {
         this.getMeals();
         this.getAddedMeals();
+        this.getTarget();
+    }
+
+    getTarget() {
+        const targetRef = firebase.database().ref('days');
+        targetRef.once('value').then((snapshot) => {
+            let data = snapshot.val();
+            let targetData = data.day1.target;
+
+            this.setState({
+                target: targetData
+            });
+        });
     }
 
     getMeals() {
@@ -115,6 +139,28 @@ class Goals extends Component {
         })
     }
 
+    handleChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        const dayRef = firebase.database().ref('days');
+        const target = {
+            protein: this.state.target.protein,
+            fat: this.state.target.fat,
+            carbs: this.state.target.carbs
+        };
+        // dayRef.push(target);
+        // this.setState({
+        //     protein: '',
+        //     fat: '',
+        //     carbs: ''
+        // });
+    }
+
     render() {
         if (this.state.totals === undefined) {
             return (<p>Loading...</p>)
@@ -126,11 +172,11 @@ class Goals extends Component {
                     <h1>Today's Goal</h1>
                     <div className="goals-main-target">
                         <div className="target-form">
-                            <form>
-                                <input type="text" placeholder="Protein" />
-                                <input type="text" placeholder="Fat" />
-                                <input type="text" placeholder="Carbs" />
-                                <button className="btn" onClick={(e) => { e.preventDefault(); }}>Set Macros</button>
+                            <form onSubmit={this.handleSubmit}>
+                                <input type="text" name="protein" placeholder="Protein" />
+                                <input type="text" name="fat" placeholder="Fat" />
+                                <input type="text" name="carbs" placeholder="Carbs" />
+                                <button className="btn">Set Macros</button>
                             </form>
                         </div>
                     </div>
@@ -156,7 +202,7 @@ class Goals extends Component {
                         </div>
                     </div>
                     <div className="goals-graph-component">
-                        {console.log(this.state.totals)}
+                        {console.log(this.state)}
                         <Bar
                             data={{
                                 labels: ['Protein', 'Fat', 'Carbs', 'Total'],
