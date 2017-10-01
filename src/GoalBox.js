@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import firebase from './firebase.js';
+import firebase, { getTarget } from './firebase.js';
 import { Doughnut } from 'react-chartjs-2';
 
 let GoalDefaultMode = ({
@@ -57,7 +57,7 @@ let GoalEditMode = ({
                 <div className="target-form">
                     <input type="text" name="protein" placeholder="Protein" onChange={handleChange} value={protein} />Protein
                     <input type="text" name="fat" placeholder="Fat" onChange={handleChange} value={fat} />Fat
-                    <input type="text" name="carbs" placeholder="Carbs" onChange={handleChange} value={carbs} />Carbs<br/>
+                    <input type="text" name="carbs" placeholder="Carbs" onChange={handleChange} value={carbs} />Carbs<br />
                     <a className="btn" onClick={handleSaveClick}>Save</a>
                     <a className="btn" onClick={cancel}>Cancel</a>
                 </div>
@@ -79,18 +79,7 @@ class GoalBox extends Component {
     }
 
     componentDidMount() {
-        const targetRef = firebase.database().ref('days');
-        targetRef.once('value').then((snapshot) => {
-            let data = snapshot.val();
-            let targetData = data.day1.target;
-            console.log(targetData);
-
-            this.setState({
-                protein: targetData.protein,
-                fat: targetData.fat,
-                carbs: targetData.carbs
-            });
-        });
+        getTarget(this.setState.bind(this));
     }
 
     handleChange = (event) => {

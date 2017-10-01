@@ -8,9 +8,9 @@ export const dayTotal = (addedMeals) => {
     let fTotal = 0;
     let cTotal = 0;
     addedMeals.forEach((input, index) => {
-        pTotal += parseInt(input.total.protein);
-        fTotal += parseInt(input.total.fat);
-        cTotal += parseInt(input.total.carbs);
+        pTotal += parseInt(input.total.protein, 10);
+        fTotal += parseInt(input.total.fat, 10);
+        cTotal += parseInt(input.total.carbs, 10);
     });
 
     let total = {
