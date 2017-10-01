@@ -172,14 +172,15 @@ class Goals extends Component {
                         </div>
                     </div>
                     <div className="goals-graph-component">
+                        {console.log(this.state.target)}
                         <Bar
                             data={{
                                 labels: ['Protein', 'Fat', 'Carbs', 'Total'],
                                 datasets: [
                                     {
-                                        backgroundColor: this.state.totals.protein >= 300
-                                            && this.state.totals.fat >= 300
-                                            && this.state.totals.carbs >= 300 ? 'green' : '#FF3134',
+                                        backgroundColor: this.state.totals.protein >= this.state.target.protein
+                                            && this.state.totals.fat >= this.state.target.fat
+                                            && this.state.totals.carbs >= this.state.target.carbs ? 'green' : '#FF3134',
                                         hoverBackgroundColor: '#FF3134',
                                         hoverBorderColor: 'rgba(255,99,132,1)',
                                         data: [this.state.totals.protein, this.state.totals.fat, this.state.totals.carbs, 200]
