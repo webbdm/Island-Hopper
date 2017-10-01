@@ -8,22 +8,22 @@ import firebase from './firebase.js';
 import GoalBox from './GoalBox.js';
 
 const MealItem = ({ name, total, addMeal, mealObject, mealId, meal }) => (
-    <div className="food-item white-text">
+    <div className="goals-foods-item white-text">
         <p>{name}</p>
         <p>{total.protein}g P</p>
         <p>{total.fat}g F</p>
         <p>{total.carbs}g C</p>
-        <button onClick={() => { addMeal(mealId, meal) }}>+</button>
+        <button className="btn-floating waves-effect waves-light red" onClick={() => { addMeal(mealId, meal) }}>+</button>
     </div>
 );
 
 const AddedMealItem = ({ name, total, removeMeal, mealObject, mealId, index }) => (
-    <div className="food-item white-text">
+    <div className="goals-foods-item white-text">
         <p>{name}</p>
         <p>{total.protein}g P</p>
         <p>{total.fat}g F</p>
         <p>{total.carbs}g C</p>
-        <button onClick={() => { removeMeal(mealId, index) }}>-</button>
+        <button className="btn-floating waves-effect waves-light red" onClick={() => { removeMeal(mealId, index) }}>-</button>
     </div>
 );
 
@@ -211,7 +211,7 @@ class Goals extends Component {
                     </div>
                 </div>
 
-                <div className="goals-foods food-block white-text">
+                <div className="goals-foods white-text">
                     <h5>{this.state.meals.map((meal, index) => {
                         return (
                             <MealItem
@@ -224,7 +224,7 @@ class Goals extends Component {
                         )
                     })}</h5>
                 </div>
-                <div className="goals-foods food-block white-text">
+                <div className="goals-foods white-text">
                     <h5>{this.state.addedMeals.map((meal, index) => {
                         return (
                             <AddedMealItem

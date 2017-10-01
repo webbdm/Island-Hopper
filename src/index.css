@@ -265,7 +265,7 @@ nav{
 }
 
 .goals-graph{
-  border: 2px solid white;
+  /* border: 2px solid white; */
   border-radius: 5px;
   padding: 10px;
 }
@@ -276,14 +276,28 @@ nav{
 }
 
 .goals-foods, .goals-added-foods{
-  max-height: 85%;
-  overflow: scroll;
   font-size: 7px;
+  background-color: #2b5388;
+  margin: 7px;
+  padding: 10px;
+  height: 300px;
+  overflow: auto;
 }
 
 .goals-foods, .goals-added-foods h5 p{
   font-size: 7px;
 }
 
+.goals-foods-item{
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.goals-foods-item button{
+  border-radius: 150px;
+}
 
 
