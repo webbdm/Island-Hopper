@@ -18,6 +18,7 @@ class Menu extends Component {
                 <div className="card small menu-card">
                     <div className="card-content">
                         <span className="card-title"><Link to="/goals">Goals</Link></span>
+                         <i className="large material-icons">insert_chart</i>
 
                     </div>
                 </div>
@@ -26,6 +27,7 @@ class Menu extends Component {
                 <div className="card small menu-card">
                     <div className="card-content">
                         <span className="card-title"><Link to="/meals">Meals</Link></span>
+                        <i className="large material-icons">restaurant</i>
 
                     </div>
                 </div>
@@ -34,13 +36,15 @@ class Menu extends Component {
                 <div className="card small menu-card">
                     <div className="card-content">
                         <span className="card-title"><Link to="/food"> Food</Link></span>
+                        <i className="large material-icons">local_pizza</i>
 
                     </div>
                 </div>
 
                 <div className="card small menu-card">
                     <div className="card-content">
-                        <span className="card-title">Day Plans</span>
+                        <span className="card-title">Stats & Log</span>
+                        <span>Coming Soon</span><br/>                       
 
                     </div>
                 </div>

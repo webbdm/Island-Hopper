@@ -10,6 +10,29 @@ nav{
   height: 75px;
 }
 
+.nav-route-links{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.nav-route-links>* {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  font-size: 22px;
+  margin: 0 20px 0 20px;
+  text-align: center;
+}
+
+.logout{
+  flex-grow: 1;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 .brand-logo{
   margin-right: 10px;
 }
@@ -30,20 +53,25 @@ nav{
   text-align: center;
 }
 
+.menubox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 12px;
+}
+
 .menu-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   background-color: #2b5388; 
   text-align: center;
   margin: 10px;
   width: 300px;
   height: 300px;
   height: 100%;
-}
-
-.menubox{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-grow: 1;
 }
 
 .sidebar{

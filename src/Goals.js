@@ -27,13 +27,6 @@ const AddedMealItem = ({ name, total, removeMeal, mealObject, mealId, index }) =
     </div>
 );
 
-
-
-
-
-
-
-
 class Goals extends Component {
 
     constructor(props) {
