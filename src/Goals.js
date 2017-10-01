@@ -20,9 +20,9 @@ const MealItem = ({ name, total, addMeal, mealObject, mealId, meal }) => (
 const AddedMealItem = ({ name, total, removeMeal, mealObject, mealId, index }) => (
     <div className="goals-foods-item white-text">
         <p>{name}</p>
-        <p>{total.protein}g P</p>
-        <p>{total.fat}g F</p>
-        <p>{total.carbs}g C</p>
+        <p>{total.protein}g<br/> Protein</p>
+        <p>{total.fat}g <br/> Fat</p>
+        <p>{total.carbs}g <br/> Carbs</p>
         <button className="btn-floating waves-effect waves-light red" onClick={() => { removeMeal(mealId, index) }}>-</button>
     </div>
 );
@@ -172,7 +172,6 @@ class Goals extends Component {
                         </div>
                     </div>
                     <div className="goals-graph-component">
-                        {console.log(this.state.target)}
                         <Bar
                             data={{
                                 labels: ['Protein', 'Fat', 'Carbs', 'Total'],

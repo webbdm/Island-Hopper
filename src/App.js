@@ -71,7 +71,7 @@ class App extends Component {
                   <Link key={1} to="/goals">Goals</Link>,
                   <Link key={2} to="/meals">Meals</Link>,
                   <Link key={3} to="/food">Foods</Link>,
-                  <span className="logout btn" onClick={this.logout}>Logout</span>
+                  <span key={4} className="logout btn" onClick={this.logout}>Logout</span>
                 ]
                   :
                   <span className="login btn" onClick={this.login}>Login</span>

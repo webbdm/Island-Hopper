@@ -55,9 +55,9 @@ let GoalEditMode = ({
         <div className="white-text">
             <div className="goals-main-target">
                 <div className="target-form">
-                    <input type="text" name="protein" placeholder="Protein" onChange={handleChange} value={protein} />
-                    <input type="text" name="fat" placeholder="Fat" onChange={handleChange} value={fat} />
-                    <input type="text" name="carbs" placeholder="Carbs" onChange={handleChange} value={carbs} />
+                    <input type="text" name="protein" placeholder="Protein" onChange={handleChange} value={protein} />Protein
+                    <input type="text" name="fat" placeholder="Fat" onChange={handleChange} value={fat} />Fat
+                    <input type="text" name="carbs" placeholder="Carbs" onChange={handleChange} value={carbs} />Carbs<br/>
                     <a className="btn" onClick={handleSaveClick}>Save</a>
                     <a className="btn" onClick={cancel}>Cancel</a>
                 </div>
