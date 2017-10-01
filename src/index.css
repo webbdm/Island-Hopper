@@ -27,7 +27,12 @@ nav{
   text-align: center;
 }
 
+.login{
+  margin-top: 7%;
+}
+
 .logout{
+  margin-top: 2.5%;
   flex-grow: 1;
   border-radius: 3px;
   cursor: pointer;
@@ -59,6 +64,7 @@ nav{
   align-items: center;
   flex-wrap: wrap;
   padding: 12px;
+  border-bottom: 7px solid black;
 }
 
 .menu-card{

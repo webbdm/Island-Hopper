@@ -71,10 +71,10 @@ class App extends Component {
                   <Link key={1} to="/goals">Goals</Link>,
                   <Link key={2} to="/meals">Meals</Link>,
                   <Link key={3} to="/food">Foods</Link>,
-                  <span className="logout" onClick={this.logout}>Logout</span>
+                  <span className="logout btn" onClick={this.logout}>Logout</span>
                 ]
                   :
-                  <a onClick={this.login}>Login</a>
+                  <span className="login btn" onClick={this.login}>Login</span>
                 }
               </div>
               {/* <div id="nav-mobile" className="nav-route-links right">
