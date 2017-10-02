@@ -10,6 +10,34 @@ nav{
   height: 75px;
 }
 
+.nav-route-links{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.nav-route-links>* {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  font-size: 22px;
+  margin: 0 20px 0 20px;
+  text-align: center;
+}
+
+.login{
+  margin-top: 7%;
+}
+
+.logout{
+  margin-top: 2.5%;
+  flex-grow: 1;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 .brand-logo{
   margin-right: 10px;
 }
@@ -30,20 +58,26 @@ nav{
   text-align: center;
 }
 
+.menubox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 12px;
+  border-bottom: 7px solid black;
+}
+
 .menu-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   background-color: #2b5388; 
   text-align: center;
   margin: 10px;
   width: 300px;
   height: 300px;
   height: 100%;
-}
-
-.menubox{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-grow: 1;
 }
 
 .sidebar{
@@ -164,6 +198,7 @@ nav{
 .goals-main{
   color: white;
   text-align: center;
+  height: 100%;
 }
 
 .goals-main h1{
@@ -172,6 +207,10 @@ nav{
 
 .goals-main-target{
   padding-top: 10%;
+}
+
+.goals-box{
+  height: 100%;
 }
 
 .goals-box-numbers{
@@ -230,8 +269,17 @@ nav{
   margin: 0 auto;
 }
 
+.target-form a{
+  margin: 40px 10px 40px 10px;
+}
+
+.target-form input{
+  font-size: 20px;
+  margin: 7% 0;
+}
+
 .goals-graph{
-  border: 2px solid white;
+  /* border: 2px solid white; */
   border-radius: 5px;
   padding: 10px;
 }
@@ -242,14 +290,29 @@ nav{
 }
 
 .goals-foods, .goals-added-foods{
-  max-height: 85%;
-  overflow: scroll;
   font-size: 7px;
+  background-color: #2b5388;
+  margin: 7px;
+  padding: 10px;
+  height: 300px;
+  overflow: auto;
 }
 
 .goals-foods, .goals-added-foods h5 p{
   font-size: 7px;
 }
 
+.goals-foods-item{
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.goals-foods-item button{
+  border-radius: 150px;
+  margin-top: 9px;
+}
 
 

@@ -64,14 +64,26 @@ class App extends Component {
           <nav>
             <div className="nav-wrapper">
               <div className="col s12"></div>
-              <div className="brand-logo"><Link to="/">Macro Tracko</Link></div>
-              <ul id="nav-mobile" className="right">
-                {this.state.user ?
-                  <button className="waves-effect waves-light btn" onClick={this.logout}>Logout</button>
+              {/* <div className="brand-logo"><Link to="/">Macro Tracko</Link></div> */}
+              <div id="nav-mobile" className="nav-route-links left">
+                {this.state.user ? [
+                  <Link key={0} to="/">Home</Link>,
+                  <Link key={1} to="/goals">Goals</Link>,
+                  <Link key={2} to="/meals">Meals</Link>,
+                  <Link key={3} to="/food">Foods</Link>,
+                  <span key={4} className="logout btn" onClick={this.logout}>Logout</span>
+                ]
                   :
-                  <button className="waves-effect waves-light btn" onClick={this.login}>Log In</button>
+                  <span className="login btn" onClick={this.login}>Login</span>
                 }
-              </ul>
+              </div>
+              {/* <div id="nav-mobile" className="nav-route-links right">
+                {this.state.user ? [
+                  <button key={4} className="waves-effect waves-light btn" onClick={this.logout}>Logout</button>]
+                  :
+                  <button key={5} className="waves-effect waves-light btn" onClick={this.login}>Log In</button>
+                }
+              </div> */}
             </div>
           </nav>
           {this.state.user ?
@@ -82,7 +94,6 @@ class App extends Component {
               <Route exact path="/meals" component={() => (<Meals data={this.state} />)} />
               <Route exact path="/days" component={() => (<Days user={this.state.user} />)} />
               <Route exact path="/meals/:id" component={CreateMeals} />
-              {/* <Route exact path="/days/:id" component={Plan} /> */}
 
               <div className='user-profile'>
                 {/*<img src={this.state.user.photoURL} alt="User" />*/}
