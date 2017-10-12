@@ -4,8 +4,8 @@ import './App.css';
 // import { VictoryChart, VictoryBar } from 'victory';
 import { Bar } from 'react-chartjs-2';
 import firebase, {
-    getTarget, 
-    getAddedMeals, 
+    getTarget,
+    getAddedMeals,
     getMeals,
     updateAddedMeals
 } from './firebase.js';
@@ -83,7 +83,7 @@ class Goals extends Component {
     }
 
     componentDidMount() {
-        getTarget((target) => this.setState({target}));
+        getTarget((target) => this.setState({ target }));
     }
 
     addMeal = (mealId, meal) => {
