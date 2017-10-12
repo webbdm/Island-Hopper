@@ -56,6 +56,50 @@ nav{
 
 .homepage{
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10%;
+}
+
+.login-img{
+  height: 25px;
+  width: 25px;
+  vertical-align: middle;
+  margin-bottom: 3px;
+}
+
+.login-container{
+  /* height: 100%;
+  width: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-around;
+}
+
+.login-box{
+  margin: 0 auto;
+  background-color: #2b5388;
+  height: 300px;
+  width: 400px;
+}
+
+.login-box h3{
+  color: #FF3134;
+}
+
+.login-box p{
+  color: white;
+  margin: 20px;
+  text-align: center;
+}
+
+.login-banner{
+  background-size: contain;
+  border: 1px solid black;
 }
 
 .menubox{

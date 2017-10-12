@@ -74,7 +74,7 @@ class App extends Component {
                   <span key={4} className="logout btn" onClick={this.logout}>Logout</span>
                 ]
                   :
-                  <span className="login btn" onClick={this.login}>Login</span>
+                  <span className="login btn" onClick={this.login}>Login <img className="login-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1000px-Google_%22G%22_Logo.svg.png"/></span>
                 }
               </div>
               {/* <div id="nav-mobile" className="nav-route-links right">
@@ -100,7 +100,7 @@ class App extends Component {
               </div>
             </div>
             :
-            <Home />
+            <Home/>
           }
         </div>
 
