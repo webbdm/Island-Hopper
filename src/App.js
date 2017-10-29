@@ -86,6 +86,7 @@ class App extends Component {
               </div> */}
             </div>
           </nav>
+          {/* Disable Auth for Demo Purpose */}
           {this.state.user ?
             <div>
               <Route exact path="/" component={Menu} />
