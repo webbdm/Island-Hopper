@@ -60,8 +60,7 @@ class CreateMeals extends Component {
                     protein: foods[food].protein,
                     fat: foods[food].fat,
                     carbs: foods[food].carbs,
-                    foodName: foods[food].foodName,
-                    cardCreator: foods[food].cardCreator
+                    foodName: foods[food].foodName
                 });
             }
 
