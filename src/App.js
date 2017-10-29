@@ -63,13 +63,13 @@ class App extends Component {
         <div className='app'>
           <nav>
             <div className="nav-wrapper">
-              <div className="col s12"></div>
               {/* <div className="brand-logo"><Link to="/">Macro Tracko</Link></div> */}
               <div id="nav-mobile" className="nav-route-links left">
-                  <Link key={0} to="/">Home</Link>
-                  <Link key={1} to="/goals">Goals</Link>
-                  <Link key={2} to="/meals">Meals</Link>
-                  <Link key={3} to="/food">Foods</Link>
+                <p className="brand-heading">Macro Tracker</p>
+                <Link key={0} to="/">Home</Link>
+                <Link key={1} to="/goals">Goals</Link>
+                <Link key={2} to="/meals">Meals</Link>
+                <Link key={3} to="/food">Foods</Link>
               </div>
               {/* <div id="nav-mobile" className="nav-route-links right">
                 {this.state.user ? [
@@ -80,17 +80,17 @@ class App extends Component {
               </div> */}
             </div>
           </nav>
-            <div>
-              <Route exact path="/" component={Menu} />
-              <Route exact path="/food" component={() => (<Islands data={this.state} />)} />
-              <Route exact path="/goals" component={() => (<Goals data={this.state} />)} />
-              <Route exact path="/meals" component={() => (<Meals data={this.state} />)} />
-              <Route exact path="/meals/:id" component={CreateMeals} />
+          <div>
+            <Route exact path="/" component={Menu} />
+            <Route exact path="/food" component={() => (<Islands data={this.state} />)} />
+            <Route exact path="/goals" component={() => (<Goals data={this.state} />)} />
+            <Route exact path="/meals" component={() => (<Meals data={this.state} />)} />
+            <Route exact path="/meals/:id" component={CreateMeals} />
 
-              <div className='user-profile'>
-                {/*<img src={this.state.user.photoURL} alt="User" />*/}
-              </div>
+            <div className='user-profile'>
+              {/*<img src={this.state.user.photoURL} alt="User" />*/}
             </div>
+          </div>
         </div>
 
 
