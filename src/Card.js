@@ -54,13 +54,11 @@ class Card extends Component {
         super();
         this.state = {
             id: props.content.id,
-            cardCreator: props.content.cardCreator,
             foodName: props.content.foodName,
             protein: props.content.protein,
             fat: props.content.fat,
             carbs: props.content.carbs,
-            editing: false,
-            user: props.user
+            editing: false
         }
     }
 
@@ -86,8 +84,7 @@ class Card extends Component {
             foodName: name,
             protein: protein,
             fat: fat,
-            carbs: carbs,
-            cardCreator: this.state.cardCreator
+            carbs: carbs
         };
 
         const foodRef = firebase.database().ref(`/foods/${id}`);

@@ -27,8 +27,7 @@ class Islands extends Component {
           protein: foods[food].protein,
           fat: foods[food].fat,
           carbs: foods[food].carbs,
-          foodName: foods[food].foodName,
-          cardCreator: foods[food].cardCreator
+          foodName: foods[food].foodName
         });
       }
 
@@ -51,8 +50,7 @@ class Islands extends Component {
       protein: this.state.protein,
       fat: this.state.fat,
       carbs: this.state.carbs,
-      foodName: this.state.foodName,
-      cardCreator: this.state.user.displayName
+      foodName: this.state.foodName
     }
     foodsRef.push(food);
     this.setState({
@@ -81,7 +79,7 @@ class Islands extends Component {
               <div className="">
                 {this.state.foods.map((food) => {
                   return (
-                    <Card key={food.id} user={this.state.user} content={food} />
+                    <Card key={food.id} content={food} />
                   )
                 })}
               </div>
