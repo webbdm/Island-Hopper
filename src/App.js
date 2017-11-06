@@ -66,10 +66,12 @@ class App extends Component {
               {/* <div className="brand-logo"><Link to="/">Macro Tracko</Link></div> */}
               <div id="nav-mobile" className="nav-route-links left">
                 <p className="brand-heading">Macro Tracker</p>
-                <Link key={0} to="/">Home</Link>
-                <Link key={1} to="/goals">Goals</Link>
-                <Link key={2} to="/meals">Meals</Link>
-                <Link key={3} to="/food">Foods</Link>
+                <div className="nav-items">
+                  <Link key={0} to="/">Home</Link>
+                  <Link key={1} to="/goals">Goals</Link>
+                  <Link key={2} to="/meals">Meals</Link>
+                  <Link key={3} to="/food">Foods</Link>
+                </div>
               </div>
               {/* <div id="nav-mobile" className="nav-route-links right">
                 {this.state.user ? [
