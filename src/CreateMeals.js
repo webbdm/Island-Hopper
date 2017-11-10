@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase.js';
+import { Modal, Button } from 'react-materialize';
 //import { Link } from 'react-router-dom';
 
 const FoodItem = ({ name, protein, fat, carbs, addFood, foodObject, mealId }) => (
-    <div className="food-item">
-        <p>{name}</p>
-        <p>{protein}g P</p>
-        <p>{fat}g F</p>
-        <p>{carbs}g C</p>
-        <button onClick={() => { addFood(foodObject, mealId) }}>+</button>
-    </div>
+    <tr className="">
+        <td>{name}</td>
+        <td>{protein}g</td>
+        <td>{fat}g</td>
+        <td>{carbs}g</td>
+        <td><button onClick={() => { addFood(foodObject, mealId) }}>+</button></td>
+    </tr>
 );
 
 const AddedFoodItem = ({ name, protein, fat, carbs, removeFood, index, mealId }) => (
-    <div className="food-item">
-        <p>{name}</p>
-        <p>{protein}g P</p>
-        <p>{fat}g F</p>
-        <p>{carbs}g C</p>
-        <button onClick={() => { removeFood(index, mealId) }}>X</button>
-    </div>
+    <tr className="">
+        <td>{name}</td>
+        <td>{protein}</td>
+        <td>{fat}g</td>
+        <td>{carbs}g</td>
+        <td><button onClick={() => { removeFood(index, mealId) }}>X</button></td>
+    </tr>
 );
 
 class CreateMeals extends Component {
@@ -111,7 +112,7 @@ class CreateMeals extends Component {
             fTotal += parseInt(input.fat);
             cTotal += parseInt(input.carbs);
         });
-       
+
 
         let total = {
             protein: pTotal,
@@ -120,7 +121,7 @@ class CreateMeals extends Component {
         };
 
         totalref.set(total);
-        
+
         this.setState({
             totals: total,
             addedFoods: foodArray
@@ -162,11 +163,11 @@ class CreateMeals extends Component {
             return (<p>Loading...</p>)
         }
         return (
-            <div>
-                <div className="row macro-wrapper">
-                    <div className="meal-name">
-                        <h1>{this.state.mealName}</h1>
-                    </div>
+            <div className="create-meals-wrapper">
+                <div className="meal-name">
+                    <h1>{this.state.mealName}</h1>
+                </div>
+                <div className="macro-wrapper">
                     <div className="card macro-box">
                         <h1>{this.state.totals.protein}</h1>
                         <p>Protein</p>
@@ -179,54 +180,82 @@ class CreateMeals extends Component {
                         <h1>{this.state.totals.carbs}</h1>
                         <p>Carbs</p>
                     </div>
-                    <div className="card macro-box">
+                    {/* <div className="card macro-box">
                         <h1></h1>
                         <p>Total</p>
+                    </div> */}
+                </div>
+                <div className="food-container">
+                    <div className="food-block">
+                        <table className="centered">
+                            <thead>
+                                <tr>
+                                    <th>Food</th>
+                                    <th>Protein</th>
+                                    <th>Fat</th>
+                                    <th>Carbs</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.addedFoods.map((food, index) => {
+                                    if (this.state.addedFoods === undefined) {
+                                        return (
+                                            <p>Add Foods</p>
+                                        )
+                                    }
+                                    return (
+                                        <AddedFoodItem
+                                            name={food.foodName}
+                                            protein={food.protein}
+                                            fat={food.fat}
+                                            carbs={food.carbs}
+                                            key={index}
+                                            foodObject={food}
+                                            index={index}
+                                            removeFood={this.removeFood}
+                                            mealId={this.state.id}
+                                        />
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                        <div className="center-align">
+                            <Modal
+                                header={`Add Foods to ${this.state.mealName}`}
+                                trigger={<button className="btn modal-trigger">Add Foods to {this.state.mealName}</button>}>
+                                <div className="food-block">
+                                    <table className="centered">
+                                        <thead>
+                                            <tr>
+                                                <th>Food</th>
+                                                <th>Protein</th>
+                                                <th>Fat</th>
+                                                <th>Carbs</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {this.state.foods.map((food, index) => {
+                                                return (
+                                                    <FoodItem
+                                                        name={food.foodName}
+                                                        protein={food.protein}
+                                                        fat={food.fat}
+                                                        carbs={food.carbs}
+                                                        key={index}
+                                                        addFood={this.addFood}
+                                                        foodObject={food}
+                                                        mealId={this.state.id}
+                                                    />
+                                                )
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </Modal>
+                        </div>
                     </div>
                 </div>
-                <div className="row food-container">
-                    <div className="col m3 food-block">
-                        <h1>Choose Foods</h1>
-                        {this.state.foods.map((food, index) => {
-                            return (
-                                <FoodItem
-                                    name={food.foodName}
-                                    protein={food.protein}
-                                    fat={food.fat}
-                                    carbs={food.carbs}
-                                    key={index}
-                                    addFood={this.addFood}
-                                    foodObject={food}
-                                    mealId={this.state.id}
-                                />
-                            )
-                        })}
-                    </div>
-                    <div className="col m7 food-block">
-                        <h1>Added Foods</h1>
-                        {this.state.addedFoods.map((food, index) => {
-                            if (this.state.addedFoods === undefined) {
-                                return (
-                                    <p>Add Foods</p>
-                                )
-                            }
-                            return (
-                                <AddedFoodItem
-                                    name={food.foodName}
-                                    protein={food.protein}
-                                    fat={food.fat}
-                                    carbs={food.carbs}
-                                    key={index}
-                                    foodObject={food}
-                                    index={index}
-                                    removeFood={this.removeFood}
-                                    mealId={this.state.id}
-                                />
-                            )
-                        })}
-                    </div>
-                </div>
-            </div>
+            </div >
 
         );
     }

@@ -13,6 +13,9 @@ nav{
 .brand-heading{
   background-color: #FF3134;
   padding: 0px 10px;
+  margin: 20px 0px;
+  max-width: 450px;
+  flex-grow: 1;
 }
 
 .nav-wrapper{
@@ -27,6 +30,7 @@ nav{
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
+  text-align: center;
 }
 
 .nav-route-links>* {
@@ -36,6 +40,19 @@ nav{
   font-size: 22px;
   margin: 0 20px 0 20px;
   text-align: center;
+  flex-grow: 1;
+}
+
+.nav-items{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  margin: 0px 10px;
+  flex-grow: 1;
+}
+
+.nav-items a{
+  margin: 0px 10px;
 }
 
 .login{
@@ -164,19 +181,32 @@ nav{
 /* CreateMeals */
 
 .meal-name{
-  font-size: 3rem;
   color: white;
   margin: 15px 70px;
-  padding-left: 1%;
+  padding-top: 1%;
+  text-align: center;
+}
+.meal-name h1 {
+  font-size: 5rem;
+  border-top: 2px solid #FF3134; 
+  border-bottom: 2px solid #FF3134;
+  padding: 10px;   
 }
 
 .macro-wrapper{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   margin-top: 20px;
   padding: 20px;
+  align-items: center;
+  flex-basis: 1;
+}
+
+.macro-wrapper >*{
+  flex-flow: 1;
+  align-self: center;
 }
 
 .macro-box{
@@ -208,14 +238,17 @@ nav{
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+  flex-basis: 100%;
 }
 
 .food-block{
   margin: 25px;
-  background-color: #2b5388
+  padding: 25px;
+  background-color: #2b5388;
+  flex-grow: 1;
 }
 
-.food-block h1{
+.food-block h1, h4,h5{
   text-align: center;
   color: white;
 }
@@ -240,6 +273,34 @@ nav{
   justify-content: space-between;
   margin: 10px;
   border-top:3px solid black;
+}
+/* Create Meals Modal Component */
+.modal-trigger{
+  width: auto !important;
+  margin: 5px;
+  text-align: center;
+}
+
+.modal-content, .modal, .modal-footer{
+  background-color: #2b5388 !important;
+}
+
+/* Create Meals w/o framework grid*/
+.create-meals-wrapper{
+  display: flex;
+  flex-flow: row wrap;  
+}
+
+.create-meals-wrapper >*{
+  flex-grow: 1;
+}
+
+th {
+  color: #FF3134;
+}
+
+thead{
+  border: none;
 }
 
 /* Goal w/ CSS Grid  */

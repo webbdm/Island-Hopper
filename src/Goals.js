@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 //import { Link } from 'react-router-dom';
-// import { VictoryChart, VictoryBar } from 'victory';
 import { Bar } from 'react-chartjs-2';
+
 import firebase, {
     getTarget,
     getAddedMeals,
@@ -53,14 +53,14 @@ let toAddedMeal = (handlers) => (meal, index) => (
 );
 
 let getBarData = ({ totals, target }) => ({
-    labels: ['Protein', 'Fat', 'Carbs', 'Total'],
+    labels: ['Protein', 'Fat', 'Carbs'],
     datasets: [{
         backgroundColor: totals.protein >= target.protein
             && totals.fat >= target.fat
             && totals.carbs >= target.carbs ? 'green' : '#FF3134',
         hoverBackgroundColor: '#FF3134',
         hoverBorderColor: 'rgba(255,99,132,1)',
-        data: [totals.protein, totals.fat, totals.carbs, 200]
+        data: [totals.protein, totals.fat, totals.carbs]
     }]
 });
 
@@ -132,10 +132,10 @@ class Goals extends Component {
                                 <h1>{this.state.totals.carbs}</h1>
                                 <p>Carbs</p>
                             </div>
-                            <div className="card macro-box">
+                            {/* <div className="card macro-box">
                                 <h1></h1>
                                 <p>Total</p>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="goals-graph-component">
                             <Bar
