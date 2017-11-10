@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 //import { Link } from 'react-router-dom';
-// import { VictoryChart, VictoryBar } from 'victory';
 import { Bar } from 'react-chartjs-2';
+
 import firebase, {
     getTarget,
     getAddedMeals,
