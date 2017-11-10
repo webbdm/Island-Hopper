@@ -238,10 +238,12 @@ nav{
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+  flex-basis: 100%;
 }
 
 .food-block{
   margin: 25px;
+  padding: 25px;
   background-color: #2b5388;
   flex-grow: 1;
 }
@@ -271,6 +273,16 @@ nav{
   justify-content: space-between;
   margin: 10px;
   border-top:3px solid black;
+}
+/* Create Meals Modal Component */
+.modal-trigger{
+  width: auto !important;
+  margin: 5px;
+  text-align: center;
+}
+
+.modal-content, .modal, .modal-footer{
+  background-color: #2b5388 !important;
 }
 
 /* Create Meals w/o framework grid*/

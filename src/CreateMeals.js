@@ -187,7 +187,6 @@ class CreateMeals extends Component {
                 </div>
                 <div className="food-container">
                     <div className="food-block">
-                        <h5>Foods</h5>
                         <table className="centered">
                             <thead>
                                 <tr>
@@ -220,39 +219,40 @@ class CreateMeals extends Component {
                                 })}
                             </tbody>
                         </table>
-                        <Modal
-                            header='Modal Header'
-                            trigger={<button>+</button>}>
-                            <div className="food-block">
-                                <h5>Add Foods to {this.state.mealName}</h5>
-                                <table className="centered">
-                                    <thead>
-                                        <tr>
-                                            <th>Food</th>
-                                            <th>Protein</th>
-                                            <th>Fat</th>
-                                            <th>Carbs</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {this.state.foods.map((food, index) => {
-                                            return (
-                                                <FoodItem
-                                                    name={food.foodName}
-                                                    protein={food.protein}
-                                                    fat={food.fat}
-                                                    carbs={food.carbs}
-                                                    key={index}
-                                                    addFood={this.addFood}
-                                                    foodObject={food}
-                                                    mealId={this.state.id}
-                                                />
-                                            )
-                                        })}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </Modal>
+                        <div className="center-align">
+                            <Modal
+                                header={`Add Foods to ${this.state.mealName}`}
+                                trigger={<button className="btn modal-trigger">Add Foods to {this.state.mealName}</button>}>
+                                <div className="food-block">
+                                    <table className="centered">
+                                        <thead>
+                                            <tr>
+                                                <th>Food</th>
+                                                <th>Protein</th>
+                                                <th>Fat</th>
+                                                <th>Carbs</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {this.state.foods.map((food, index) => {
+                                                return (
+                                                    <FoodItem
+                                                        name={food.foodName}
+                                                        protein={food.protein}
+                                                        fat={food.fat}
+                                                        carbs={food.carbs}
+                                                        key={index}
+                                                        addFood={this.addFood}
+                                                        foodObject={food}
+                                                        mealId={this.state.id}
+                                                    />
+                                                )
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </Modal>
+                        </div>
                     </div>
                 </div>
             </div >
